@@ -1,0 +1,33 @@
+{
+  "name": "yor.ts",
+  "version": "0.0.1",
+  "description": "",
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsup ./src"
+  },
+  "keywords": [],
+  "author": "OreOreki (Oreki)",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.10.3",
+    "@vercel/style-guide": "^5.1.0",
+    "eslint": "^8.55.0",
+    "prettier": "^3.1.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  }
+}
