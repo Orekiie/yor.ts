@@ -1,0 +1,68 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/lint.yml
+      - src/**
+      - pnpm-lock.yaml
+      - tsconfig.json
+      - .eslintrc.js
+      - prettier.config.js
+  pull_request:
+    branches:
+      - main
+    paths:
+      - .github/workflows/lint.yml
+      - src/**
+      - pnpm-lock.yaml
+      - tsconfig.json
+      - .eslintrc.js
+      - prettier.config.js
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
+          run_install: false
+
+      - name: Pnpm store directories
+        id: pnpm-cache
+        shell: bash
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Mocha Tests
+        run: pnpm run test
+
+      - name: Coverage
+        run: pnpm run coverage
+        continue-on-error: true

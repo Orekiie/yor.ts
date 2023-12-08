@@ -1,33 +1,77 @@
 {
   "name": "yor.ts",
   "version": "0.0.1",
-  "description": "",
-  "files": [
-    "dist",
-    "package.json"
+  "description": "A highly performant and typed library to make discord http based bots",
+  "keywords": [
+    "discord",
+    "discordjs",
+    "discord-interactions",
+    "cloudflare-workers",
+    "wrapper"
   ],
+  "homepage": "https://github.com/OreOreki/yor.ts#readme",
+  "bugs": {
+    "url": "https://github.com/OreOreki/yor.ts/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OreOreki/yor.ts.git"
+  },
+  "license": "MIT",
+  "author": "OreOreki (Oreki)",
   "exports": {
     ".": {
       "require": "./dist/index.js",
       "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
+    },
+    "./builders": {
+      "require": "./dist/builders/index.js",
+      "import": "./dist/builders/index.mjs",
+      "types": "./dist/builders/index.d.ts"
     }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "package.json"
+  ],
   "scripts": {
-    "build": "tsup ./src"
+    "build": "tsup ./src",
+    "coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "docs": "typedoc --plugin typedoc-plugin-markdown --out docs src",
+    "docs:complete": "tsx scripts/mintlify.ts",
+    "format": "prettier --write ./src",
+    "lint": "eslint ./src --ext .ts",
+    "lint:fix": "eslint ./src --ext .ts --fix",
+    "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts"
   },
-  "keywords": [],
-  "author": "OreOreki (Oreki)",
-  "license": "MIT",
+  "dependencies": {
+    "@discordjs/builders": "^1.7.0",
+    "@discordjs/collection": "^2.0.0",
+    "@discordjs/core": "^1.1.1",
+    "@discordjs/rest": "^2.2.0",
+    "discord-api-types": "^0.37.65",
+    "discord-interactions": "^3.4.0"
+  },
   "devDependencies": {
-    "@types/node": "^20.10.3",
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "^20.10.4",
+    "@types/sinon": "^17.0.2",
     "@vercel/style-guide": "^5.1.0",
+    "chai": "^4.3.10",
     "eslint": "^8.55.0",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
     "prettier": "^3.1.0",
+    "sinon": "^17.0.1",
     "tsup": "^8.0.1",
+    "tsx": "^4.6.2",
+    "typedoc": "^0.25.4",
+    "typedoc-plugin-markdown": "^3.17.1",
     "typescript": "^5.3.3"
   }
 }

@@ -1,0 +1,420 @@
+[yor.ts](../README.md) / [Exports](../modules.md) / YorClient
+
+# Class: YorClient
+
+## Table of contents
+
+### Constructors
+
+- [constructor](YorClient.md#constructor)
+
+### Properties
+
+- [api](YorClient.md#api)
+- [commands](YorClient.md#commands)
+- [components](YorClient.md#components)
+- [middlewares](YorClient.md#middlewares)
+- [options](YorClient.md#options)
+- [rest](YorClient.md#rest)
+
+### Methods
+
+- [createMiddleware](YorClient.md#createmiddleware)
+- [deployCommands](YorClient.md#deploycommands)
+- [handleInteraction](YorClient.md#handleinteraction)
+- [handleInteractionRequest](YorClient.md#handleinteractionrequest)
+- [registerCommand](YorClient.md#registercommand)
+- [registerCommands](YorClient.md#registercommands)
+- [registerComponent](YorClient.md#registercomponent)
+- [registerComponents](YorClient.md#registercomponents)
+- [unregisterAllCommands](YorClient.md#unregisterallcommands)
+- [unregisterCommand](YorClient.md#unregistercommand)
+- [unregisterCommands](YorClient.md#unregistercommands)
+- [unregisterComponent](YorClient.md#unregistercomponent)
+- [unregisterComponents](YorClient.md#unregistercomponents)
+
+## Constructors
+
+### constructor
+
+• **new YorClient**(`options`): [`YorClient`](YorClient.md)
+
+Creates a new instance of the class.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | [`YorClientOptions`](../interfaces/YorClientOptions.md) | The configuration options for the client. |
+
+#### Returns
+
+[`YorClient`](YorClient.md)
+
+#### Defined in
+
+src/structures/YorClient.ts:57
+
+## Properties
+
+### api
+
+• **api**: `API`
+
+#### Defined in
+
+src/structures/YorClient.ts:45
+
+___
+
+### commands
+
+• `Readonly` **commands**: `Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+#### Defined in
+
+src/structures/YorClient.ts:38
+
+___
+
+### components
+
+• `Readonly` **components**: `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+#### Defined in
+
+src/structures/YorClient.ts:39
+
+___
+
+### middlewares
+
+• **middlewares**: `Record`\<[`MiddlewareFunctionNames`](../modules.md#middlewarefunctionnames), ((`context`: [`CommandContext`](CommandContext.md)) => `void` \| `Promise`\<`void`\> \| (`context`: [`ComponentContext`](ComponentContext.md)) => `void` \| `Promise`\<`void`\>)[]\>
+
+#### Defined in
+
+src/structures/YorClient.ts:47
+
+___
+
+### options
+
+• `Readonly` **options**: [`YorClientOptions`](../interfaces/YorClientOptions.md)
+
+#### Defined in
+
+src/structures/YorClient.ts:37
+
+___
+
+### rest
+
+• **rest**: `REST`
+
+#### Defined in
+
+src/structures/YorClient.ts:44
+
+## Methods
+
+### createMiddleware
+
+▸ **createMiddleware**\<`T`\>(`name`, `middleware`): `void`
+
+Creates middleware for a given name and adds it to the middlewares array.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`MiddlewareFunctionNames`](../modules.md#middlewarefunctionnames) |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `T` | The name of the middleware. |
+| `middleware` | [`MiddlewareFunction`](../modules.md#middlewarefunction)\<`T`\> | The middleware function. |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+src/structures/YorClient.ts:240
+
+___
+
+### deployCommands
+
+▸ **deployCommands**(): `Promise`\<`RESTPutAPIApplicationCommandsResult`\>
+
+Deploys the commands to the API application and returns the result.
+
+#### Returns
+
+`Promise`\<`RESTPutAPIApplicationCommandsResult`\>
+
+The result of the deployment.
+
+#### Defined in
+
+src/structures/YorClient.ts:151
+
+___
+
+### handleInteraction
+
+▸ **handleInteraction**(`request`): `Promise`\<\{ `handling`: `Promise`\<`void`\> ; `response`: `Promise`\<`APIInteractionResponse` \| `Response` \| `FormData`\>  }\>
+
+Handles an interaction request from the API.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `request` | `Request` | The request object containing the interaction data. |
+
+#### Returns
+
+`Promise`\<\{ `handling`: `Promise`\<`void`\> ; `response`: `Promise`\<`APIInteractionResponse` \| `Response` \| `FormData`\>  }\>
+
+- An object containing a promise for the response and a promise for handling.
+
+#### Defined in
+
+src/structures/YorClient.ts:256
+
+___
+
+### handleInteractionRequest
+
+▸ **handleInteractionRequest**(`data`, `resolve`): `Promise`\<`void`\>
+
+Handles the interaction request.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `APIInteraction` | The interaction data. |
+| `resolve` | (`value`: `Response` \| `FormData` \| `PromiseLike`\<`Response` \| `FormData`\>) => `void` | The resolve function. |
+
+#### Returns
+
+`Promise`\<`void`\>
+
+#### Defined in
+
+src/structures/YorClient.ts:333
+
+___
+
+### registerCommand
+
+▸ **registerCommand**(`command`): `Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+Registers a slash command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`SlashCommand`](SlashCommand.md) | The slash command to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+- The updated commands collection.
+
+#### Defined in
+
+src/structures/YorClient.ts:76
+
+___
+
+### registerCommands
+
+▸ **registerCommands**(`commands`): `Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+Registers the provided slash commands.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `commands` | [`SlashCommand`](SlashCommand.md)[] | The slash commands to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+- The updated commands map.
+
+#### Defined in
+
+src/structures/YorClient.ts:94
+
+___
+
+### registerComponent
+
+▸ **registerComponent**(`component`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+Registers a component in the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `component` | [`YorInteractionComponent`](YorInteractionComponent.md) | The component to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+- The updated collection of components.
+
+#### Defined in
+
+src/structures/YorClient.ts:170
+
+___
+
+### registerComponents
+
+▸ **registerComponents**(`components`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+Registers the given components in the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `components` | [`YorInteractionComponent`](YorInteractionComponent.md)[] | The components to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+- The updated collection of components.
+
+#### Defined in
+
+src/structures/YorClient.ts:189
+
+___
+
+### unregisterAllCommands
+
+▸ **unregisterAllCommands**(): `Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+Unregisters all slash commands.
+
+#### Returns
+
+`Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+- The updated commands map.
+
+#### Defined in
+
+src/structures/YorClient.ts:141
+
+___
+
+### unregisterCommand
+
+▸ **unregisterCommand**(`command`): `Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+Unregisters a slash command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`SlashCommand`](SlashCommand.md) | The slash command to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+- The updated commands collection.
+
+#### Defined in
+
+src/structures/YorClient.ts:114
+
+___
+
+### unregisterCommands
+
+▸ **unregisterCommands**(`commands`): `Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+Unregisters the provided slash commands.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `commands` | [`SlashCommand`](SlashCommand.md)[] | The slash commands to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`SlashCommand`](SlashCommand.md)\>
+
+- The updated commands map.
+
+#### Defined in
+
+src/structures/YorClient.ts:127
+
+___
+
+### unregisterComponent
+
+▸ **unregisterComponent**(`component`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+Deletes the specified component from the collection and returns the updated collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `component` | [`YorInteractionComponent`](YorInteractionComponent.md) | The component to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+- The updated collection of components.
+
+#### Defined in
+
+src/structures/YorClient.ts:210
+
+___
+
+### unregisterComponents
+
+▸ **unregisterComponents**(`components`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+Unregisters components from the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `components` | [`YorInteractionComponent`](YorInteractionComponent.md)[] | The components to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent.md)\>
+
+- The updated components collection.
+
+#### Defined in
+
+src/structures/YorClient.ts:224
