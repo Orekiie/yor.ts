@@ -57,7 +57,7 @@ BaseContext.constructor
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:22
+[src/structures/Contexts/ComponentContext.ts:22](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L22)
 
 ## Properties
 
@@ -67,7 +67,7 @@ src/structures/Contexts/ComponentContext.ts:22
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:14
+[src/structures/Contexts/ComponentContext.ts:14](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L14)
 
 ___
 
@@ -77,7 +77,7 @@ ___
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:11
+[src/structures/Contexts/ComponentContext.ts:11](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L11)
 
 ___
 
@@ -87,7 +87,7 @@ ___
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:10
+[src/structures/Contexts/ComponentContext.ts:10](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L10)
 
 ___
 
@@ -97,7 +97,7 @@ ___
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:12
+[src/structures/Contexts/ComponentContext.ts:12](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L12)
 
 ## Methods
 
@@ -126,21 +126,15 @@ BaseContext.decorate
 
 #### Defined in
 
-src/structures/Contexts/BaseContext.ts:9
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/BaseContext.ts#L9)
 
 ___
 
 ### defer
 
-▸ **defer**(`data`): `Promise`\<`void`\>
+▸ **defer**(): `Promise`\<`void`\>
 
 Defer a message update.
-
-#### Parameters
-
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `data` | `undefined` \| `Pick`\<`RequestData`, ``"signal"``\> | The data for deferring the message update. |
 
 #### Returns
 
@@ -150,7 +144,7 @@ A promise that resolves when the message update is deferred.
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:38
+[src/structures/Contexts/ComponentContext.ts:37](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L37)
 
 ___
 
@@ -168,7 +162,7 @@ Determines if the element is a button.
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:49
+[src/structures/Contexts/ComponentContext.ts:46](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L46)
 
 ___
 
@@ -186,7 +180,7 @@ Checks if the component is a channel select menu.
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:67
+[src/structures/Contexts/ComponentContext.ts:64](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L64)
 
 ___
 
@@ -204,7 +198,7 @@ True if the select menu is mentionable, false otherwise.
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:76
+[src/structures/Contexts/ComponentContext.ts:73](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L73)
 
 ___
 
@@ -222,7 +216,7 @@ True if the function is a role select menu, false otherwise.
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:85
+[src/structures/Contexts/ComponentContext.ts:82](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L82)
 
 ___
 
@@ -240,7 +234,7 @@ true if the select menu is of type string, false otherwise
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:58
+[src/structures/Contexts/ComponentContext.ts:55](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L55)
 
 ___
 
@@ -258,4 +252,4 @@ true if the component type is UserSelect, false otherwise
 
 #### Defined in
 
-src/structures/Contexts/ComponentContext.ts:94
+[src/structures/Contexts/ComponentContext.ts:91](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ComponentContext.ts#L91)

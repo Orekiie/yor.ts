@@ -43,7 +43,10 @@
   "navigation": [
     {
       "group": "Yor.ts",
-      "pages": ["modules", "README"]
+      "pages": [
+        "README",
+        "modules"
+      ]
     },
     {
       "group": "classes",

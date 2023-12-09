@@ -31,46 +31,25 @@
 
 ### constructor
 
-• **new YorClientError**(`message?`): [`YorClientError`](YorClientError.md)
+• **new YorClientError**(`message`): [`YorClientError`](YorClientError.md)
 
 #### Parameters
 
 | Name | Type |
 | :------ | :------ |
-| `message?` | `string` |
+| `message` | `string` |
 
 #### Returns
 
 [`YorClientError`](YorClientError.md)
 
-#### Inherited from
+#### Overrides
 
 Error.constructor
 
 #### Defined in
 
-node_modules/.pnpm/typescript@5.3.3/node_modules/typescript/lib/lib.es5.d.ts:1081
-
-• **new YorClientError**(`message?`, `options?`): [`YorClientError`](YorClientError.md)
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `message?` | `string` |
-| `options?` | `ErrorOptions` |
-
-#### Returns
-
-[`YorClientError`](YorClientError.md)
-
-#### Inherited from
-
-Error.constructor
-
-#### Defined in
-
-node_modules/.pnpm/typescript@5.3.3/node_modules/typescript/lib/lib.es2022.error.d.ts:28
+[src/structures/YorClientError.ts:2](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClientError.ts#L2)
 
 ## Properties
 
