@@ -15,6 +15,8 @@ import {
 } from '@discordjs/core';
 
 import { Channel } from '../Channel';
+import { Member } from '../Member';
+import { User } from '../User';
 import { YorClientError } from '../YorClientError';
 
 import { BaseContext } from './BaseContext';
@@ -24,6 +26,8 @@ export class CommandContext extends BaseContext {
   public token: string;
   public id: string;
   public channel: Channel;
+  public user: User | undefined;
+  public member: Member | undefined;
 
   public subcommandGroup?: APIApplicationCommandInteractionDataSubcommandGroupOption;
   public subcommand?: APIApplicationCommandInteractionDataSubcommandOption;
@@ -47,6 +51,11 @@ export class CommandContext extends BaseContext {
     this.token = this.raw.token;
     this.id = this.raw.id;
     this.channel = new Channel(API.channels, this.raw.channel);
+    this.user = this.raw.user ? new User(API.users, this.raw.user) : undefined;
+    this.member =
+      this.raw.member && this.raw.guild_id
+        ? new Member(API.guilds, this.raw.guild_id, this.raw.member)
+        : undefined;
 
     this.subcommandGroup = this.raw.data.options?.find(
       (option) => option.type === ApplicationCommandOptionType.SubcommandGroup,
@@ -557,6 +566,10 @@ export class CommandContext extends BaseContext {
 
     if (option.type !== ApplicationCommandOptionType.Channel) {
       throw new YorClientError(`Option ${name} is not of type channel.`);
+    }
+
+    if (!resolved) {
+      throw new YorClientError(`Option ${name} is not resolved.`);
     }
 
     return resolved as T extends true

@@ -71,5 +71,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_author: GitHub Actions <${{ github.actor }}@users.noreply.github.com>
-          commit_message: Lint and format
-          create_branch: true
+          commit_user_name: GitHub Actions
+          commit_message: 'chore: format and lint code'

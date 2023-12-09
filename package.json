@@ -1,6 +1,6 @@
 {
   "name": "yor.ts",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A highly performant and typed library to make discord http based bots",
   "keywords": [
     "discord",
@@ -45,13 +45,14 @@
   ],
   "scripts": {
     "build": "tsup ./src",
-    "coverage": "nyc check-coverage --statements 100 --branches 100 --functions 100 --lines 100",
+    "coverage": "nyc report --reporter=json -m",
     "docs:complete": "tsx scripts/mintlify.ts",
     "docs:generate": "typedoc --plugin typedoc-plugin-markdown --out temp src",
     "format": "prettier --write ./src",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
-    "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts"
+    "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts",
+    "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
