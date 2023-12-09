@@ -16,6 +16,8 @@
 
 ### Properties
 
+- [API](AutocompleteCommandContext.md#api)
+- [channel](AutocompleteCommandContext.md#channel)
 - [raw](AutocompleteCommandContext.md#raw)
 
 ### Methods
@@ -26,7 +28,7 @@
 
 ### constructor
 
-• **new AutocompleteCommandContext**(`data`): [`AutocompleteCommandContext`](AutocompleteCommandContext.md)
+• **new AutocompleteCommandContext**(`API`, `data`): [`AutocompleteCommandContext`](AutocompleteCommandContext.md)
 
 Initializes a new instance of the APIApplicationCommandAutocompleteInteraction class.
 
@@ -34,6 +36,7 @@ Initializes a new instance of the APIApplicationCommandAutocompleteInteraction c
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
+| `API` | `API` | The API used to initialize the instance. |
 | `data` | `APIApplicationCommandAutocompleteInteraction` | The data used to initialize the instance. |
 
 #### Returns
@@ -46,9 +49,29 @@ BaseContext.constructor
 
 #### Defined in
 
-src/structures/Contexts/AutocompleteCommandContext.ts:13
+[src/structures/Contexts/AutocompleteCommandContext.ts:23](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L23)
 
 ## Properties
+
+### API
+
+• `Private` **API**: `InteractionsAPI`
+
+#### Defined in
+
+[src/structures/Contexts/AutocompleteCommandContext.ts:11](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L11)
+
+___
+
+### channel
+
+• **channel**: [`Channel`](Channel.md)
+
+#### Defined in
+
+[src/structures/Contexts/AutocompleteCommandContext.ts:15](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L15)
+
+___
 
 ### raw
 
@@ -56,7 +79,7 @@ src/structures/Contexts/AutocompleteCommandContext.ts:13
 
 #### Defined in
 
-src/structures/Contexts/AutocompleteCommandContext.ts:6
+[src/structures/Contexts/AutocompleteCommandContext.ts:13](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L13)
 
 ## Methods
 
@@ -85,4 +108,4 @@ BaseContext.decorate
 
 #### Defined in
 
-src/structures/Contexts/BaseContext.ts:9
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/BaseContext.ts#L9)

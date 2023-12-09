@@ -7,24 +7,29 @@
 ### Classes
 
 - [AutocompleteCommandContext](classes/AutocompleteCommandContext.md)
+- [Channel](classes/Channel.md)
 - [CommandContext](classes/CommandContext.md)
 - [ComponentContext](classes/ComponentContext.md)
 - [ModalContext](classes/ModalContext.md)
-- [SlashCommand](classes/SlashCommand.md)
+- [WebhookClient](classes/WebhookClient.md)
 - [YorClient](classes/YorClient.md)
 - [YorClientError](classes/YorClientError.md)
 - [YorInteractionComponent](classes/YorInteractionComponent.md)
+- [YorInteractionModal](classes/YorInteractionModal.md)
+- [YorSlashCommand](classes/YorSlashCommand.md)
 
 ### Interfaces
 
 - [Command](interfaces/Command.md)
 - [Component](interfaces/Component.md)
+- [Modal](interfaces/Modal.md)
 - [YorClientOptions](interfaces/YorClientOptions.md)
 
 ### Type Aliases
 
 - [MiddlewareFunction](modules.md#middlewarefunction)
 - [MiddlewareFunctionNames](modules.md#middlewarefunctionnames)
+- [WebhookClientOptions](modules.md#webhookclientoptions)
 
 ## Type Aliases
 
@@ -40,7 +45,7 @@
 
 #### Defined in
 
-[src/structures/YorClient.ts:38](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L38)
+[src/structures/YorClient.ts:39](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L39)
 
 ___
 
@@ -50,4 +55,20 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:32](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L32)
+[src/structures/YorClient.ts:33](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L33)
+
+___
+
+### WebhookClientOptions
+
+Ƭ **WebhookClientOptions**\<`T`\>: `T`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` \| \{ `id`: `string` ; `token`: `string`  } |
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:6](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/WebhookClient.ts#L6)

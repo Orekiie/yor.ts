@@ -46,7 +46,7 @@ BaseContext.constructor
 
 #### Defined in
 
-src/structures/Contexts/ModalContext.ts:13
+[src/structures/Contexts/ModalContext.ts:13](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ModalContext.ts#L13)
 
 ## Properties
 
@@ -56,7 +56,7 @@ src/structures/Contexts/ModalContext.ts:13
 
 #### Defined in
 
-src/structures/Contexts/ModalContext.ts:6
+[src/structures/Contexts/ModalContext.ts:6](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/ModalContext.ts#L6)
 
 ## Methods
 
@@ -85,4 +85,4 @@ BaseContext.decorate
 
 #### Defined in
 
-src/structures/Contexts/BaseContext.ts:9
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/BaseContext.ts#L9)

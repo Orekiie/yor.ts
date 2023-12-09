@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[src/interfaces/Component.ts:5](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/interfaces/Component.ts#L5)
+[src/interfaces/Component.ts:5](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Component.ts#L5)
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 #### Defined in
 
-[src/interfaces/Component.ts:4](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/interfaces/Component.ts#L4)
+[src/interfaces/Component.ts:4](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Component.ts#L4)
