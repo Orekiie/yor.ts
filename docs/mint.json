@@ -52,13 +52,17 @@
       "group": "classes",
       "pages": [
         "classes/AutocompleteCommandContext",
+        "classes/Channel",
         "classes/CommandContext",
         "classes/ComponentContext",
         "classes/ModalContext",
         "classes/SlashCommand",
+        "classes/WebhookClient",
         "classes/YorClient",
         "classes/YorClientError",
-        "classes/YorInteractionComponent"
+        "classes/YorInteractionComponent",
+        "classes/YorInteractionModal",
+        "classes/YorSlashCommand"
       ]
     },
     {
@@ -66,6 +70,7 @@
       "pages": [
         "interfaces/Command",
         "interfaces/Component",
+        "interfaces/Modal",
         "interfaces/YorClientOptions"
       ]
     }

@@ -53,7 +53,7 @@
 
 #### Defined in
 
-[src/structures/YorInteractionModal.ts:7](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorInteractionModal.ts#L7)
+[src/structures/YorInteractionModal.ts:7](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorInteractionModal.ts#L7)
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-[src/structures/YorInteractionModal.ts:6](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorInteractionModal.ts#L6)
+[src/structures/YorInteractionModal.ts:6](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorInteractionModal.ts#L6)

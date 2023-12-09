@@ -20,11 +20,13 @@
 - [channel](CommandContext.md#channel)
 - [deferred](CommandContext.md#deferred)
 - [id](CommandContext.md#id)
+- [member](CommandContext.md#member)
 - [raw](CommandContext.md#raw)
 - [replied](CommandContext.md#replied)
 - [subcommand](CommandContext.md#subcommand)
 - [subcommandGroup](CommandContext.md#subcommandgroup)
 - [token](CommandContext.md#token)
+- [user](CommandContext.md#user)
 
 ### Methods
 
@@ -71,7 +73,7 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:42](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L42)
+[src/structures/Contexts/CommandContext.ts:46](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L46)
 
 ## Properties
 
@@ -81,7 +83,7 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:34](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L34)
+[src/structures/Contexts/CommandContext.ts:38](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L38)
 
 ___
 
@@ -91,7 +93,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:26](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L26)
+[src/structures/Contexts/CommandContext.ts:28](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L28)
 
 ___
 
@@ -101,7 +103,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:31](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L31)
+[src/structures/Contexts/CommandContext.ts:35](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L35)
 
 ___
 
@@ -111,7 +113,17 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:25](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L25)
+[src/structures/Contexts/CommandContext.ts:27](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L27)
+
+___
+
+### member
+
+• **member**: `undefined` \| `Member`
+
+#### Defined in
+
+[src/structures/Contexts/CommandContext.ts:30](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L30)
 
 ___
 
@@ -121,7 +133,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:23](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L23)
+[src/structures/Contexts/CommandContext.ts:25](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L25)
 
 ___
 
@@ -131,7 +143,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:32](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L32)
+[src/structures/Contexts/CommandContext.ts:36](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L36)
 
 ___
 
@@ -141,7 +153,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:29](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L29)
+[src/structures/Contexts/CommandContext.ts:33](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L33)
 
 ___
 
@@ -151,7 +163,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:28](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L28)
+[src/structures/Contexts/CommandContext.ts:32](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L32)
 
 ___
 
@@ -161,7 +173,17 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:24](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L24)
+[src/structures/Contexts/CommandContext.ts:26](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L26)
+
+___
+
+### user
+
+• **user**: `undefined` \| `User`
+
+#### Defined in
+
+[src/structures/Contexts/CommandContext.ts:29](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L29)
 
 ## Methods
 
@@ -190,7 +212,7 @@ BaseContext.decorate
 
 #### Defined in
 
-[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/BaseContext.ts#L9)
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/BaseContext.ts#L9)
 
 ___
 
@@ -214,7 +236,7 @@ A promise that resolves when the deferral is complete.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:65](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L65)
+[src/structures/Contexts/CommandContext.ts:74](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L74)
 
 ___
 
@@ -232,7 +254,7 @@ A promise that resolves when the reply is deleted.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:120](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L120)
+[src/structures/Contexts/CommandContext.ts:129](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L129)
 
 ___
 
@@ -256,7 +278,7 @@ A promise that resolves when the reply is edited.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:103](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L103)
+[src/structures/Contexts/CommandContext.ts:112](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L112)
 
 ___
 
@@ -274,7 +296,7 @@ A promise that resolves when the original reply is fetched.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:129](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L129)
+[src/structures/Contexts/CommandContext.ts:138](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L138)
 
 ___
 
@@ -298,7 +320,7 @@ A promise that resolves to an APIMessage object.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:157](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L157)
+[src/structures/Contexts/CommandContext.ts:166](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L166)
 
 ___
 
@@ -330,7 +352,7 @@ Retrieves a boolean option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:344](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L344)
+[src/structures/Contexts/CommandContext.ts:353](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L353)
 
 ___
 
@@ -362,7 +384,7 @@ Retrieves a channel option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:512](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L512)
+[src/structures/Contexts/CommandContext.ts:521](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L521)
 
 ___
 
@@ -394,7 +416,7 @@ Retrieves an integer option from the API.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:290](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L290)
+[src/structures/Contexts/CommandContext.ts:299](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L299)
 
 ___
 
@@ -426,7 +448,7 @@ Retrieves a user option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:575](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L575)
+[src/structures/Contexts/CommandContext.ts:588](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L588)
 
 ___
 
@@ -458,7 +480,7 @@ Retrieves a number option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:236](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L236)
+[src/structures/Contexts/CommandContext.ts:245](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L245)
 
 ___
 
@@ -490,7 +512,7 @@ Retrieves a role option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:455](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L455)
+[src/structures/Contexts/CommandContext.ts:464](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L464)
 
 ___
 
@@ -522,7 +544,7 @@ Retrieves a string option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:180](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L180)
+[src/structures/Contexts/CommandContext.ts:189](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L189)
 
 ___
 
@@ -554,7 +576,7 @@ Retrieves a user option from the command's options.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:398](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L398)
+[src/structures/Contexts/CommandContext.ts:407](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L407)
 
 ___
 
@@ -572,7 +594,7 @@ Returns true if the instance is in a guild, otherwise false.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:168](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L168)
+[src/structures/Contexts/CommandContext.ts:177](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L177)
 
 ___
 
@@ -596,7 +618,7 @@ description of the return value
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:84](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L84)
+[src/structures/Contexts/CommandContext.ts:93](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L93)
 
 ___
 
@@ -620,4 +642,4 @@ A promise that resolves when the modal is created.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:139](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/CommandContext.ts#L139)
+[src/structures/Contexts/CommandContext.ts:148](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/CommandContext.ts#L148)

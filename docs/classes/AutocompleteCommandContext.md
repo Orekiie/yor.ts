@@ -49,7 +49,7 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/AutocompleteCommandContext.ts:23](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L23)
+[src/structures/Contexts/AutocompleteCommandContext.ts:23](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/AutocompleteCommandContext.ts#L23)
 
 ## Properties
 
@@ -59,7 +59,7 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/AutocompleteCommandContext.ts:11](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L11)
+[src/structures/Contexts/AutocompleteCommandContext.ts:11](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/AutocompleteCommandContext.ts#L11)
 
 ___
 
@@ -69,7 +69,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/AutocompleteCommandContext.ts:15](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L15)
+[src/structures/Contexts/AutocompleteCommandContext.ts:15](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/AutocompleteCommandContext.ts#L15)
 
 ___
 
@@ -79,7 +79,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/AutocompleteCommandContext.ts:13](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/AutocompleteCommandContext.ts#L13)
+[src/structures/Contexts/AutocompleteCommandContext.ts:13](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/AutocompleteCommandContext.ts#L13)
 
 ## Methods
 
@@ -108,4 +108,4 @@ BaseContext.decorate
 
 #### Defined in
 
-[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Contexts/BaseContext.ts#L9)
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Contexts/BaseContext.ts#L9)

@@ -58,7 +58,7 @@ Creates a new instance of the class.
 
 #### Defined in
 
-[src/structures/YorClient.ts:72](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L72)
+[src/structures/YorClient.ts:72](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L72)
 
 ## Properties
 
@@ -68,7 +68,7 @@ Creates a new instance of the class.
 
 #### Defined in
 
-[src/structures/YorClient.ts:60](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L60)
+[src/structures/YorClient.ts:60](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L60)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:52](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L52)
+[src/structures/YorClient.ts:52](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L52)
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:53](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L53)
+[src/structures/YorClient.ts:53](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L53)
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:62](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L62)
+[src/structures/YorClient.ts:62](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L62)
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:57](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L57)
+[src/structures/YorClient.ts:57](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L57)
 
 ___
 
@@ -118,7 +118,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:51](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L51)
+[src/structures/YorClient.ts:51](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L51)
 
 ___
 
@@ -128,7 +128,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:59](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L59)
+[src/structures/YorClient.ts:59](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L59)
 
 ## Methods
 
@@ -157,7 +157,7 @@ Creates middleware for a given name and adds it to the middlewares array.
 
 #### Defined in
 
-[src/structures/YorClient.ts:324](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L324)
+[src/structures/YorClient.ts:324](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L324)
 
 ___
 
@@ -175,7 +175,7 @@ The result of the deployment.
 
 #### Defined in
 
-[src/structures/YorClient.ts:169](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L169)
+[src/structures/YorClient.ts:169](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L169)
 
 ___
 
@@ -199,7 +199,7 @@ Handles an interaction request from the API.
 
 #### Defined in
 
-[src/structures/YorClient.ts:340](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L340)
+[src/structures/YorClient.ts:340](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L340)
 
 ___
 
@@ -222,7 +222,7 @@ Handles the interaction request.
 
 #### Defined in
 
-[src/structures/YorClient.ts:417](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L417)
+[src/structures/YorClient.ts:417](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L417)
 
 ___
 
@@ -246,7 +246,7 @@ Registers a slash command.
 
 #### Defined in
 
-[src/structures/YorClient.ts:94](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L94)
+[src/structures/YorClient.ts:94](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L94)
 
 ___
 
@@ -270,7 +270,7 @@ Registers the provided slash commands.
 
 #### Defined in
 
-[src/structures/YorClient.ts:112](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L112)
+[src/structures/YorClient.ts:112](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L112)
 
 ___
 
@@ -294,7 +294,7 @@ Registers a component in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:188](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L188)
+[src/structures/YorClient.ts:188](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L188)
 
 ___
 
@@ -318,7 +318,7 @@ Registers the given components in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:207](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L207)
+[src/structures/YorClient.ts:207](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L207)
 
 ___
 
@@ -342,7 +342,7 @@ Registers a modal in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:258](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L258)
+[src/structures/YorClient.ts:258](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L258)
 
 ___
 
@@ -366,7 +366,7 @@ Registers the given modals in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:275](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L275)
+[src/structures/YorClient.ts:275](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L275)
 
 ___
 
@@ -384,7 +384,7 @@ Unregisters all slash commands.
 
 #### Defined in
 
-[src/structures/YorClient.ts:159](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L159)
+[src/structures/YorClient.ts:159](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L159)
 
 ___
 
@@ -408,7 +408,7 @@ Unregisters a slash command.
 
 #### Defined in
 
-[src/structures/YorClient.ts:132](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L132)
+[src/structures/YorClient.ts:132](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L132)
 
 ___
 
@@ -432,7 +432,7 @@ Unregisters the provided slash commands.
 
 #### Defined in
 
-[src/structures/YorClient.ts:145](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L145)
+[src/structures/YorClient.ts:145](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L145)
 
 ___
 
@@ -456,7 +456,7 @@ Deletes the specified component from the collection and returns the updated coll
 
 #### Defined in
 
-[src/structures/YorClient.ts:228](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L228)
+[src/structures/YorClient.ts:228](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L228)
 
 ___
 
@@ -480,7 +480,7 @@ Unregisters components from the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:242](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L242)
+[src/structures/YorClient.ts:242](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L242)
 
 ___
 
@@ -504,7 +504,7 @@ Deletes the specified modal from the collection and returns the updated collecti
 
 #### Defined in
 
-[src/structures/YorClient.ts:294](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L294)
+[src/structures/YorClient.ts:294](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L294)
 
 ___
 
@@ -528,4 +528,4 @@ Unregisters modals from the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:308](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClient.ts#L308)
+[src/structures/YorClient.ts:308](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClient.ts#L308)

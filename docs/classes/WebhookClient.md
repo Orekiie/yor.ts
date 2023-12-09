@@ -48,7 +48,7 @@
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:16](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/WebhookClient.ts#L16)
+[src/structures/WebhookClient.ts:16](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/WebhookClient.ts#L16)
 
 ## Properties
 
@@ -58,7 +58,7 @@
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:14](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/WebhookClient.ts#L14)
+[src/structures/WebhookClient.ts:14](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/WebhookClient.ts#L14)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:11](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/WebhookClient.ts#L11)
+[src/structures/WebhookClient.ts:11](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/WebhookClient.ts#L11)
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:12](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/WebhookClient.ts#L12)
+[src/structures/WebhookClient.ts:12](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/WebhookClient.ts#L12)
 
 ## Methods
 
@@ -102,4 +102,4 @@ A promise that resolves to the result of the `execute` method.
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:45](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/WebhookClient.ts#L45)
+[src/structures/WebhookClient.ts:45](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/WebhookClient.ts#L45)

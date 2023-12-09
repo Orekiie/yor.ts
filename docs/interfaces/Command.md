@@ -36,7 +36,7 @@
 
 #### Defined in
 
-[src/interfaces/Command.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Command.ts#L9)
+[src/interfaces/Command.ts:9](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/interfaces/Command.ts#L9)
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-[src/interfaces/Command.ts:7](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Command.ts#L7)
+[src/interfaces/Command.ts:7](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/interfaces/Command.ts#L7)
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 #### Defined in
 
-[src/interfaces/Command.ts:8](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Command.ts#L8)
+[src/interfaces/Command.ts:8](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/interfaces/Command.ts#L8)

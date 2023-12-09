@@ -54,7 +54,7 @@
 
 #### Defined in
 
-[src/structures/YorSlashCommand.ts:11](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorSlashCommand.ts#L11)
+[src/structures/YorSlashCommand.ts:11](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorSlashCommand.ts#L11)
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorSlashCommand.ts:9](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorSlashCommand.ts#L9)
+[src/structures/YorSlashCommand.ts:9](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorSlashCommand.ts#L9)
 
 ___
 
@@ -96,4 +96,4 @@ ___
 
 #### Defined in
 
-[src/structures/YorSlashCommand.ts:10](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorSlashCommand.ts#L10)
+[src/structures/YorSlashCommand.ts:10](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorSlashCommand.ts#L10)

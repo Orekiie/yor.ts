@@ -35,7 +35,7 @@
 
 #### Defined in
 
-[src/interfaces/Modal.ts:5](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Modal.ts#L5)
+[src/interfaces/Modal.ts:5](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/interfaces/Modal.ts#L5)
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 #### Defined in
 
-[src/interfaces/Modal.ts:4](https://github.com/OreOreki/yor.ts/blob/f601845/src/interfaces/Modal.ts#L4)
+[src/interfaces/Modal.ts:4](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/interfaces/Modal.ts#L4)

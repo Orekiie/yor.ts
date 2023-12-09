@@ -61,7 +61,7 @@ If channel data is not provided.
 
 #### Defined in
 
-[src/structures/Channel.ts:34](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L34)
+[src/structures/Channel.ts:34](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L34)
 
 ## Properties
 
@@ -71,7 +71,7 @@ If channel data is not provided.
 
 #### Defined in
 
-[src/structures/Channel.ts:25](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L25)
+[src/structures/Channel.ts:25](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L25)
 
 ___
 
@@ -81,7 +81,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:21](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L21)
+[src/structures/Channel.ts:21](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L21)
 
 ___
 
@@ -91,7 +91,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:18](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L18)
+[src/structures/Channel.ts:18](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L18)
 
 ___
 
@@ -101,7 +101,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:19](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L19)
+[src/structures/Channel.ts:19](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L19)
 
 ___
 
@@ -111,7 +111,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:23](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L23)
+[src/structures/Channel.ts:23](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L23)
 
 ___
 
@@ -121,7 +121,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:20](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L20)
+[src/structures/Channel.ts:20](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L20)
 
 ## Methods
 
@@ -145,7 +145,7 @@ Promise that resolves when the messages are deleted
 
 #### Defined in
 
-[src/structures/Channel.ts:100](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L100)
+[src/structures/Channel.ts:100](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L100)
 
 ___
 
@@ -169,7 +169,7 @@ A promise that resolves with the created webhook.
 
 #### Defined in
 
-[src/structures/Channel.ts:211](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L211)
+[src/structures/Channel.ts:211](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L211)
 
 ___
 
@@ -187,7 +187,7 @@ The creation date of the object.
 
 #### Defined in
 
-[src/structures/Channel.ts:149](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L149)
+[src/structures/Channel.ts:149](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L149)
 
 ___
 
@@ -205,7 +205,7 @@ The created timestamp.
 
 #### Defined in
 
-[src/structures/Channel.ts:135](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L135)
+[src/structures/Channel.ts:135](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L135)
 
 ___
 
@@ -223,7 +223,7 @@ Promise that resolves to the deleted channel
 
 #### Defined in
 
-[src/structures/Channel.ts:78](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L78)
+[src/structures/Channel.ts:78](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L78)
 
 ___
 
@@ -247,7 +247,7 @@ Promise that resolves to the edited channel
 
 #### Defined in
 
-[src/structures/Channel.ts:88](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L88)
+[src/structures/Channel.ts:88](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L88)
 
 ___
 
@@ -271,7 +271,7 @@ A promise that resolves to an array of API messages.
 
 #### Defined in
 
-[src/structures/Channel.ts:67](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L67)
+[src/structures/Channel.ts:67](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L67)
 
 ___
 
@@ -289,7 +289,7 @@ A promise that resolves with an array of webhooks.
 
 #### Defined in
 
-[src/structures/Channel.ts:236](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L236)
+[src/structures/Channel.ts:236](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L236)
 
 ___
 
@@ -307,7 +307,7 @@ Determines if the channel is DM-based.
 
 #### Defined in
 
-[src/structures/Channel.ts:191](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L191)
+[src/structures/Channel.ts:191](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L191)
 
 ___
 
@@ -325,7 +325,7 @@ true if the function is text-based, false otherwise.
 
 #### Defined in
 
-[src/structures/Channel.ts:182](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L182)
+[src/structures/Channel.ts:182](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L182)
 
 ___
 
@@ -343,7 +343,7 @@ true if the channel type is a thread, false otherwise
 
 #### Defined in
 
-[src/structures/Channel.ts:158](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L158)
+[src/structures/Channel.ts:158](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L158)
 
 ___
 
@@ -361,7 +361,7 @@ Returns true if the channel is voice-based, false otherwise.
 
 #### Defined in
 
-[src/structures/Channel.ts:171](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L171)
+[src/structures/Channel.ts:171](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L171)
 
 ___
 
@@ -385,7 +385,7 @@ Promise that resolves when the message is pinned
 
 #### Defined in
 
-[src/structures/Channel.ts:112](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L112)
+[src/structures/Channel.ts:112](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L112)
 
 ___
 
@@ -409,7 +409,7 @@ A promise that resolves to the created message.
 
 #### Defined in
 
-[src/structures/Channel.ts:55](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L55)
+[src/structures/Channel.ts:55](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L55)
 
 ___
 
@@ -427,7 +427,7 @@ The string representation of the channel.
 
 #### Defined in
 
-[src/structures/Channel.ts:200](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L200)
+[src/structures/Channel.ts:200](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L200)
 
 ___
 
@@ -451,4 +451,4 @@ Promise that resolves when the message is unpinned
 
 #### Defined in
 
-[src/structures/Channel.ts:124](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/Channel.ts#L124)
+[src/structures/Channel.ts:124](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/Channel.ts#L124)

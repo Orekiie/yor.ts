@@ -49,7 +49,7 @@ Error.constructor
 
 #### Defined in
 
-[src/structures/YorClientError.ts:2](https://github.com/OreOreki/yor.ts/blob/f601845/src/structures/YorClientError.ts#L2)
+[src/structures/YorClientError.ts:2](https://github.com/OreOreki/yor.ts/blob/dd9125a/src/structures/YorClientError.ts#L2)
 
 ## Properties
 
