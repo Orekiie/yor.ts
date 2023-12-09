@@ -2,6 +2,12 @@
 
 # Class: ModalContext
 
+## Hierarchy
+
+- `BaseContext`
+
+  ↳ **`ModalContext`**
+
 ## Table of contents
 
 ### Constructors
@@ -11,6 +17,10 @@
 ### Properties
 
 - [raw](ModalContext.md#raw)
+
+### Methods
+
+- [decorate](ModalContext.md#decorate)
 
 ## Constructors
 
@@ -30,9 +40,13 @@ Initializes a new instance of the constructor.
 
 [`ModalContext`](ModalContext.md)
 
+#### Overrides
+
+BaseContext.constructor
+
 #### Defined in
 
-src/structures/Context.ts:132
+src/structures/Contexts/ModalContext.ts:13
 
 ## Properties
 
@@ -42,4 +56,33 @@ src/structures/Context.ts:132
 
 #### Defined in
 
-src/structures/Context.ts:125
+src/structures/Contexts/ModalContext.ts:6
+
+## Methods
+
+### decorate
+
+▸ **decorate**(`name`, `data`): `unknown`
+
+Decorates the object with a new property.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the property. |
+| `data` | `unknown` | The data to assign to the property. |
+
+#### Returns
+
+`unknown`
+
+The decorated object.
+
+#### Inherited from
+
+BaseContext.decorate
+
+#### Defined in
+
+src/structures/Contexts/BaseContext.ts:9

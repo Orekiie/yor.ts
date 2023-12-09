@@ -2,6 +2,12 @@
 
 # Class: AutocompleteCommandContext
 
+## Hierarchy
+
+- `BaseContext`
+
+  ↳ **`AutocompleteCommandContext`**
+
 ## Table of contents
 
 ### Constructors
@@ -11,6 +17,10 @@
 ### Properties
 
 - [raw](AutocompleteCommandContext.md#raw)
+
+### Methods
+
+- [decorate](AutocompleteCommandContext.md#decorate)
 
 ## Constructors
 
@@ -30,9 +40,13 @@ Initializes a new instance of the APIApplicationCommandAutocompleteInteraction c
 
 [`AutocompleteCommandContext`](AutocompleteCommandContext.md)
 
+#### Overrides
+
+BaseContext.constructor
+
 #### Defined in
 
-src/structures/Context.ts:119
+src/structures/Contexts/AutocompleteCommandContext.ts:13
 
 ## Properties
 
@@ -42,4 +56,33 @@ src/structures/Context.ts:119
 
 #### Defined in
 
-src/structures/Context.ts:112
+src/structures/Contexts/AutocompleteCommandContext.ts:6
+
+## Methods
+
+### decorate
+
+▸ **decorate**(`name`, `data`): `unknown`
+
+Decorates the object with a new property.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the property. |
+| `data` | `unknown` | The data to assign to the property. |
+
+#### Returns
+
+`unknown`
+
+The decorated object.
+
+#### Inherited from
+
+BaseContext.decorate
+
+#### Defined in
+
+src/structures/Contexts/BaseContext.ts:9

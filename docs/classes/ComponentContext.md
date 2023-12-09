@@ -2,6 +2,12 @@
 
 # Class: ComponentContext
 
+## Hierarchy
+
+- `BaseContext`
+
+  ↳ **`ComponentContext`**
+
 ## Table of contents
 
 ### Constructors
@@ -17,7 +23,14 @@
 
 ### Methods
 
+- [decorate](ComponentContext.md#decorate)
 - [defer](ComponentContext.md#defer)
+- [isButton](ComponentContext.md#isbutton)
+- [isChannelSelectMenu](ComponentContext.md#ischannelselectmenu)
+- [isMentionableSelectMenu](ComponentContext.md#ismentionableselectmenu)
+- [isRoleSelectMenu](ComponentContext.md#isroleselectmenu)
+- [isStringSelectMenu](ComponentContext.md#isstringselectmenu)
+- [isUserSelectMenu](ComponentContext.md#isuserselectmenu)
 
 ## Constructors
 
@@ -38,9 +51,13 @@ Creates a new instance of the constructor.
 
 [`ComponentContext`](ComponentContext.md)
 
+#### Overrides
+
+BaseContext.constructor
+
 #### Defined in
 
-src/structures/Context.ts:150
+src/structures/Contexts/ComponentContext.ts:22
 
 ## Properties
 
@@ -50,7 +67,7 @@ src/structures/Context.ts:150
 
 #### Defined in
 
-src/structures/Context.ts:142
+src/structures/Contexts/ComponentContext.ts:14
 
 ___
 
@@ -60,7 +77,7 @@ ___
 
 #### Defined in
 
-src/structures/Context.ts:139
+src/structures/Contexts/ComponentContext.ts:11
 
 ___
 
@@ -70,7 +87,7 @@ ___
 
 #### Defined in
 
-src/structures/Context.ts:138
+src/structures/Contexts/ComponentContext.ts:10
 
 ___
 
@@ -80,9 +97,38 @@ ___
 
 #### Defined in
 
-src/structures/Context.ts:140
+src/structures/Contexts/ComponentContext.ts:12
 
 ## Methods
+
+### decorate
+
+▸ **decorate**(`name`, `data`): `unknown`
+
+Decorates the object with a new property.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the property. |
+| `data` | `unknown` | The data to assign to the property. |
+
+#### Returns
+
+`unknown`
+
+The decorated object.
+
+#### Inherited from
+
+BaseContext.decorate
+
+#### Defined in
+
+src/structures/Contexts/BaseContext.ts:9
+
+___
 
 ### defer
 
@@ -104,4 +150,112 @@ A promise that resolves when the message update is deferred.
 
 #### Defined in
 
-src/structures/Context.ts:164
+src/structures/Contexts/ComponentContext.ts:38
+
+___
+
+### isButton
+
+▸ **isButton**(): `boolean`
+
+Determines if the element is a button.
+
+#### Returns
+
+`boolean`
+
+- Returns `true` if the element is a button, `false` otherwise.
+
+#### Defined in
+
+src/structures/Contexts/ComponentContext.ts:49
+
+___
+
+### isChannelSelectMenu
+
+▸ **isChannelSelectMenu**(): `boolean`
+
+Checks if the component is a channel select menu.
+
+#### Returns
+
+`boolean`
+
+- Returns true if the component is a channel select menu, otherwise false.
+
+#### Defined in
+
+src/structures/Contexts/ComponentContext.ts:67
+
+___
+
+### isMentionableSelectMenu
+
+▸ **isMentionableSelectMenu**(): `boolean`
+
+Determines if the select menu is mentionable.
+
+#### Returns
+
+`boolean`
+
+True if the select menu is mentionable, false otherwise.
+
+#### Defined in
+
+src/structures/Contexts/ComponentContext.ts:76
+
+___
+
+### isRoleSelectMenu
+
+▸ **isRoleSelectMenu**(): `boolean`
+
+Determines if the function is a role select menu.
+
+#### Returns
+
+`boolean`
+
+True if the function is a role select menu, false otherwise.
+
+#### Defined in
+
+src/structures/Contexts/ComponentContext.ts:85
+
+___
+
+### isStringSelectMenu
+
+▸ **isStringSelectMenu**(): `boolean`
+
+Determines if the select menu is of type string.
+
+#### Returns
+
+`boolean`
+
+true if the select menu is of type string, false otherwise
+
+#### Defined in
+
+src/structures/Contexts/ComponentContext.ts:58
+
+___
+
+### isUserSelectMenu
+
+▸ **isUserSelectMenu**(): `boolean`
+
+Determines whether the component type of the raw data is a UserSelect.
+
+#### Returns
+
+`boolean`
+
+true if the component type is UserSelect, false otherwise
+
+#### Defined in
+
+src/structures/Contexts/ComponentContext.ts:94

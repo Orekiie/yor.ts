@@ -1,12 +1,13 @@
-import { defineConfig } from "tsup";
+/* eslint-disable import/no-default-export */
+import { defineConfig } from 'tsup';
 
 export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: true,
-  format: ["cjs", "esm"],
+  format: ['cjs', 'esm'],
   dts: true,
   treeshake: true,
   minify: true,
-  target: "es2022",
+  target: 'es2022',
 });

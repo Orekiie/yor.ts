@@ -21,7 +21,7 @@
 
 #### Defined in
 
-src/interfaces/Command.ts:6
+[src/interfaces/Command.ts:6](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/interfaces/Command.ts#L6)
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 #### Defined in
 
-src/interfaces/Command.ts:7
+[src/interfaces/Command.ts:7](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/interfaces/Command.ts#L7)

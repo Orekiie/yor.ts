@@ -1,86 +1,79 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
-  "favicon": "/favicon.svg",
+  "name": "Yor.ts",
+  "logo": "/logo.png",
+  "favicon": "/favicon.png",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#8B0000",
+    "light": "#FF6347",
+    "dark": "#4B0082",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#8B0000",
+      "to": "#FF6347"
     }
   },
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
-    }
-  ],
-  "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
-  },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
+      "url": "discord.gg/HXVMArbsX7"
     }
   ],
   "anchors": [
     {
       "name": "Documentation",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "/"
     },
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
+      "icon": "discord",
+      "url": "https://discord.gg/HXVMArbsX7"
+    },
+    {
+      "name": "Guide",
+      "icon": "newspaper",
+      "url": "/guide"
     },
     {
       "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "icon": "book",
+      "url": "/blog"
     }
   ],
   "navigation": [
     {
       "group": "Yor.ts",
-      "pages": [
-        "Yor.ts/modules.md",
-        "Yor.ts/README.md"
-      ]
+      "pages": ["modules", "README"]
     },
     {
       "group": "classes",
       "pages": [
-        "classes/AutocompleteCommandContext.md",
-        "classes/CommandContext.md",
-        "classes/ComponentContext.md",
-        "classes/ModalContext.md",
-        "classes/SlashCommand.md",
-        "classes/YorClient.md",
-        "classes/YorClientError.md",
-        "classes/YorInteractionComponent.md"
+        "classes/AutocompleteCommandContext",
+        "classes/CommandContext",
+        "classes/ComponentContext",
+        "classes/ModalContext",
+        "classes/SlashCommand",
+        "classes/YorClient",
+        "classes/YorClientError",
+        "classes/YorInteractionComponent"
       ]
     },
     {
       "group": "interfaces",
       "pages": [
-        "interfaces/Command.md",
-        "interfaces/Component.md",
-        "interfaces/YorClientOptions.md"
+        "interfaces/Command",
+        "interfaces/Component",
+        "interfaces/YorClientOptions"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "discord": "https://discord.gg/HXVMArbsX7",
+    "github": "https://github.com/mintlify"
+  },
+  "feedback": {
+    "raiseIssue": true,
+    "suggestEdit": true,
+    "thumbsRating": true
   }
 }

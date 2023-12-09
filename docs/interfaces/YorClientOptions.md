@@ -25,7 +25,7 @@
 
 #### Defined in
 
-src/structures/YorClient.ts:20
+[src/structures/YorClient.ts:25](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L25)
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 #### Defined in
 
-src/structures/YorClient.ts:24
+[src/structures/YorClient.ts:29](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L29)
 
 ___
 
@@ -45,4 +45,4 @@ ___
 
 #### Defined in
 
-src/structures/YorClient.ts:19
+[src/structures/YorClient.ts:24](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L24)

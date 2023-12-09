@@ -2,18 +2,24 @@
 import { Collection } from '@discordjs/collection';
 import {
   API,
+  APIChatInputApplicationCommandInteraction,
   APIInteraction,
+  APIInteractionResponse,
+  ApplicationCommandType,
   InteractionType,
   RESTPutAPIApplicationCommandsResult,
 } from '@discordjs/core';
 import { REST, RESTOptions } from '@discordjs/rest';
-import { APIInteractionResponse } from 'discord-api-types/v10';
 import { InteractionResponseType, verifyKey } from 'discord-interactions';
 
-import { CommandContext, ComponentContext } from './Context';
-import { SlashCommand } from './SlashCommand';
+import { AutocompleteCommandContext } from './Contexts/AutocompleteCommandContext';
+import { CommandContext } from './Contexts/CommandContext';
+import { ComponentContext } from './Contexts/ComponentContext';
+import { ModalContext } from './Contexts/ModalContext';
 import { YorClientError } from './YorClientError';
 import { YorInteractionComponent } from './YorInteractionComponent';
+import { YorInteractionModal } from './YorInteractionModal';
+import { YorSlashCommand } from './YorSlashCommand';
 
 export interface YorClientOptions {
   token: string;
@@ -24,22 +30,31 @@ export interface YorClientOptions {
   rest?: RESTOptions;
 }
 
-export type MiddlewareFunctionNames = 'command' | 'component';
+export type MiddlewareFunctionNames =
+  | 'command'
+  | 'component'
+  | 'modal'
+  | 'autocomplete';
 
 export type MiddlewareFunction<T extends MiddlewareFunctionNames> =
   T extends 'command'
     ? (context: CommandContext) => Promise<void> | void
     : T extends 'component'
       ? (context: ComponentContext) => Promise<void> | void
-      : never;
+      : T extends 'modal'
+        ? (context: ModalContext) => Promise<void> | void
+        : T extends 'autocomplete'
+          ? (context: AutocompleteCommandContext) => Promise<void> | void
+          : never;
 
 export class YorClient {
   public readonly options: YorClientOptions;
-  public readonly commands = new Collection<string, SlashCommand>();
+  public readonly commands = new Collection<string, YorSlashCommand>();
   public readonly components = new Collection<
     string,
     YorInteractionComponent
   >();
+  public readonly modals = new Collection<string, YorInteractionModal>();
 
   public rest: REST;
   public api: API;
@@ -57,25 +72,28 @@ export class YorClient {
   constructor(options: YorClientOptions) {
     this.options = options;
 
-    this.rest = new REST(this.options.rest || { version: '10' }).setToken(
-      this.options.token,
-    );
+    this.rest = new REST({
+      version: options.rest?.version || '10',
+      ...options.rest,
+    }).setToken(this.options.token);
     this.api = new API(this.rest);
     this.middlewares = {
       command: [],
       component: [],
+      autocomplete: [],
+      modal: [],
     };
   }
 
   /**
    * Registers a slash command.
    *
-   * @param {SlashCommand} command - The slash command to register.
-   * @return {Collection<string, SlashCommand>} - The updated commands collection.
+   * @param {YorSlashCommand} command - The slash command to register.
+   * @return {Collection<string, YorSlashCommand>} - The updated commands collection.
    */
   public registerCommand(
-    command: SlashCommand,
-  ): Collection<string, SlashCommand> {
+    command: YorSlashCommand,
+  ): Collection<string, YorSlashCommand> {
     if (this.commands.has(command.builder.name))
       throw new YorClientError(
         `Command with name ${command.builder.name} already exists.`,
@@ -88,12 +106,12 @@ export class YorClient {
   /**
    * Registers the provided slash commands.
    *
-   * @param {SlashCommand[]} commands - The slash commands to register.
-   * @return {Collection<string, SlashCommand>} - The updated commands map.
+   * @param {YorSlashCommand[]} commands - The slash commands to register.
+   * @return {Collection<string, YorSlashCommand>} - The updated commands map.
    */
   public registerCommands(
-    commands: SlashCommand[],
-  ): Collection<string, SlashCommand> {
+    commands: YorSlashCommand[],
+  ): Collection<string, YorSlashCommand> {
     for (const command of commands) {
       if (this.commands.has(command.builder.name))
         throw new YorClientError(
@@ -108,12 +126,12 @@ export class YorClient {
   /**
    * Unregisters a slash command.
    *
-   * @param {SlashCommand} command - The slash command to unregister.
-   * @return {Collection<string, SlashCommand>} - The updated commands collection.
+   * @param {YorSlashCommand} command - The slash command to unregister.
+   * @return {Collection<string, YorSlashCommand>} - The updated commands collection.
    */
   public unregisterCommand(
-    command: SlashCommand,
-  ): Collection<string, SlashCommand> {
+    command: YorSlashCommand,
+  ): Collection<string, YorSlashCommand> {
     this.commands.delete(command.builder.name);
     return this.commands;
   }
@@ -121,12 +139,12 @@ export class YorClient {
   /**
    * Unregisters the provided slash commands.
    *
-   * @param {SlashCommand[]} commands - The slash commands to unregister.
-   * @return {Collection<string, SlashCommand>} - The updated commands map.
+   * @param {YorSlashCommand[]} commands - The slash commands to unregister.
+   * @return {Collection<string, YorSlashCommand>} - The updated commands map.
    */
   public unregisterCommands(
-    commands: SlashCommand[],
-  ): Collection<string, SlashCommand> {
+    commands: YorSlashCommand[],
+  ): Collection<string, YorSlashCommand> {
     for (const command of commands) {
       this.commands.delete(command.builder.name);
     }
@@ -136,9 +154,9 @@ export class YorClient {
   /**
    * Unregisters all slash commands.
    *
-   * @return {Collection<string, SlashCommand>} - The updated commands map.
+   * @return {Collection<string, YorSlashCommand>} - The updated commands map.
    */
-  public unregisterAllCommands(): Collection<string, SlashCommand> {
+  public unregisterAllCommands(): Collection<string, YorSlashCommand> {
     this.commands.clear();
     return this.commands;
   }
@@ -229,6 +247,72 @@ export class YorClient {
     }
 
     return this.components;
+  }
+
+  /**
+   * Registers a modal in the collection.
+   *
+   * @param {YorInteractionModal} modal - The modal to be registered.
+   * @return {Collection<string, YorInteractionModal>} - The updated collection of modals.
+   */
+  public registerModal(
+    modal: YorInteractionModal,
+  ): Collection<string, YorInteractionModal> {
+    if (this.modals.has(modal.id))
+      throw new YorClientError(`Modal with id ${modal.id} already exists.`);
+
+    this.modals.set(modal.id, modal);
+
+    return this.modals;
+  }
+
+  /**
+   * Registers the given modals in the collection.
+   *
+   * @param {YorInteractionModal[]} modals - The modals to be registered.
+   * @return {Collection<string, YorInteractionModal>} - The updated collection of modals.
+   */
+  public registerModals(
+    modals: YorInteractionModal[],
+  ): Collection<string, YorInteractionModal> {
+    for (const modal of modals) {
+      if (this.modals.has(modal.id))
+        throw new YorClientError(`Modal with id ${modal.id} already exists.`);
+
+      this.modals.set(modal.id, modal);
+    }
+
+    return this.modals;
+  }
+
+  /**
+   * Deletes the specified modal from the collection and returns the updated collection.
+   *
+   * @param {YorInteractionModal} modal - The modal to unregister.
+   * @return {Collection<string, YorInteractionModal>} - The updated collection of modals.
+   */
+  public unregisterModal(
+    modal: YorInteractionModal,
+  ): Collection<string, YorInteractionModal> {
+    this.modals.delete(modal.id);
+
+    return this.modals;
+  }
+
+  /**
+   * Unregisters modals from the collection.
+   *
+   * @param {YorInteractionModal[]} modals - The modals to unregister.
+   * @return {Collection<string, YorInteractionModal>} - The updated collection of modals.
+   */
+  public unregisterModals(
+    modals: YorInteractionModal[],
+  ): Collection<string, YorInteractionModal> {
+    for (const modal of modals) {
+      this.modals.delete(modal.id);
+    }
+
+    return this.modals;
   }
 
   /**
@@ -343,7 +427,45 @@ export class YorClient {
     }
 
     if (data.type === InteractionType.ApplicationCommand) {
-      const command = this.commands.get(data.data.name);
+      if (data.data.type === ApplicationCommandType.ChatInput) {
+        const command = this.commands.get(data.data.name);
+        if (!command) {
+          resolve(
+            new Response(
+              JSON.stringify({
+                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              }),
+            ),
+          );
+          return;
+        }
+
+        const context = new CommandContext(
+          this.api,
+          data as APIChatInputApplicationCommandInteraction,
+        );
+
+        for await (const middleware of this.middlewares.command) {
+          // @ts-expect-error - ts(2345)
+          await middleware(context);
+        }
+
+        await command.execute(context);
+
+        resolve(
+          new Response(
+            JSON.stringify({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            }),
+          ),
+        );
+      }
+    }
+
+    if (data.type === InteractionType.ApplicationCommandAutocomplete) {
+      const command = this.commands
+        .filter((command) => command.autocomplete)
+        .get(data.data.name);
       if (!command) {
         resolve(
           new Response(
@@ -355,19 +477,17 @@ export class YorClient {
         return;
       }
 
-      const context = new CommandContext(this.api.interactions, data);
-
-      for await (const middleware of this.middlewares.command) {
+      const context = new AutocompleteCommandContext(this.api, data);
+      for await (const middleware of this.middlewares.autocomplete) {
         // @ts-expect-error - ts(2345)
         await middleware(context);
       }
 
-      await command.execute(context);
-
+      await command.autocomplete(context);
       resolve(
         new Response(
           JSON.stringify({
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            type: InteractionResponseType.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
           }),
         ),
       );
@@ -387,13 +507,42 @@ export class YorClient {
       }
 
       const context = new ComponentContext(this.api.interactions, data);
-
       for await (const middleware of this.middlewares.component) {
         // @ts-expect-error - ts(2345)
         await middleware(context);
       }
 
       await component.execute(context);
+
+      resolve(
+        new Response(
+          JSON.stringify({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+          }),
+        ),
+      );
+    }
+
+    if (data.type === InteractionType.ModalSubmit) {
+      const modal = this.modals.get(data.data.custom_id);
+      if (!modal) {
+        resolve(
+          new Response(
+            JSON.stringify({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            }),
+          ),
+        );
+        return;
+      }
+
+      const context = new ModalContext(data);
+      for await (const middleware of this.middlewares.modal) {
+        // @ts-expect-error - ts(2345)
+        await middleware(context);
+      }
+
+      await modal.execute(context);
 
       resolve(
         new Response(

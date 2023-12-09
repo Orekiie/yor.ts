@@ -1,30 +1,10 @@
-name: Tests
+name: Publish
 
-on:
-  push:
-    branches:
-      - main
-    paths:
-      - .github/workflows/lint.yml
-      - src/**
-      - pnpm-lock.yaml
-      - tsconfig.json
-      - .eslintrc.js
-      - prettier.config.js
-  pull_request:
-    branches:
-      - main
-    paths:
-      - .github/workflows/lint.yml
-      - src/**
-      - pnpm-lock.yaml
-      - tsconfig.json
-      - .eslintrc.js
-      - prettier.config.js
+on: workflow_dispatch
 
 jobs:
-  tests:
-    name: Tests
+  publish:
+    name: Publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -37,6 +17,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
@@ -59,16 +40,15 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
-      - name: Mocha Tests
+      - name: Build
+        run: pnpm build
+
+      - name: Tests
         run: pnpm run tests
 
-      - name: Coverage
-        run: pnpm run coverage
-        continue-on-error: true
-
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v3
+      - name: Publish
+        run: npm publish
         env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

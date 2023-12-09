@@ -39,7 +39,7 @@
 
 #### Defined in
 
-src/structures/SlashCommand.ts:8
+[src/structures/SlashCommand.ts:8](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/SlashCommand.ts#L8)
 
 ___
 
@@ -67,4 +67,4 @@ ___
 
 #### Defined in
 
-src/structures/SlashCommand.ts:9
+[src/structures/SlashCommand.ts:9](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/SlashCommand.ts#L9)

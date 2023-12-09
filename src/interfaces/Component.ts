@@ -1,4 +1,4 @@
-import { ComponentContext } from '../structures/Context';
+import { ComponentContext } from '../structures/Contexts/ComponentContext';
 
 export interface Component {
   id: string;

@@ -23,14 +23,15 @@ on:
       - prettier.config.js
 
 jobs:
-  lint:
-    name: Lint
+  docs:
+    name: Docs
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+          token: ${{ secrets.PAT }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
@@ -61,7 +62,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Generate docs
-        run: pnpm run docs
+        run: pnpm run docs:generate
 
       - name: Finalize docs
         run: pnpm run docs:complete
@@ -70,6 +71,5 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: 'chore: update docs'
-          branch: ${{ github.head_ref }}
           commit_author: GitHub Actions <${{ github.actor }}@users.noreply.github.com>
           commit_user_name: GitHub Actions

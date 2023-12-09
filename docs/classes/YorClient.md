@@ -53,7 +53,7 @@ Creates a new instance of the class.
 
 #### Defined in
 
-src/structures/YorClient.ts:57
+[src/structures/YorClient.ts:70](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L70)
 
 ## Properties
 
@@ -63,7 +63,7 @@ src/structures/YorClient.ts:57
 
 #### Defined in
 
-src/structures/YorClient.ts:45
+[src/structures/YorClient.ts:58](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L58)
 
 ___
 
@@ -73,7 +73,7 @@ ___
 
 #### Defined in
 
-src/structures/YorClient.ts:38
+[src/structures/YorClient.ts:51](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L51)
 
 ___
 
@@ -83,17 +83,17 @@ ___
 
 #### Defined in
 
-src/structures/YorClient.ts:39
+[src/structures/YorClient.ts:52](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L52)
 
 ___
 
 ### middlewares
 
-• **middlewares**: `Record`\<[`MiddlewareFunctionNames`](../modules.md#middlewarefunctionnames), ((`context`: [`CommandContext`](CommandContext.md)) => `void` \| `Promise`\<`void`\> \| (`context`: [`ComponentContext`](ComponentContext.md)) => `void` \| `Promise`\<`void`\>)[]\>
+• **middlewares**: `Record`\<[`MiddlewareFunctionNames`](../modules.md#middlewarefunctionnames), ((`context`: [`CommandContext`](CommandContext.md)) => `void` \| `Promise`\<`void`\> \| (`context`: [`ComponentContext`](ComponentContext.md)) => `void` \| `Promise`\<`void`\> \| (`context`: [`ModalContext`](ModalContext.md)) => `void` \| `Promise`\<`void`\> \| (`context`: [`AutocompleteCommandContext`](AutocompleteCommandContext.md)) => `void` \| `Promise`\<`void`\>)[]\>
 
 #### Defined in
 
-src/structures/YorClient.ts:47
+[src/structures/YorClient.ts:60](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L60)
 
 ___
 
@@ -103,7 +103,7 @@ ___
 
 #### Defined in
 
-src/structures/YorClient.ts:37
+[src/structures/YorClient.ts:50](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L50)
 
 ___
 
@@ -113,7 +113,7 @@ ___
 
 #### Defined in
 
-src/structures/YorClient.ts:44
+[src/structures/YorClient.ts:57](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L57)
 
 ## Methods
 
@@ -142,7 +142,7 @@ Creates middleware for a given name and adds it to the middlewares array.
 
 #### Defined in
 
-src/structures/YorClient.ts:240
+[src/structures/YorClient.ts:256](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L256)
 
 ___
 
@@ -160,7 +160,7 @@ The result of the deployment.
 
 #### Defined in
 
-src/structures/YorClient.ts:151
+[src/structures/YorClient.ts:167](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L167)
 
 ___
 
@@ -184,7 +184,7 @@ Handles an interaction request from the API.
 
 #### Defined in
 
-src/structures/YorClient.ts:256
+[src/structures/YorClient.ts:272](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L272)
 
 ___
 
@@ -207,7 +207,7 @@ Handles the interaction request.
 
 #### Defined in
 
-src/structures/YorClient.ts:333
+[src/structures/YorClient.ts:349](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L349)
 
 ___
 
@@ -231,7 +231,7 @@ Registers a slash command.
 
 #### Defined in
 
-src/structures/YorClient.ts:76
+[src/structures/YorClient.ts:92](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L92)
 
 ___
 
@@ -255,7 +255,7 @@ Registers the provided slash commands.
 
 #### Defined in
 
-src/structures/YorClient.ts:94
+[src/structures/YorClient.ts:110](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L110)
 
 ___
 
@@ -279,7 +279,7 @@ Registers a component in the collection.
 
 #### Defined in
 
-src/structures/YorClient.ts:170
+[src/structures/YorClient.ts:186](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L186)
 
 ___
 
@@ -303,7 +303,7 @@ Registers the given components in the collection.
 
 #### Defined in
 
-src/structures/YorClient.ts:189
+[src/structures/YorClient.ts:205](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L205)
 
 ___
 
@@ -321,7 +321,7 @@ Unregisters all slash commands.
 
 #### Defined in
 
-src/structures/YorClient.ts:141
+[src/structures/YorClient.ts:157](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L157)
 
 ___
 
@@ -345,7 +345,7 @@ Unregisters a slash command.
 
 #### Defined in
 
-src/structures/YorClient.ts:114
+[src/structures/YorClient.ts:130](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L130)
 
 ___
 
@@ -369,7 +369,7 @@ Unregisters the provided slash commands.
 
 #### Defined in
 
-src/structures/YorClient.ts:127
+[src/structures/YorClient.ts:143](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L143)
 
 ___
 
@@ -393,7 +393,7 @@ Deletes the specified component from the collection and returns the updated coll
 
 #### Defined in
 
-src/structures/YorClient.ts:210
+[src/structures/YorClient.ts:226](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L226)
 
 ___
 
@@ -417,4 +417,4 @@ Unregisters components from the collection.
 
 #### Defined in
 
-src/structures/YorClient.ts:224
+[src/structures/YorClient.ts:240](https://github.com/OreOreki/interactions.ts/blob/2616a4b/src/structures/YorClient.ts#L240)
