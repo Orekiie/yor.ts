@@ -71,7 +71,10 @@
     },
     {
       "group": "temp",
-      "pages": ["temp/modules", "temp/README"]
+      "pages": [
+        "temp/modules",
+        "temp/README"
+      ]
     }
   ],
   "footerSocials": {
