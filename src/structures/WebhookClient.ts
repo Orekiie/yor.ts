@@ -1,4 +1,4 @@
-import { WebhooksAPI } from '@discordjs/core';
+import { WebhooksAPI } from '@discordjs/core/http-only';
 import { REST } from '@discordjs/rest';
 
 import { YorClientError } from './YorClientError';

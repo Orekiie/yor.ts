@@ -1,0 +1,119 @@
+---
+title: Yor.ts | classes/Member.md
+---
+[yor.ts](../README.md) / [Exports](../modules.md) / Member
+
+# Class: Member
+
+## Table of contents
+
+### Constructors
+
+- [constructor](Member.md#constructor)
+
+### Properties
+
+- [API](Member.md#api)
+- [raw](Member.md#raw)
+- [user](Member.md#user)
+
+### Methods
+
+- [ban](Member.md#ban)
+- [fetchGuild](Member.md#fetchguild)
+
+## Constructors
+
+### constructor
+
+• **new Member**(`API`, `guildID`, `member`): [`Member`](Member.md)
+
+Constructs a new instance of the constructor.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `API` | [`YorClientAPI`](YorClientAPI.md) | The API instance. |
+| `guildID` | `string` | The ID of the guild. |
+| `member` | `APIInteractionGuildMember` | The member object. |
+
+#### Returns
+
+[`Member`](Member.md)
+
+#### Defined in
+
+[src/structures/Member.ts:23](https://github.com/OreOreki/interactions.ts/blob/dd9125a/src/structures/Member.ts#L23)
+
+## Properties
+
+### API
+
+• `Private` **API**: `GuildsAPI`
+
+#### Defined in
+
+[src/structures/Member.ts:11](https://github.com/OreOreki/interactions.ts/blob/dd9125a/src/structures/Member.ts#L11)
+
+___
+
+### raw
+
+• **raw**: `APIInteractionGuildMember` & \{ `guildID`: `string`  }
+
+#### Defined in
+
+[src/structures/Member.ts:13](https://github.com/OreOreki/interactions.ts/blob/dd9125a/src/structures/Member.ts#L13)
+
+___
+
+### user
+
+• **user**: [`User`](User.md)
+
+#### Defined in
+
+[src/structures/Member.ts:14](https://github.com/OreOreki/interactions.ts/blob/dd9125a/src/structures/Member.ts#L14)
+
+## Methods
+
+### ban
+
+▸ **ban**(`data?`): `Promise`\<`void`\>
+
+Bans a user with optional additional data.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data?` | `RESTPutAPIGuildBanJSONBody` & \{ `reason`: `string`  } | The optional additional data for banning the user. It can include properties like `delete_message_seconds` and `reason`. |
+
+#### Returns
+
+`Promise`\<`void`\>
+
+A promise that resolves when the user is successfully banned.
+
+#### Defined in
+
+[src/structures/Member.ts:40](https://github.com/OreOreki/interactions.ts/blob/dd9125a/src/structures/Member.ts#L40)
+
+___
+
+### fetchGuild
+
+▸ **fetchGuild**(): `Promise`\<[`Guild`](Guild.md)\>
+
+Fetches a guild using the guild ID.
+
+#### Returns
+
+`Promise`\<[`Guild`](Guild.md)\>
+
+A Promise that resolves with the fetched Guild object.
+
+#### Defined in
+
+[src/structures/Member.ts:56](https://github.com/OreOreki/interactions.ts/blob/dd9125a/src/structures/Member.ts#L56)

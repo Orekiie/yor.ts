@@ -42,23 +42,23 @@
   ],
   "navigation": [
     {
-      "group": "Yor.ts",
-      "pages": [
-        "README",
-        "modules"
-      ]
-    },
-    {
       "group": "classes",
       "pages": [
         "classes/AutocompleteCommandContext",
+        "classes/Channel",
         "classes/CommandContext",
         "classes/ComponentContext",
+        "classes/Guild",
+        "classes/Member",
         "classes/ModalContext",
-        "classes/SlashCommand",
+        "classes/User",
+        "classes/WebhookClient",
         "classes/YorClient",
+        "classes/YorClientAPI",
         "classes/YorClientError",
-        "classes/YorInteractionComponent"
+        "classes/YorInteractionComponent",
+        "classes/YorInteractionModal",
+        "classes/YorSlashCommand"
       ]
     },
     {
@@ -66,8 +66,13 @@
       "pages": [
         "interfaces/Command",
         "interfaces/Component",
+        "interfaces/Modal",
         "interfaces/YorClientOptions"
       ]
+    },
+    {
+      "group": "temp",
+      "pages": ["temp/modules", "temp/README"]
     }
   ],
   "footerSocials": {

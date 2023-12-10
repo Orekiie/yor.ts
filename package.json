@@ -1,6 +1,6 @@
 {
   "name": "yor.ts",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A highly performant and typed library to make discord http based bots",
   "keywords": [
     "discord",
@@ -52,12 +52,14 @@
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
     "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts",
+    "typecheck": "tsc --noEmit",
     "version": "auto-changelog -p && git add CHANGELOG.md"
   },
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
     "@discordjs/collection": "^2.0.0",
     "@discordjs/core": "^1.1.1",
+    "@discordjs/formatters": "^0.3.3",
     "@discordjs/rest": "^2.2.0",
     "@discordjs/util": "^1.0.2",
     "discord-interactions": "^3.4.0"

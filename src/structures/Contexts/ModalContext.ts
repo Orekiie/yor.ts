@@ -1,4 +1,4 @@
-import { APIModalSubmitInteraction } from '@discordjs/core';
+import { APIModalSubmitInteraction } from '@discordjs/core/http-only';
 
 import { BaseContext } from './BaseContext';
 

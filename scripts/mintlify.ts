@@ -1,49 +1,95 @@
+/* eslint-disable @typescript-eslint/no-unnecessary-condition */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable no-param-reassign */
 /* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 
 import fs from 'node:fs';
+import path from 'node:path';
 
 const mintlify = require('../docs/mint.json');
 
-const getFilesAndFolder = (directory: string, files: string[] = []) => {
-  let navigation = [] as { group?: string; pages: string[] }[];
-
-  const filesAndFolders = fs.readdirSync(directory, { withFileTypes: true });
-
-  for (const fileOrFolder of filesAndFolders) {
-    if (fileOrFolder.isDirectory()) {
-      const group = fileOrFolder.name;
-      const pages = getFilesAndFolder(
-        `${directory}/${fileOrFolder.name}`,
-      ).flatMap((group) => group.pages);
-      navigation.push({ group, pages });
-    } else if (fileOrFolder.name.endsWith('.md')) {
-      const fileName = fileOrFolder.name.replace('.md', '');
-      const group = directory.split('/').pop() || 'Yor.ts'; // Get the directory name
-      navigation.push({
-        group: group === 'docs' ? 'Yor.ts' : group,
-        pages: [group === 'docs' ? `${fileName}` : `${group}/${fileName}`],
-      });
-    }
+const getPath = (file: fs.Dirent, prefix = ''): string | string[] => {
+  if (file.isDirectory()) {
+    const files = fs.readdirSync(`${prefix}${file.name}`, {
+      withFileTypes: true,
+    });
+    return files
+      .map((subFile) => getPath(subFile, `${prefix}${file.name}/`))
+      .flat();
   }
 
-  // Remove duplicate groups and merge them into a single item if they have the same group
-  const groups = new Set(navigation.map((item) => item.group));
-  navigation = Array.from(groups).map((group) => {
-    const pages = navigation
-      .filter((item) => item.group === group)
-      .flatMap((item) => item.pages);
-    return { group, pages };
+  return `${prefix}${file.name}`;
+};
+
+const convertMdToMdx = (filePath: string) => {
+  const data = fs.readFileSync(filePath, 'utf8');
+  const newContent = `---\ntitle: Yor.ts | ${filePath.replace(
+    'temp/',
+    '',
+  )}\n---\n${data}`;
+  const newFilePath = filePath.replace('.md', '.mdx');
+
+  fs.writeFileSync(newFilePath, newContent);
+  fs.rmSync(filePath);
+};
+
+const docs = mintlify;
+
+const files = fs
+  .readdirSync('temp', { recursive: true, withFileTypes: true })
+  .map((file) => getPath(file, 'temp/'));
+
+for (const file of files) {
+  if (Array.isArray(file)) {
+    file.forEach(convertMdToMdx);
+  } else {
+    try {
+      convertMdToMdx(file);
+    } catch (error) {
+      continue;
+    }
+  }
+}
+
+function getAllFiles(dir: string, filesList = {}) {
+  const files = fs.readdirSync(dir);
+
+  files.forEach((file) => {
+    const filePath = path.join(dir, file);
+    const fileStat = fs.statSync(filePath);
+
+    if (fileStat.isDirectory()) {
+      filesList = getAllFiles(filePath, filesList);
+    } else {
+      const folderName = path.basename(dir);
+      const fileNameWithoutExtension = path.parse(file).name;
+      const group = filesList[folderName as keyof typeof filesList] || {
+        group: folderName,
+        pages: [],
+      };
+
+      // @ts-expect-error - it does exist, i'm lazy to type it
+      group.pages.push(`${folderName}/${fileNameWithoutExtension}`);
+      filesList[folderName as keyof typeof filesList] = group;
+    }
   });
 
-  return navigation;
-};
+  return filesList;
+}
 
-const docs = {
-  ...mintlify,
-  navigation: getFilesAndFolder('docs'),
-};
+docs.navigation = [...docs.navigation, ...Object.values(getAllFiles('temp'))];
+
+const uniqueGroups = {};
+docs.navigation = docs.navigation.filter((item: { group: string }) => {
+  if (!uniqueGroups[item.group as keyof typeof uniqueGroups]) {
+    // @ts-expect-error - it does exist, i'm lazy to type it
+    uniqueGroups[item.group as keyof typeof uniqueGroups] = true;
+    return true;
+  }
+  return false;
+});
 
 fs.writeFileSync('docs/mint.json', JSON.stringify(docs, null, 2));
 

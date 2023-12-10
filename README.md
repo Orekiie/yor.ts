@@ -34,6 +34,9 @@ pnpm add yor.ts
 bun add yor.ts
 ```
 
+## Note
+Depending on where you're hosting your bot and what kind of provider you're using, you might need to polyfill some of the node libs to make it work. For example on cloudflare workers you will need to polyfill `node:util` and `node:url` in order to work. When you come across something like this, use [esbuild](https://esbuild.github.io/) and [esbuild-node-polyfill](https://github.com/cyco130/esbuild-plugin-polyfill-node/) to polyfill it.
+
 ## Contributing
 See [contributing guide](https://github.com/OreOreki/yor.ts/blob/main/CONTRIBUTING.md)
 
@@ -54,6 +57,9 @@ See [changelog](https://github.com/OreOreki/yor.ts/blob/main/CHANGELOG.md)
 
 ## License
 MIT
+
+## Special Thanks
+* [discordjs](https://github.com/discordjs/discord.js) for creating beautiful packages like `rest`/`core`
 
 ## Maintainers
 * [OreOreki](https://github.com/OreOreki)

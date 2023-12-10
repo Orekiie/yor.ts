@@ -1,4 +1,4 @@
-import { APIGuild, GuildsAPI } from '@discordjs/core';
+import { APIGuild, GuildsAPI } from '@discordjs/core/http-only';
 
 export class Guild {
   private API: GuildsAPI;

@@ -10,7 +10,7 @@ import {
   ChannelFlags,
   ChannelType,
   ChannelsAPI,
-} from '@discordjs/core';
+} from '@discordjs/core/http-only';
 
 import { YorClientError } from './YorClientError';
 

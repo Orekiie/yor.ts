@@ -1,14 +1,12 @@
-/* eslint-disable no-async-promise-executor */
 import { Collection } from '@discordjs/collection';
 import {
-  API,
   APIChatInputApplicationCommandInteraction,
   APIInteraction,
   APIInteractionResponse,
   ApplicationCommandType,
   InteractionType,
   RESTPutAPIApplicationCommandsResult,
-} from '@discordjs/core';
+} from '@discordjs/core/http-only';
 import { REST, RESTOptions } from '@discordjs/rest';
 import { InteractionResponseType, verifyKey } from 'discord-interactions';
 
@@ -16,6 +14,7 @@ import { AutocompleteCommandContext } from './Contexts/AutocompleteCommandContex
 import { CommandContext } from './Contexts/CommandContext';
 import { ComponentContext } from './Contexts/ComponentContext';
 import { ModalContext } from './Contexts/ModalContext';
+import { YorClientAPI } from './YorClientAPI';
 import { YorClientError } from './YorClientError';
 import { YorInteractionComponent } from './YorInteractionComponent';
 import { YorInteractionModal } from './YorInteractionModal';
@@ -57,7 +56,7 @@ export class YorClient {
   public readonly modals = new Collection<string, YorInteractionModal>();
 
   public rest: REST;
-  public api: API;
+  public api: YorClientAPI;
 
   public middlewares: Record<
     MiddlewareFunctionNames,
@@ -76,7 +75,7 @@ export class YorClient {
       version: options.rest?.version || '10',
       ...options.rest,
     }).setToken(this.options.token);
-    this.api = new API(this.rest);
+    this.api = new YorClientAPI(this.rest);
     this.middlewares = {
       command: [],
       component: [],
@@ -332,33 +331,18 @@ export class YorClient {
    * Handles an interaction request from the API.
    *
    * @param {Request} request - The request object containing the interaction data.
-   * @return {Promise<{
-   *    response: Promise<APIInteractionResponse | Response | FormData>,
-   *    handling: Promise<void>
-   * }>} - An object containing a promise for the response and a promise for handling.
+   * @return {Promise<APIInteractionResponse>} - An object containing a promise for the response.
    */
-  public async handleInteraction(request: Request): Promise<{
-    response: Promise<APIInteractionResponse | Response | FormData>;
-    handling: Promise<void>;
-  }> {
+  public async handleInteraction(
+    request: Request,
+  ): Promise<APIInteractionResponse> {
     const body = await request.clone().text();
 
     const signature = request.headers.get('X-Signature-Ed25519');
     const timestamp = request.headers.get('X-Signature-Timestamp');
 
     if (!signature || !timestamp) {
-      return {
-        response: Promise.resolve(
-          new Response(
-            JSON.stringify({
-              error: true,
-              message: 'Missing signature or timestamp',
-            }),
-            { status: 401 },
-          ),
-        ),
-        handling: Promise.resolve(),
-      };
+      throw new YorClientError('Missing signature or timestamp');
     }
 
     const isValid = verifyKey(
@@ -368,44 +352,13 @@ export class YorClient {
       this.options.application.publicKey,
     );
     if (!isValid) {
-      return {
-        response: Promise.resolve(
-          new Response(
-            JSON.stringify({
-              error: true,
-              message: 'Interaction failed to verify',
-            }),
-            { status: 401 },
-          ),
-        ),
-        handling: Promise.resolve(),
-      };
+      throw new YorClientError('Invalid signature');
     }
 
-    let response: Promise<Response | FormData>;
-    const handling = new Promise<void>(async (resolve, reject) => {
-      const data = (await request.json()) as APIInteraction;
+    const data = JSON.parse(body) as APIInteraction;
 
-      response = new Promise<Response | FormData>(async (resolve, reject) => {
-        try {
-          await this.handleInteractionRequest(data, resolve);
-        } catch (error) {
-          reject(error);
-        }
-      });
-
-      try {
-        resolve();
-      } catch (error) {
-        reject(error);
-      }
-    });
-
-    return {
-      // @ts-expect-error - will fix later
-      response,
-      handling,
-    };
+    // @ts-expect-error - ts(2345)
+    return this.handleInteractionRequest(data);
   }
 
   /**
@@ -414,30 +367,18 @@ export class YorClient {
    * @param {APIInteraction} data - The interaction data.
    * @param {(value: Response | FormData | PromiseLike<Response | FormData>) => void} resolve - The resolve function.
    */
-  private async handleInteractionRequest(
-    data: APIInteraction,
-    resolve: (
-      value: Response | FormData | PromiseLike<Response | FormData>,
-    ) => void,
-  ) {
+  private async handleInteractionRequest(data: APIInteraction) {
     if (data.type === InteractionType.Ping) {
-      resolve(
-        new Response(JSON.stringify({ type: InteractionResponseType.PONG })),
-      );
+      return { type: InteractionResponseType.PONG };
     }
 
     if (data.type === InteractionType.ApplicationCommand) {
       if (data.data.type === ApplicationCommandType.ChatInput) {
         const command = this.commands.get(data.data.name);
         if (!command) {
-          resolve(
-            new Response(
-              JSON.stringify({
-                type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-              }),
-            ),
+          throw new YorClientError(
+            `Command with name ${data.data.name} not found.`,
           );
-          return;
         }
 
         const context = new CommandContext(
@@ -452,13 +393,9 @@ export class YorClient {
 
         await command.execute(context);
 
-        resolve(
-          new Response(
-            JSON.stringify({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            }),
-          ),
-        );
+        return {
+          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        };
       }
     }
 
@@ -467,14 +404,9 @@ export class YorClient {
         .filter((command) => command.autocomplete)
         .get(data.data.name);
       if (!command) {
-        resolve(
-          new Response(
-            JSON.stringify({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            }),
-          ),
+        throw new YorClientError(
+          `Command with name ${data.data.name} not found.`,
         );
-        return;
       }
 
       const context = new AutocompleteCommandContext(this.api, data);
@@ -484,29 +416,20 @@ export class YorClient {
       }
 
       await command.autocomplete(context);
-      resolve(
-        new Response(
-          JSON.stringify({
-            type: InteractionResponseType.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
-          }),
-        ),
-      );
+      return {
+        type: InteractionResponseType.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+      };
     }
 
     if (data.type === InteractionType.MessageComponent) {
       const component = this.components.get(data.data.custom_id);
       if (!component) {
-        resolve(
-          new Response(
-            JSON.stringify({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            }),
-          ),
+        throw new YorClientError(
+          `Component with id ${data.data.custom_id} not found.`,
         );
-        return;
       }
 
-      const context = new ComponentContext(this.api.interactions, data);
+      const context = new ComponentContext(this.api, data);
       for await (const middleware of this.middlewares.component) {
         // @ts-expect-error - ts(2345)
         await middleware(context);
@@ -514,26 +437,17 @@ export class YorClient {
 
       await component.execute(context);
 
-      resolve(
-        new Response(
-          JSON.stringify({
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          }),
-        ),
-      );
+      return {
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      };
     }
 
     if (data.type === InteractionType.ModalSubmit) {
       const modal = this.modals.get(data.data.custom_id);
       if (!modal) {
-        resolve(
-          new Response(
-            JSON.stringify({
-              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-            }),
-          ),
+        throw new YorClientError(
+          `Modal with id ${data.data.custom_id} not found.`,
         );
-        return;
       }
 
       const context = new ModalContext(data);
@@ -544,13 +458,13 @@ export class YorClient {
 
       await modal.execute(context);
 
-      resolve(
-        new Response(
-          JSON.stringify({
-            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          }),
-        ),
-      );
+      return {
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      };
     }
+
+    return {
+      type: InteractionResponseType.PONG,
+    };
   }
 }

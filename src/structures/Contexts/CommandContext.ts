@@ -1,5 +1,4 @@
 import {
-  API,
   APIApplicationCommandInteractionDataOption,
   APIApplicationCommandInteractionDataSubcommandGroupOption,
   APIApplicationCommandInteractionDataSubcommandOption,
@@ -8,23 +7,23 @@ import {
   APIInteractionDataResolvedGuildMember,
   APIMessage,
   APIRole,
-  APIUser,
   ApplicationCommandOptionType,
   InteractionsAPI,
   MessageFlags,
-} from '@discordjs/core';
+} from '@discordjs/core/http-only';
 
 import { Channel } from '../Channel';
 import { Member } from '../Member';
 import { User } from '../User';
+import { YorClientAPI } from '../YorClientAPI';
 import { YorClientError } from '../YorClientError';
 
 import { BaseContext } from './BaseContext';
 
 export class CommandContext extends BaseContext {
   public readonly raw: APIChatInputApplicationCommandInteraction;
-  public token: string;
-  public id: string;
+  public readonly token: string;
+  public readonly id: string;
   public channel: Channel;
   public user: User | undefined;
   public member: Member | undefined;
@@ -36,6 +35,7 @@ export class CommandContext extends BaseContext {
   public replied = false;
 
   private API: InteractionsAPI;
+  private users: YorClientAPI['users'];
 
   /**
    * Constructs a new instance of the APIApplicationCommandInteractionData class.
@@ -43,9 +43,13 @@ export class CommandContext extends BaseContext {
    * @param {InteractionsAPI} API - The API used to initialize the instance.
    * @param {APIChatInputApplicationCommandInteraction} data - The data used to initialize the instance.
    */
-  constructor(API: API, data: APIChatInputApplicationCommandInteraction) {
+  constructor(
+    API: YorClientAPI,
+    data: APIChatInputApplicationCommandInteraction,
+  ) {
     super();
     this.API = API.interactions;
+    this.users = API.users;
 
     this.raw = data;
     this.token = this.raw.token;
@@ -54,7 +58,7 @@ export class CommandContext extends BaseContext {
     this.user = this.raw.user ? new User(API.users, this.raw.user) : undefined;
     this.member =
       this.raw.member && this.raw.guild_id
-        ? new Member(API.guilds, this.raw.guild_id, this.raw.member)
+        ? new Member(API, this.raw.guild_id, this.raw.member)
         : undefined;
 
     this.subcommandGroup = this.raw.data.options?.find(
@@ -408,7 +412,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true ? APIUser | null : APIUser {
+  ): T extends true ? User : User | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -440,7 +444,7 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true ? APIUser | null : APIUser;
+      return null as T extends true ? User : User | null;
     }
 
     // @ts-expect-error - value property does not exist according to typescript
@@ -450,7 +454,13 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is not of type user.`);
     }
 
-    return resolved as T extends true ? APIUser | null : APIUser;
+    if (!resolved) {
+      throw new YorClientError(`Option ${name} is required.`);
+    }
+
+    return new User(this.users, resolved) as T extends true
+      ? User
+      : User | null;
   }
 
   /**

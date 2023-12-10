@@ -1,27 +1,34 @@
-import { APIInteractionGuildMember, GuildsAPI } from '@discordjs/core';
+import {
+  APIInteractionGuildMember,
+  GuildsAPI,
+} from '@discordjs/core/http-only';
 
 import { Guild } from './Guild';
+import { User } from './User';
+import { YorClientAPI } from './YorClientAPI';
 
 export class Member {
   private API: GuildsAPI;
 
   public raw: APIInteractionGuildMember & { guildID: string };
+  public user: User;
 
   /**
    * Constructs a new instance of the constructor.
    *
-   * @param {GuildsAPI} API - The API instance.
+   * @param {YorClientAPI} API - The API instance.
    * @param {string} guildID - The ID of the guild.
    * @param {APIInteractionGuildMember} member - The member object.
    */
   constructor(
-    API: GuildsAPI,
+    API: YorClientAPI,
     guildID: string,
     member: APIInteractionGuildMember,
   ) {
-    this.API = API;
+    this.API = API.guilds;
 
     this.raw = { ...member, guildID };
+    this.user = new User(API.users, member.user);
   }
 
   /**
