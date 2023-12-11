@@ -55,10 +55,6 @@
       "group": "docs",
       "pages": [
         {
-          "group": "Yor.ts",
-          "pages": ["docs/modules", "docs/README"]
-        },
-        {
           "group": "interfaces",
           "pages": [
             "docs/interfaces/Command",
@@ -86,12 +82,21 @@
             "docs/classes/YorInteractionModal",
             "docs/classes/YorSlashCommand"
           ]
+        },
+        {
+          "group": "Yor.ts",
+          "pages": [
+            "docs/README",
+            "docs/modules"
+          ]
         }
       ]
     },
     {
       "group": "guide",
-      "pages": ["guide/cloudflare-workers"]
+      "pages": [
+        "guide/cloudflare-workers"
+      ]
     }
   ],
   "footerSocials": {
