@@ -37,17 +37,17 @@
     {
       "name": "Docs",
       "icon": "book",
-      "url": "https://miyabi.mintlify.app/docs"
+      "url": "https://yor.mintlify.app/docs"
     },
     {
       "name": "Guide",
       "icon": "newspaper",
-      "url": "https://miyabi.mintlify.app/guide"
+      "url": "https://yor.mintlify.app/guide"
     },
     {
       "name": "Blog",
       "icon": "book",
-      "url": "https://miyabi.mintlify.app/blog"
+      "url": "https://yor.mintlify.app/blog"
     }
   ],
   "navigation": [
@@ -85,18 +85,13 @@
         },
         {
           "group": "Yor.ts",
-          "pages": [
-            "docs/README",
-            "docs/modules"
-          ]
+          "pages": ["docs/README", "docs/modules"]
         }
       ]
     },
     {
       "group": "guide",
-      "pages": [
-        "guide/cloudflare-workers"
-      ]
+      "pages": ["guide/cloudflare-workers"]
     }
   ],
   "footerSocials": {
