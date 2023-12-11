@@ -1,19 +1,20 @@
+/* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
 import {
   APIApplicationCommandInteractionDataOption,
   APIApplicationCommandInteractionDataSubcommandGroupOption,
   APIApplicationCommandInteractionDataSubcommandOption,
+  APIAttachment,
+  APIChannel,
   APIChatInputApplicationCommandInteraction,
-  APIInteractionDataResolvedChannel,
-  APIInteractionDataResolvedGuildMember,
+  APIInteractionGuildMember,
   APIMessage,
-  APIRole,
   ApplicationCommandOptionType,
-  InteractionsAPI,
   MessageFlags,
 } from '@discordjs/core/http-only';
 
 import { Channel } from '../Channel';
 import { Member } from '../Member';
+import { Role } from '../Role';
 import { User } from '../User';
 import { YorClientAPI } from '../YorClientAPI';
 import { YorClientError } from '../YorClientError';
@@ -34,13 +35,12 @@ export class CommandContext extends BaseContext {
   public deferred = false;
   public replied = false;
 
-  private API: InteractionsAPI;
-  private users: YorClientAPI['users'];
+  private API: YorClientAPI;
 
   /**
    * Constructs a new instance of the APIApplicationCommandInteractionData class.
    *
-   * @param {InteractionsAPI} API - The API used to initialize the instance.
+   * @param {YorClientAPI} API - The API used to initialize the instance.
    * @param {APIChatInputApplicationCommandInteraction} data - The data used to initialize the instance.
    */
   constructor(
@@ -48,8 +48,7 @@ export class CommandContext extends BaseContext {
     data: APIChatInputApplicationCommandInteraction,
   ) {
     super();
-    this.API = API.interactions;
-    this.users = API.users;
+    this.API = API;
 
     this.raw = data;
     this.token = this.raw.token;
@@ -82,7 +81,7 @@ export class CommandContext extends BaseContext {
       );
     }
 
-    await this.API.defer(this.id, this.token, {
+    await this.API.interactions.defer(this.id, this.token, {
       flags: ephemeral ? MessageFlags.Ephemeral : undefined,
     });
     this.deferred = true;
@@ -91,11 +90,11 @@ export class CommandContext extends BaseContext {
   /**
    * A description of the entire function.
    *
-   * @param {Parameters<typeof this.API.reply>[2]} data - description of the data parameter
+   * @param {Parameters<typeof this.API.interactions.reply>[2]} data - description of the data parameter
    * @return {Promise<void>} description of the return value
    */
   public async reply(
-    data: Parameters<typeof this.API.reply>[2],
+    data: Parameters<typeof this.API.interactions.reply>[2],
   ): Promise<void> {
     if (this.deferred || this.replied) {
       throw new YorClientError(
@@ -103,18 +102,18 @@ export class CommandContext extends BaseContext {
       );
     }
 
-    await this.API.reply(this.id, this.token, data);
+    await this.API.interactions.reply(this.id, this.token, data);
     this.replied = true;
   }
 
   /**
    * Edits a reply.
    *
-   * @param {Parameters<typeof this.API.reply>[2]} data - The data for editing the reply.
+   * @param {Parameters<typeof this.API.interactions.reply>[2]} data - The data for editing the reply.
    * @return {Promise<APIMessage>} A promise that resolves when the reply is edited.
    */
   public async editReply(
-    data: Parameters<typeof this.API.reply>[2],
+    data: Parameters<typeof this.API.interactions.reply>[2],
   ): Promise<APIMessage> {
     if (!this.deferred || !this.replied) {
       throw new YorClientError(
@@ -122,7 +121,7 @@ export class CommandContext extends BaseContext {
       );
     }
 
-    return this.API.editReply(this.id, this.token, data);
+    return this.API.interactions.editReply(this.id, this.token, data);
   }
 
   /**
@@ -131,7 +130,7 @@ export class CommandContext extends BaseContext {
    * @return {Promise<void>} A promise that resolves when the reply is deleted.
    */
   public async deleteReply(): Promise<void> {
-    await this.API.deleteReply(this.id, this.token);
+    await this.API.interactions.deleteReply(this.id, this.token);
   }
 
   /**
@@ -140,17 +139,17 @@ export class CommandContext extends BaseContext {
    * @return {Promise<APIMessage>} A promise that resolves when the original reply is fetched.
    */
   public async fetchReply(): Promise<APIMessage> {
-    return this.API.getOriginalReply(this.id, this.token);
+    return this.API.interactions.getOriginalReply(this.id, this.token);
   }
 
   /**
    * Reply to a modal.
    *
-   * @param {Parameters<typeof this.API.createModal>[2]} data - The data for creating the modal.
+   * @param {Parameters<typeof this.API.interactions.createModal>[2]} data - The data for creating the modal.
    * @return {Promise<void>} A promise that resolves when the modal is created.
    */
   public async replyModal(
-    data: Parameters<typeof this.API.createModal>[2],
+    data: Parameters<typeof this.API.interactions.createModal>[2],
   ): Promise<void> {
     if (this.deferred || this.replied) {
       throw new YorClientError(
@@ -158,19 +157,19 @@ export class CommandContext extends BaseContext {
       );
     }
 
-    await this.API.createModal(this.id, this.token, data);
+    await this.API.interactions.createModal(this.id, this.token, data);
   }
 
   /**
    * Calls the followUp method of the API class with the provided data.
    *
-   * @param {Parameters<typeof this.API.followUp>[2]} data - The data to be passed to the followUp method.
+   * @param {Parameters<typeof this.API.interactions.followUp>[2]} data - The data to be passed to the followUp method.
    * @return {Promise<APIMessage>} A promise that resolves to an APIMessage object.
    */
   public async followUp(
-    data: Parameters<typeof this.API.followUp>[2],
+    data: Parameters<typeof this.API.interactions.followUp>[2],
   ): Promise<APIMessage> {
-    return this.API.followUp(this.id, this.token, data);
+    return this.API.interactions.followUp(this.id, this.token, data);
   }
 
   /**
@@ -194,7 +193,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true ? string | null : string {
+  ): T extends true ? string : string | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -228,14 +227,14 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true ? string | null : string;
+      return null as T extends true ? string : string | null;
     }
 
     if (option.type !== ApplicationCommandOptionType.String) {
       throw new YorClientError(`Option ${name} is not of type string.`);
     }
 
-    return option.value as T extends true ? string | null : string;
+    return option.value as T extends true ? string : string | null;
   }
 
   /**
@@ -250,7 +249,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true ? number | null : number {
+  ): T extends true ? number : number | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -282,14 +281,14 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true ? number | null : number;
+      return null as T extends true ? number : number | null;
     }
 
     if (option.type !== ApplicationCommandOptionType.Number) {
       throw new YorClientError(`Option ${name} is not of type number.`);
     }
 
-    return option.value as T extends true ? number | null : number;
+    return option.value as T extends true ? number : number | null;
   }
 
   /**
@@ -304,7 +303,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true ? number | null : number {
+  ): T extends true ? number : number | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -336,14 +335,14 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true ? number | null : number;
+      return null as T extends true ? number : number | null;
     }
 
     if (option.type !== ApplicationCommandOptionType.Integer) {
       throw new YorClientError(`Option ${name} is not of type integer.`);
     }
 
-    return option.value as T extends true ? number | null : number;
+    return option.value as T extends true ? number : number | null;
   }
 
   /**
@@ -358,7 +357,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true ? boolean | null : boolean {
+  ): T extends true ? boolean : boolean | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -390,14 +389,14 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true ? boolean | null : boolean;
+      return null as T extends true ? boolean : boolean | null;
     }
 
     if (option.type !== ApplicationCommandOptionType.Boolean) {
       throw new YorClientError(`Option ${name} is not of type boolean.`);
     }
 
-    return option.value as T extends true ? boolean | null : boolean;
+    return option.value as T extends true ? boolean : boolean | null;
   }
 
   /**
@@ -458,7 +457,7 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is required.`);
     }
 
-    return new User(this.users, resolved) as T extends true
+    return new User(this.API.users, resolved) as T extends true
       ? User
       : User | null;
   }
@@ -475,7 +474,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true ? APIRole | null : APIRole {
+  ): T extends true ? Role : Role | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -507,7 +506,7 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true ? APIRole | null : APIRole;
+      return null as T extends true ? Role : Role | null;
     }
 
     // @ts-expect-error - value property does not exist according to typescript
@@ -517,7 +516,13 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is not of type role.`);
     }
 
-    return resolved as T extends true ? APIRole | null : APIRole;
+    if (!resolved) {
+      throw new YorClientError(`Option ${name} is not resolved.`);
+    }
+
+    return new Role(this.API.guilds, resolved) as T extends true
+      ? Role
+      : Role | null;
   }
 
   /**
@@ -532,9 +537,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true
-    ? APIInteractionDataResolvedChannel
-    : null | APIInteractionDataResolvedChannel {
+  ): T extends true ? Channel : Channel | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -566,9 +569,7 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true
-        ? APIInteractionDataResolvedChannel
-        : null | APIInteractionDataResolvedChannel;
+      return null as T extends true ? Channel : Channel | null;
     }
 
     // @ts-expect-error - value property does not exist according to typescript
@@ -582,9 +583,10 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is not resolved.`);
     }
 
-    return resolved as T extends true
-      ? APIInteractionDataResolvedChannel
-      : null | APIInteractionDataResolvedChannel;
+    return new Channel(
+      this.API.channels,
+      resolved as APIChannel,
+    ) as T extends true ? Channel : Channel | null;
   }
 
   /**
@@ -599,9 +601,7 @@ export class CommandContext extends BaseContext {
     name: string,
     index: 0 | 1 | 2 = 0,
     required?: T,
-  ): T extends true
-    ? APIInteractionDataResolvedGuildMember
-    : null | APIInteractionDataResolvedGuildMember {
+  ): T extends true ? Member : Member | null {
     const options = this.raw.data.options;
     if (!options) {
       throw new YorClientError('This command has no options.');
@@ -633,9 +633,7 @@ export class CommandContext extends BaseContext {
         throw new YorClientError(`Option ${name} is required.`);
       }
 
-      return null as T extends true
-        ? APIInteractionDataResolvedGuildMember
-        : null | APIInteractionDataResolvedGuildMember;
+      return null as T extends true ? Member : Member | null;
     }
 
     // @ts-expect-error - value property does not exist according to typescript
@@ -645,8 +643,77 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is not of type user.`);
     }
 
-    return resolved as T extends true
-      ? APIInteractionDataResolvedGuildMember
-      : null | APIInteractionDataResolvedGuildMember;
+    if (!resolved) {
+      throw new YorClientError(`Option ${name} is not resolved.`);
+    }
+
+    return new Member(
+      this.API,
+      this.raw.guild_id as string,
+      resolved as APIInteractionGuildMember,
+    ) as T extends true ? Member : Member | null;
+  }
+
+  /**
+   * Retrieves the value of the attachment option from the interaction data.
+   *
+   * @param {string} name - The name of the attachment option.
+   * @param {0 | 1 | 2} index - The index of the attachment option.
+   * @param {boolean} required - Whether the attachment option is required.
+   * @returns {Attachment | null} The value of the attachment option, or null if it doesn't exist.
+   * @throws {YorClientError} If the attachment option is required but doesn't exist.
+   */
+  public getAttachmentOption<T extends boolean>(
+    name: string,
+    index: 0 | 1 | 2 = 0,
+    required?: T,
+  ): T extends true ? APIAttachment : APIAttachment | null {
+    const options = this.raw.data.options;
+    if (!options) {
+      throw new YorClientError('This command has no options.');
+    }
+
+    let option: APIApplicationCommandInteractionDataOption | undefined;
+
+    switch (index) {
+      case 0:
+        option = options.find((o) => o.name === name);
+        break;
+
+      case 1:
+        option = this.subcommand?.options?.find((o) => o.name === name);
+        break;
+
+      case 2:
+        option = this.subcommandGroup?.options.find(
+          (o) => o.options?.find((o) => o.name === name),
+        );
+        break;
+
+      default:
+        break;
+    }
+
+    if (!option) {
+      if (required) {
+        throw new YorClientError(`Option ${name} is required.`);
+      }
+
+      return null as T extends true ? APIAttachment : APIAttachment | null;
+    }
+
+    const resolved =
+      // @ts-expect-error - value property does not exist according to typescript
+      this.raw.data.resolved?.attachments?.[option.value as string];
+
+    if (option.type !== ApplicationCommandOptionType.Attachment) {
+      throw new YorClientError(`Option ${name} is not of type attachment.`);
+    }
+
+    if (!resolved) {
+      throw new YorClientError(`Option ${name} is not resolved.`);
+    }
+
+    return resolved as T extends true ? APIAttachment : APIAttachment | null;
   }
 }

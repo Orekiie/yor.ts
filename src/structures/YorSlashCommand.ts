@@ -1,4 +1,7 @@
-import { SlashCommandBuilder } from '@discordjs/builders';
+import {
+  SlashCommandBuilder,
+  SlashCommandSubcommandsOnlyBuilder,
+} from '@discordjs/builders';
 
 import { Command } from '../interfaces/Command';
 
@@ -6,7 +9,10 @@ import { AutocompleteCommandContext } from './Contexts/AutocompleteCommandContex
 import { CommandContext } from './Contexts/CommandContext';
 
 export class YorSlashCommand implements Command {
-  builder!: SlashCommandBuilder;
+  builder!:
+    | SlashCommandBuilder
+    | SlashCommandSubcommandsOnlyBuilder
+    | Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
   execute!: (context: CommandContext) => void | Promise<void>;
   autocomplete!: (context: AutocompleteCommandContext) => void | Promise<void>;
 }

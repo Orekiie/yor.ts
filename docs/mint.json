@@ -20,7 +20,7 @@
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Home",
       "icon": "book-open-cover",
       "url": "/"
     },
@@ -30,51 +30,68 @@
       "url": "https://discord.gg/HXVMArbsX7"
     },
     {
+      "name": "GitHub",
+      "icon": "github",
+      "url": "https://github.com/OreOreki/yor.ts"
+    },
+    {
+      "name": "Docs",
+      "icon": "book",
+      "url": "https://miyabi.mintlify.app/docs"
+    },
+    {
       "name": "Guide",
       "icon": "newspaper",
-      "url": "/guide"
+      "url": "https://miyabi.mintlify.app/guide"
     },
     {
       "name": "Blog",
       "icon": "book",
-      "url": "/blog"
+      "url": "https://miyabi.mintlify.app/blog"
     }
   ],
   "navigation": [
     {
-      "group": "classes",
+      "group": "docs",
       "pages": [
-        "classes/AutocompleteCommandContext",
-        "classes/Channel",
-        "classes/CommandContext",
-        "classes/ComponentContext",
-        "classes/Guild",
-        "classes/Member",
-        "classes/ModalContext",
-        "classes/SlashCommand",
-        "classes/YorClient",
-        "classes/YorClientAPI",
-        "classes/YorClientError",
-        "classes/YorInteractionComponent",
-        "classes/YorInteractionModal",
-        "classes/YorSlashCommand"
+        {
+          "group": "Yor.ts",
+          "pages": ["docs/modules", "docs/README"]
+        },
+        {
+          "group": "interfaces",
+          "pages": [
+            "docs/interfaces/Command",
+            "docs/interfaces/Component",
+            "docs/interfaces/Modal",
+            "docs/interfaces/YorClientOptions"
+          ]
+        },
+        {
+          "group": "classes",
+          "pages": [
+            "docs/classes/AutocompleteCommandContext",
+            "docs/classes/Channel",
+            "docs/classes/CommandContext",
+            "docs/classes/ComponentContext",
+            "docs/classes/Guild",
+            "docs/classes/Member",
+            "docs/classes/ModalContext",
+            "docs/classes/User",
+            "docs/classes/WebhookClient",
+            "docs/classes/YorClient",
+            "docs/classes/YorClientAPI",
+            "docs/classes/YorClientError",
+            "docs/classes/YorInteractionComponent",
+            "docs/classes/YorInteractionModal",
+            "docs/classes/YorSlashCommand"
+          ]
+        }
       ]
     },
     {
-      "group": "interfaces",
-      "pages": [
-        "interfaces/Command",
-        "interfaces/Component",
-        "interfaces/Modal",
-        "interfaces/YorClientOptions"
-      ]
-    },
-    {
-      "group": "temp",
-      "pages": [
-        "temp/modules",
-        "temp/README"
-      ]
+      "group": "guide",
+      "pages": ["guide/cloudflare-workers"]
     }
   ],
   "footerSocials": {

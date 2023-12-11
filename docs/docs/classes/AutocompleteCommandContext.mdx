@@ -1,0 +1,116 @@
+---
+title: Yor.ts | classes/AutocompleteCommandContext
+icon: "code"
+sidebarTitle: AutocompleteCommandContext
+---
+[yor.ts](../README) / [Exports](../modules) / AutocompleteCommandContext
+
+# Class: AutocompleteCommandContext
+
+## Hierarchy
+
+- `BaseContext`
+
+  ↳ **`AutocompleteCommandContext`**
+
+## Table of contents
+
+### Constructors
+
+- [constructor](AutocompleteCommandContext#constructor)
+
+### Properties
+
+- [API](AutocompleteCommandContext#api)
+- [channel](AutocompleteCommandContext#channel)
+- [raw](AutocompleteCommandContext#raw)
+
+### Methods
+
+- [decorate](AutocompleteCommandContext#decorate)
+
+## Constructors
+
+### constructor
+
+• **new AutocompleteCommandContext**(`API`, `data`): [`AutocompleteCommandContext`](AutocompleteCommandContext)
+
+Initializes a new instance of the APIApplicationCommandAutocompleteInteraction class.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `API` | [`YorClientAPI`](YorClientAPI) | The API used to initialize the instance. |
+| `data` | `APIApplicationCommandAutocompleteInteraction` | The data used to initialize the instance. |
+
+#### Returns
+
+[`AutocompleteCommandContext`](AutocompleteCommandContext)
+
+#### Overrides
+
+BaseContext.constructor
+
+#### Defined in
+
+[src/structures/Contexts/AutocompleteCommandContext.ts:21](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/AutocompleteCommandContext.ts#L21)
+
+## Properties
+
+### API
+
+• `Private` **API**: `InteractionsAPI`
+
+#### Defined in
+
+[src/structures/Contexts/AutocompleteCommandContext.ts:9](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/AutocompleteCommandContext.ts#L9)
+
+___
+
+### channel
+
+• **channel**: [`Channel`](Channel)
+
+#### Defined in
+
+[src/structures/Contexts/AutocompleteCommandContext.ts:13](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/AutocompleteCommandContext.ts#L13)
+
+___
+
+### raw
+
+• `Readonly` **raw**: `APIApplicationCommandAutocompleteInteraction`
+
+#### Defined in
+
+[src/structures/Contexts/AutocompleteCommandContext.ts:11](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/AutocompleteCommandContext.ts#L11)
+
+## Methods
+
+### decorate
+
+▸ **decorate**(`name`, `data`): `unknown`
+
+Decorates the object with a new property.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the property. |
+| `data` | `unknown` | The data to assign to the property. |
+
+#### Returns
+
+`unknown`
+
+The decorated object.
+
+#### Inherited from
+
+BaseContext.decorate
+
+#### Defined in
+
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/BaseContext.ts#L9)

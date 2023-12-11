@@ -336,6 +336,10 @@ export class YorClient {
   public async handleInteraction(
     request: Request,
   ): Promise<APIInteractionResponse> {
+    if (request.method !== 'POST') {
+      throw new YorClientError('Invalid request method');
+    }
+
     const body = await request.clone().text();
 
     const signature = request.headers.get('X-Signature-Ed25519');

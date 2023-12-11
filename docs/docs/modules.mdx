@@ -1,0 +1,83 @@
+---
+title: Yor.ts | modules
+icon: "code"
+sidebarTitle: modules
+---
+[yor.ts](README) / Exports
+
+# yor.ts
+
+## Table of contents
+
+### Classes
+
+- [AutocompleteCommandContext](classes/AutocompleteCommandContext)
+- [Channel](classes/Channel)
+- [CommandContext](classes/CommandContext)
+- [ComponentContext](classes/ComponentContext)
+- [Guild](classes/Guild)
+- [Member](classes/Member)
+- [ModalContext](classes/ModalContext)
+- [User](classes/User)
+- [WebhookClient](classes/WebhookClient)
+- [YorClient](classes/YorClient)
+- [YorClientAPI](classes/YorClientAPI)
+- [YorClientError](classes/YorClientError)
+- [YorInteractionComponent](classes/YorInteractionComponent)
+- [YorInteractionModal](classes/YorInteractionModal)
+- [YorSlashCommand](classes/YorSlashCommand)
+
+### Interfaces
+
+- [Command](interfaces/Command)
+- [Component](interfaces/Component)
+- [Modal](interfaces/Modal)
+- [YorClientOptions](interfaces/YorClientOptions)
+
+### Type Aliases
+
+- [MiddlewareFunction](modules#middlewarefunction)
+- [MiddlewareFunctionNames](modules#middlewarefunctionnames)
+- [WebhookClientOptions](modules#webhookclientoptions)
+
+## Type Aliases
+
+### MiddlewareFunction
+
+Ƭ **MiddlewareFunction**\<`T`\>: `T` extends ``"command"`` ? (`context`: [`CommandContext`](classes/CommandContext)) => `Promise`\<`void`\> \| `void` : `T` extends ``"component"`` ? (`context`: [`ComponentContext`](classes/ComponentContext)) => `Promise`\<`void`\> \| `void` : `T` extends ``"modal"`` ? (`context`: [`ModalContext`](classes/ModalContext)) => `Promise`\<`void`\> \| `void` : `T` extends ``"autocomplete"`` ? (`context`: [`AutocompleteCommandContext`](classes/AutocompleteCommandContext)) => `Promise`\<`void`\> \| `void` : `never`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`MiddlewareFunctionNames`](modules#middlewarefunctionnames) |
+
+#### Defined in
+
+[src/structures/YorClient.ts:38](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L38)
+
+___
+
+### MiddlewareFunctionNames
+
+Ƭ **MiddlewareFunctionNames**: ``"command"`` \| ``"component"`` \| ``"modal"`` \| ``"autocomplete"``
+
+#### Defined in
+
+[src/structures/YorClient.ts:32](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L32)
+
+___
+
+### WebhookClientOptions
+
+Ƭ **WebhookClientOptions**\<`T`\>: `T`
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `string` \| \{ `id`: `string` ; `token`: `string`  } |
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:6](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/WebhookClient.ts#L6)

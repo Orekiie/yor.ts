@@ -1,0 +1,119 @@
+---
+title: Cloudflare Workers
+sidebarTitle: Cloudflare Workers
+description: A guide on how to get started with cloudflare workers and yor.ts
+---
+
+This guide provides a basic outline to set up a Discord bot and integrate it with Cloudflare Workers. Further details and code specifics for each step will be needed based on your specific requirements and programming language preferences.
+
+<Note>This guide assumes you are having a cloudflare account</Note>
+<Note>We are going to use typescript in this guide</Note>
+
+<Steps>
+  <Step title="Creating Discord Application">
+    Creating a Discord Bot and Obtaining Credentials
+
+    1. Go to the [Discord Developer Portal](https://discord.com/developers).
+    2. Click on "New Application" and give it a name.
+    3. Navigate to the "Bot" tab on the left sidebar.
+    4. Click "Add Bot" and confirm.
+    5. Note down the Client ID under the "APP DETAILS" section.
+    6. Click "Copy" under the "TOKEN" section to get the bot token.
+  </Step>
+
+  <Step title="Inviting Bot to Server">
+    1. Still in the Developer Portal, go to the "OAuth2" tab.
+    2. Under "OAuth2 URL Generator," select "bot" in scopes.
+    3. Copy the generated URL and paste it into your browser.
+    4. Authorize the bot to a server you have access to
+  </Step>
+  
+  <Step title="Creating a new project">
+    1. Open your favorite code editor
+    2. Create a new folder
+    3. Run `npm init`/`yarn init`/`pnpm init` to initialize a package.json
+    4. Run `npm install yor.ts@latest`/`yarn add yor.ts@latest`/`pnpm install yor.ts@latest` to install yor.ts
+  </Step>
+  
+  <Step title="Downloading cloudflare workers cli">
+    1. Run `npm install -g wrangler`/`yarn global add wrangler`/`pnpm add -g wrangler` to install the cli
+    2. Run `wrangler login` to login to your cloudflare account
+    3. Run `wrangler init` to create a new project
+
+    4. Put the following in `wrangler.toml`:
+    ```toml
+    name = "interactions"
+    main = "./dist/index.js"
+    node_compat = true
+    compatibility_date = "2023-10-22"
+
+    vars = {
+      DISCORD_APP_ID = "CLIENT_ID"
+      DISCORD_BOT_TOKEN = "BOT_TOKEN"
+      DISCORD_PUBLIC_KEY = "PUBLIC_KEY"
+    }
+    ```
+  </Step>
+
+  <Step title="Creating src/index.ts">
+    1. Add the following to `src/index.ts`:
+    ```ts
+    import { CommandContext, YorClient, YorSlashCommand } from "yor.ts";
+    import { SlashCommandBuilder } from "yor.ts/builders";
+    
+    export interface Env {
+        DISCORD_APP_ID: string;
+        DISCORD_BOT_TOKEN: string;
+        DISCORD_PUBLIC_KEY: string;
+    }
+
+    class PingCommand extends YorSlashCommand {
+        public builder = new SlashCommandBuilder()
+            .setName("ping")
+            .setDescription("Replies with Pong!");
+
+        public execute = (context: CommandContext) => {
+            context.reply("Pong!");
+        }
+    }
+
+    export default {
+        fetch: async (request: Request, env: Env, ctx: ExecutionContext) => {
+            const client = new YorClient({
+                application: {
+                    id: env.DISCORD_APP_ID,
+                    publicKey: env.DISCORD_PUBLIC_KEY
+                },
+                token: env.DISCORD_BOT_TOKEN
+            });
+
+            const command = new PingCommand();
+            client.registerCommand(command);
+
+            const response = await yor.handleRequest(request, env, ctx);
+
+            return new Response(JSON.stringify(response), {
+                headers: {
+                    "content-type": "application/json"
+                }
+            });
+        }
+    }
+    ```
+  </Step>
+
+  <Step title="Running the project">
+    1. Run `wrangler deploy` to deploy your project
+  </Step>
+
+  <Step title="Testing the bot">
+    1. Pick the URL from the wrangler logs
+    2. Open the URL in your browser
+    3. Go to the discord developer portal and add the URL and submit it as interactions endpoint
+  </Step>
+
+  <Step title="Testing to see if it works">
+    1. Open discord server you invited your bot into
+    2. Run `/ping`
+  </Step>
+</Steps>

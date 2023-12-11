@@ -1,7 +1,9 @@
 ---
-title: Yor.ts | classes/Member.md
+title: Yor.ts | classes/Member
+icon: "code"
+sidebarTitle: Member
 ---
-[yor.ts](../README.md) / [Exports](../modules.md) / Member
+[yor.ts](../README) / [Exports](../modules) / Member
 
 # Class: Member
 
@@ -9,24 +11,24 @@ title: Yor.ts | classes/Member.md
 
 ### Constructors
 
-- [constructor](Member.md#constructor)
+- [constructor](Member#constructor)
 
 ### Properties
 
-- [API](Member.md#api)
-- [raw](Member.md#raw)
-- [user](Member.md#user)
+- [API](Member#api)
+- [raw](Member#raw)
+- [user](Member#user)
 
 ### Methods
 
-- [ban](Member.md#ban)
-- [fetchGuild](Member.md#fetchguild)
+- [ban](Member#ban)
+- [fetchGuild](Member#fetchguild)
 
 ## Constructors
 
 ### constructor
 
-• **new Member**(`API`, `guildID`, `member`): [`Member`](Member.md)
+• **new Member**(`API`, `guildID`, `member`): [`Member`](Member)
 
 Constructs a new instance of the constructor.
 
@@ -34,17 +36,17 @@ Constructs a new instance of the constructor.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `API` | [`YorClientAPI`](YorClientAPI.md) | The API instance. |
+| `API` | [`YorClientAPI`](YorClientAPI) | The API instance. |
 | `guildID` | `string` | The ID of the guild. |
 | `member` | `APIInteractionGuildMember` | The member object. |
 
 #### Returns
 
-[`Member`](Member.md)
+[`Member`](Member)
 
 #### Defined in
 
-[src/structures/Member.ts:23](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Member.ts#L23)
+[src/structures/Member.ts:23](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Member.ts#L23)
 
 ## Properties
 
@@ -54,7 +56,7 @@ Constructs a new instance of the constructor.
 
 #### Defined in
 
-[src/structures/Member.ts:11](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Member.ts#L11)
+[src/structures/Member.ts:11](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Member.ts#L11)
 
 ___
 
@@ -64,17 +66,17 @@ ___
 
 #### Defined in
 
-[src/structures/Member.ts:13](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Member.ts#L13)
+[src/structures/Member.ts:13](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Member.ts#L13)
 
 ___
 
 ### user
 
-• **user**: [`User`](User.md)
+• **user**: [`User`](User)
 
 #### Defined in
 
-[src/structures/Member.ts:14](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Member.ts#L14)
+[src/structures/Member.ts:14](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Member.ts#L14)
 
 ## Methods
 
@@ -98,22 +100,22 @@ A promise that resolves when the user is successfully banned.
 
 #### Defined in
 
-[src/structures/Member.ts:40](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Member.ts#L40)
+[src/structures/Member.ts:40](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Member.ts#L40)
 
 ___
 
 ### fetchGuild
 
-▸ **fetchGuild**(): `Promise`\<[`Guild`](Guild.md)\>
+▸ **fetchGuild**(): `Promise`\<[`Guild`](Guild)\>
 
 Fetches a guild using the guild ID.
 
 #### Returns
 
-`Promise`\<[`Guild`](Guild.md)\>
+`Promise`\<[`Guild`](Guild)\>
 
 A Promise that resolves with the fetched Guild object.
 
 #### Defined in
 
-[src/structures/Member.ts:56](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Member.ts#L56)
+[src/structures/Member.ts:56](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Member.ts#L56)

@@ -1,0 +1,104 @@
+---
+title: Yor.ts | classes/YorSlashCommand
+icon: "code"
+sidebarTitle: YorSlashCommand
+---
+[yor.ts](../README) / [Exports](../modules) / YorSlashCommand
+
+# Class: YorSlashCommand
+
+## Implements
+
+- [`Command`](../interfaces/Command)
+
+## Table of contents
+
+### Constructors
+
+- [constructor](YorSlashCommand#constructor)
+
+### Properties
+
+- [autocomplete](YorSlashCommand#autocomplete)
+- [builder](YorSlashCommand#builder)
+- [execute](YorSlashCommand#execute)
+
+## Constructors
+
+### constructor
+
+• **new YorSlashCommand**(): [`YorSlashCommand`](YorSlashCommand)
+
+#### Returns
+
+[`YorSlashCommand`](YorSlashCommand)
+
+## Properties
+
+### autocomplete
+
+• **autocomplete**: (`context`: [`AutocompleteCommandContext`](AutocompleteCommandContext)) => `void` \| `Promise`\<`void`\>
+
+#### Type declaration
+
+▸ (`context`): `void` \| `Promise`\<`void`\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`AutocompleteCommandContext`](AutocompleteCommandContext) |
+
+##### Returns
+
+`void` \| `Promise`\<`void`\>
+
+#### Implementation of
+
+[Command](../interfaces/Command).[autocomplete](../interfaces/Command#autocomplete)
+
+#### Defined in
+
+[src/structures/YorSlashCommand.ts:17](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorSlashCommand.ts#L17)
+
+___
+
+### builder
+
+• **builder**: `SlashCommandBuilder` \| `SlashCommandSubcommandsOnlyBuilder` \| `Omit`\<`SlashCommandBuilder`, ``"addSubcommand"`` \| ``"addSubcommandGroup"``\>
+
+#### Implementation of
+
+[Command](../interfaces/Command).[builder](../interfaces/Command#builder)
+
+#### Defined in
+
+[src/structures/YorSlashCommand.ts:12](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorSlashCommand.ts#L12)
+
+___
+
+### execute
+
+• **execute**: (`context`: [`CommandContext`](CommandContext)) => `void` \| `Promise`\<`void`\>
+
+#### Type declaration
+
+▸ (`context`): `void` \| `Promise`\<`void`\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`CommandContext`](CommandContext) |
+
+##### Returns
+
+`void` \| `Promise`\<`void`\>
+
+#### Implementation of
+
+[Command](../interfaces/Command).[execute](../interfaces/Command#execute)
+
+#### Defined in
+
+[src/structures/YorSlashCommand.ts:16](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorSlashCommand.ts#L16)

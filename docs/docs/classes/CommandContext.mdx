@@ -1,7 +1,9 @@
 ---
-title: Yor.ts | classes/CommandContext.md
+title: Yor.ts | classes/CommandContext
+icon: "code"
+sidebarTitle: CommandContext
 ---
-[yor.ts](../README.md) / [Exports](../modules.md) / CommandContext
+[yor.ts](../README) / [Exports](../modules) / CommandContext
 
 # Class: CommandContext
 
@@ -15,48 +17,48 @@ title: Yor.ts | classes/CommandContext.md
 
 ### Constructors
 
-- [constructor](CommandContext.md#constructor)
+- [constructor](CommandContext#constructor)
 
 ### Properties
 
-- [API](CommandContext.md#api)
-- [channel](CommandContext.md#channel)
-- [deferred](CommandContext.md#deferred)
-- [id](CommandContext.md#id)
-- [member](CommandContext.md#member)
-- [raw](CommandContext.md#raw)
-- [replied](CommandContext.md#replied)
-- [subcommand](CommandContext.md#subcommand)
-- [subcommandGroup](CommandContext.md#subcommandgroup)
-- [token](CommandContext.md#token)
-- [user](CommandContext.md#user)
-- [users](CommandContext.md#users)
+- [API](CommandContext#api)
+- [channel](CommandContext#channel)
+- [deferred](CommandContext#deferred)
+- [id](CommandContext#id)
+- [member](CommandContext#member)
+- [raw](CommandContext#raw)
+- [replied](CommandContext#replied)
+- [subcommand](CommandContext#subcommand)
+- [subcommandGroup](CommandContext#subcommandgroup)
+- [token](CommandContext#token)
+- [user](CommandContext#user)
 
 ### Methods
 
-- [decorate](CommandContext.md#decorate)
-- [defer](CommandContext.md#defer)
-- [deleteReply](CommandContext.md#deletereply)
-- [editReply](CommandContext.md#editreply)
-- [fetchReply](CommandContext.md#fetchreply)
-- [followUp](CommandContext.md#followup)
-- [getBooleanOption](CommandContext.md#getbooleanoption)
-- [getChannelOption](CommandContext.md#getchanneloption)
-- [getIntegerOption](CommandContext.md#getintegeroption)
-- [getMemberOption](CommandContext.md#getmemberoption)
-- [getNumberOption](CommandContext.md#getnumberoption)
-- [getRoleOption](CommandContext.md#getroleoption)
-- [getStringOption](CommandContext.md#getstringoption)
-- [getUserOption](CommandContext.md#getuseroption)
-- [inGuild](CommandContext.md#inguild)
-- [reply](CommandContext.md#reply)
-- [replyModal](CommandContext.md#replymodal)
+- [decorate](CommandContext#decorate)
+- [defer](CommandContext#defer)
+- [deleteReply](CommandContext#deletereply)
+- [editReply](CommandContext#editreply)
+- [fetchReply](CommandContext#fetchreply)
+- [followUp](CommandContext#followup)
+- [getAttachmentOption](CommandContext#getattachmentoption)
+- [getBooleanOption](CommandContext#getbooleanoption)
+- [getChannelOption](CommandContext#getchanneloption)
+- [getIntegerOption](CommandContext#getintegeroption)
+- [getMemberOption](CommandContext#getmemberoption)
+- [getNumberOption](CommandContext#getnumberoption)
+- [getRoleOption](CommandContext#getroleoption)
+- [getStringOption](CommandContext#getstringoption)
+- [getUserOption](CommandContext#getuseroption)
+- [inGuild](CommandContext#inguild)
+- [reply](CommandContext#reply)
+- [replyModal](CommandContext#replymodal)
 
 ## Constructors
 
 ### constructor
 
-• **new CommandContext**(`API`, `data`): [`CommandContext`](CommandContext.md)
+• **new CommandContext**(`API`, `data`): [`CommandContext`](CommandContext)
 
 Constructs a new instance of the APIApplicationCommandInteractionData class.
 
@@ -64,12 +66,12 @@ Constructs a new instance of the APIApplicationCommandInteractionData class.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `API` | [`YorClientAPI`](YorClientAPI.md) | The API used to initialize the instance. |
+| `API` | [`YorClientAPI`](YorClientAPI) | The API used to initialize the instance. |
 | `data` | `APIChatInputApplicationCommandInteraction` | The data used to initialize the instance. |
 
 #### Returns
 
-[`CommandContext`](CommandContext.md)
+[`CommandContext`](CommandContext)
 
 #### Overrides
 
@@ -77,27 +79,27 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:46](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L46)
+[src/structures/Contexts/CommandContext.ts:46](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L46)
 
 ## Properties
 
 ### API
 
-• `Private` **API**: `InteractionsAPI`
+• `Private` **API**: [`YorClientAPI`](YorClientAPI)
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:37](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L37)
+[src/structures/Contexts/CommandContext.ts:38](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L38)
 
 ___
 
 ### channel
 
-• **channel**: [`Channel`](Channel.md)
+• **channel**: [`Channel`](Channel)
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:27](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L27)
+[src/structures/Contexts/CommandContext.ts:28](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L28)
 
 ___
 
@@ -107,7 +109,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:34](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L34)
+[src/structures/Contexts/CommandContext.ts:35](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L35)
 
 ___
 
@@ -117,17 +119,17 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:26](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L26)
+[src/structures/Contexts/CommandContext.ts:27](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L27)
 
 ___
 
 ### member
 
-• **member**: `undefined` \| [`Member`](Member.md)
+• **member**: `undefined` \| [`Member`](Member)
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:29](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L29)
+[src/structures/Contexts/CommandContext.ts:30](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L30)
 
 ___
 
@@ -137,7 +139,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:24](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L24)
+[src/structures/Contexts/CommandContext.ts:25](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L25)
 
 ___
 
@@ -147,7 +149,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:35](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L35)
+[src/structures/Contexts/CommandContext.ts:36](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L36)
 
 ___
 
@@ -157,7 +159,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:32](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L32)
+[src/structures/Contexts/CommandContext.ts:33](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L33)
 
 ___
 
@@ -167,7 +169,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:31](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L31)
+[src/structures/Contexts/CommandContext.ts:32](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L32)
 
 ___
 
@@ -177,27 +179,17 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:25](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L25)
+[src/structures/Contexts/CommandContext.ts:26](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L26)
 
 ___
 
 ### user
 
-• **user**: `undefined` \| [`User`](User.md)
+• **user**: `undefined` \| [`User`](User)
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:28](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L28)
-
-___
-
-### users
-
-• `Private` **users**: `UsersAPI`
-
-#### Defined in
-
-[src/structures/Contexts/CommandContext.ts:38](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L38)
+[src/structures/Contexts/CommandContext.ts:29](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L29)
 
 ## Methods
 
@@ -226,7 +218,7 @@ BaseContext.decorate
 
 #### Defined in
 
-[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/BaseContext.ts#L9)
+[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/BaseContext.ts#L9)
 
 ___
 
@@ -250,7 +242,7 @@ A promise that resolves when the deferral is complete.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:78](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L78)
+[src/structures/Contexts/CommandContext.ts:77](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L77)
 
 ___
 
@@ -268,7 +260,7 @@ A promise that resolves when the reply is deleted.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:133](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L133)
+[src/structures/Contexts/CommandContext.ts:132](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L132)
 
 ___
 
@@ -292,7 +284,7 @@ A promise that resolves when the reply is edited.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:116](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L116)
+[src/structures/Contexts/CommandContext.ts:115](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L115)
 
 ___
 
@@ -310,7 +302,7 @@ A promise that resolves when the original reply is fetched.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:142](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L142)
+[src/structures/Contexts/CommandContext.ts:141](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L141)
 
 ___
 
@@ -334,13 +326,49 @@ A promise that resolves to an APIMessage object.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:170](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L170)
+[src/structures/Contexts/CommandContext.ts:169](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L169)
+
+___
+
+### getAttachmentOption
+
+▸ **getAttachmentOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `APIAttachment` : ``null`` \| `APIAttachment`
+
+Retrieves the value of the attachment option from the interaction data.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends `boolean` |
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `name` | `string` | `undefined` | The name of the attachment option. |
+| `index` | ``0`` \| ``2`` \| ``1`` | `0` | The index of the attachment option. |
+| `required?` | `T` | `undefined` | Whether the attachment option is required. |
+
+#### Returns
+
+`T` extends ``true`` ? `APIAttachment` : ``null`` \| `APIAttachment`
+
+The value of the attachment option, or null if it doesn't exist.
+
+**`Throws`**
+
+If the attachment option is required but doesn't exist.
+
+#### Defined in
+
+[src/structures/Contexts/CommandContext.ts:666](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L666)
 
 ___
 
 ### getBooleanOption
 
-▸ **getBooleanOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? ``null`` \| `boolean` : `boolean`
+▸ **getBooleanOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `boolean` : ``null`` \| `boolean`
 
 Retrieves a boolean option from the command's options.
 
@@ -360,19 +388,19 @@ Retrieves a boolean option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? ``null`` \| `boolean` : `boolean`
+`T` extends ``true`` ? `boolean` : ``null`` \| `boolean`
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:357](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L357)
+[src/structures/Contexts/CommandContext.ts:356](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L356)
 
 ___
 
 ### getChannelOption
 
-▸ **getChannelOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `APIInteractionDataResolvedChannel` : ``null`` \| `APIInteractionDataResolvedChannel`
+▸ **getChannelOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? [`Channel`](Channel) : ``null`` \| [`Channel`](Channel)
 
 Retrieves a channel option from the command's options.
 
@@ -392,19 +420,19 @@ Retrieves a channel option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? `APIInteractionDataResolvedChannel` : ``null`` \| `APIInteractionDataResolvedChannel`
+`T` extends ``true`` ? [`Channel`](Channel) : ``null`` \| [`Channel`](Channel)
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:531](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L531)
+[src/structures/Contexts/CommandContext.ts:536](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L536)
 
 ___
 
 ### getIntegerOption
 
-▸ **getIntegerOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? ``null`` \| `number` : `number`
+▸ **getIntegerOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `number` : ``null`` \| `number`
 
 Retrieves an integer option from the API.
 
@@ -424,19 +452,19 @@ Retrieves an integer option from the API.
 
 #### Returns
 
-`T` extends ``true`` ? ``null`` \| `number` : `number`
+`T` extends ``true`` ? `number` : ``null`` \| `number`
 
 - The value of the option.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:303](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L303)
+[src/structures/Contexts/CommandContext.ts:302](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L302)
 
 ___
 
 ### getMemberOption
 
-▸ **getMemberOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `APIInteractionDataResolvedGuildMember` : ``null`` \| `APIInteractionDataResolvedGuildMember`
+▸ **getMemberOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? [`Member`](Member) : ``null`` \| [`Member`](Member)
 
 Retrieves a user option from the command's options.
 
@@ -456,19 +484,19 @@ Retrieves a user option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? `APIInteractionDataResolvedGuildMember` : ``null`` \| `APIInteractionDataResolvedGuildMember`
+`T` extends ``true`` ? [`Member`](Member) : ``null`` \| [`Member`](Member)
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:598](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L598)
+[src/structures/Contexts/CommandContext.ts:600](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L600)
 
 ___
 
 ### getNumberOption
 
-▸ **getNumberOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? ``null`` \| `number` : `number`
+▸ **getNumberOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `number` : ``null`` \| `number`
 
 Retrieves a number option from the command's options.
 
@@ -488,19 +516,19 @@ Retrieves a number option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? ``null`` \| `number` : `number`
+`T` extends ``true`` ? `number` : ``null`` \| `number`
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:249](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L249)
+[src/structures/Contexts/CommandContext.ts:248](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L248)
 
 ___
 
 ### getRoleOption
 
-▸ **getRoleOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? ``null`` \| `APIRole` : `APIRole`
+▸ **getRoleOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `Role` : ``null`` \| `Role`
 
 Retrieves a role option from the command's options.
 
@@ -520,19 +548,19 @@ Retrieves a role option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? ``null`` \| `APIRole` : `APIRole`
+`T` extends ``true`` ? `Role` : ``null`` \| `Role`
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:474](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L474)
+[src/structures/Contexts/CommandContext.ts:473](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L473)
 
 ___
 
 ### getStringOption
 
-▸ **getStringOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? ``null`` \| `string` : `string`
+▸ **getStringOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? `string` : ``null`` \| `string`
 
 Retrieves a string option from the command's options.
 
@@ -552,19 +580,19 @@ Retrieves a string option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? ``null`` \| `string` : `string`
+`T` extends ``true`` ? `string` : ``null`` \| `string`
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:193](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L193)
+[src/structures/Contexts/CommandContext.ts:192](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L192)
 
 ___
 
 ### getUserOption
 
-▸ **getUserOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? [`User`](User.md) : ``null`` \| [`User`](User.md)
+▸ **getUserOption**\<`T`\>(`name`, `index?`, `required?`): `T` extends ``true`` ? [`User`](User) : ``null`` \| [`User`](User)
 
 Retrieves a user option from the command's options.
 
@@ -584,13 +612,13 @@ Retrieves a user option from the command's options.
 
 #### Returns
 
-`T` extends ``true`` ? [`User`](User.md) : ``null`` \| [`User`](User.md)
+`T` extends ``true`` ? [`User`](User) : ``null`` \| [`User`](User)
 
 - The value of the option, or null if the option is not found and not required.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:411](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L411)
+[src/structures/Contexts/CommandContext.ts:410](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L410)
 
 ___
 
@@ -608,7 +636,7 @@ Returns true if the instance is in a guild, otherwise false.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:181](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L181)
+[src/structures/Contexts/CommandContext.ts:180](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L180)
 
 ___
 
@@ -632,7 +660,7 @@ description of the return value
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:97](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L97)
+[src/structures/Contexts/CommandContext.ts:96](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L96)
 
 ___
 
@@ -656,4 +684,4 @@ A promise that resolves when the modal is created.
 
 #### Defined in
 
-[src/structures/Contexts/CommandContext.ts:152](https://github.com/OreOreki/yor.ts/blob/ba81725/src/structures/Contexts/CommandContext.ts#L152)
+[src/structures/Contexts/CommandContext.ts:151](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/Contexts/CommandContext.ts#L151)

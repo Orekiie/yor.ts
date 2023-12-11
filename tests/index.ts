@@ -4,7 +4,13 @@ import { describe, it } from 'node:test';
 
 import { expect } from 'chai';
 
-import { CommandContext, YorClient, YorSlashCommand } from '../src';
+import {
+  CommandContext,
+  ComponentContext,
+  YorClient,
+  YorInteractionComponent,
+  YorSlashCommand,
+} from '../src';
 import { SlashCommandBuilder } from '../src/builders';
 
 void describe('Genereate a mocked YorClient', () => {
@@ -59,6 +65,52 @@ void describe('Genereate a mocked YorClient', () => {
     void it('Command properties must be accessible', () => {
       expect(command.builder).to.be.an.instanceOf(SlashCommandBuilder);
       expect(command.execute).to.be.a('function');
+    });
+  });
+
+  void describe('Registering and unregistering components', () => {
+    class TestComponent extends YorInteractionComponent {
+      public id = 'test';
+      public execute = (_context: ComponentContext) => {};
+    }
+
+    const component = new TestComponent();
+
+    void it('should register a component', () => {
+      client.registerComponent(component);
+
+      expect(client.components.size).to.equal(1);
+    });
+
+    void it('should throw an error when registering a component with same id', () => {
+      expect(() => client.registerComponent(component)).to.throw();
+    });
+
+    void it('should unregister a component', () => {
+      client.unregisterComponent(component);
+
+      expect(client.components.size).to.equal(0);
+    });
+
+    void it('should register a component using array', () => {
+      client.registerComponents([component]);
+
+      expect(client.components.size).to.equal(1);
+    });
+
+    void it('should throw an error when registering a component with same id with array', () => {
+      expect(() => client.registerComponents([component])).to.throw();
+    });
+
+    void it('should unregister a component using array', () => {
+      client.unregisterComponents([component]);
+
+      expect(client.components.size).to.equal(0);
+    });
+
+    void it('Component properties must be accessible', () => {
+      expect(component.id).to.equal('test');
+      expect(component.execute).to.be.a('function');
     });
   });
 

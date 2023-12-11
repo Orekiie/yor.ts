@@ -53,7 +53,7 @@
     "lint:fix": "eslint ./src --ext .ts --fix",
     "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts",
     "typecheck": "tsc --noEmit",
-    "version": "auto-changelog -p && git add CHANGELOG.md"
+    "version": "auto-changelog -p"
   },
   "dependencies": {
     "@discordjs/builders": "^1.7.0",
@@ -75,7 +75,7 @@
     "eslint": "^8.55.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
-    "prettier": "^3.1.0",
+    "prettier": "^3.1.1",
     "sinon": "^17.0.1",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",

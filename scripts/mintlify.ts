@@ -25,11 +25,16 @@ const getPath = (file: fs.Dirent, prefix = ''): string | string[] => {
 
 const convertMdToMdx = (filePath: string) => {
   const data = fs.readFileSync(filePath, 'utf8');
-  const newContent = `---\ntitle: Yor.ts | ${filePath.replace(
-    'temp/',
-    '',
-  )}\n---\n${data}`;
+  let newContent = `---\ntitle: Yor.ts | ${filePath
+    .replace('temp/', '')
+    .replace('.md', '')}\nicon: "code"\nsidebarTitle: ${filePath
+    .split('/')
+    .pop()
+    ?.replace('.md', '')}\n---\n${data}`;
   const newFilePath = filePath.replace('.md', '.mdx');
+
+  // update links
+  newContent = newContent.replaceAll('.md', '');
 
   fs.writeFileSync(newFilePath, newContent);
   fs.rmSync(filePath);
@@ -63,7 +68,8 @@ function getAllFiles(dir: string, filesList = {}) {
     if (fileStat.isDirectory()) {
       filesList = getAllFiles(filePath, filesList);
     } else {
-      const folderName = path.basename(dir);
+      const folderName =
+        path.basename(dir) === 'temp' ? 'Yor.ts' : path.basename(dir);
       const fileNameWithoutExtension = path.parse(file).name;
       const group = filesList[folderName as keyof typeof filesList] || {
         group: folderName,
@@ -71,7 +77,11 @@ function getAllFiles(dir: string, filesList = {}) {
       };
 
       // @ts-expect-error - it does exist, i'm lazy to type it
-      group.pages.push(`${folderName}/${fileNameWithoutExtension}`);
+      group.pages.push(
+        folderName === 'Yor.ts'
+          ? `docs/${fileNameWithoutExtension}`
+          : `docs/${folderName}/${fileNameWithoutExtension}`,
+      );
       filesList[folderName as keyof typeof filesList] = group;
     }
   });
@@ -79,7 +89,10 @@ function getAllFiles(dir: string, filesList = {}) {
   return filesList;
 }
 
-docs.navigation = [...docs.navigation, ...Object.values(getAllFiles('temp'))];
+docs.navigation = [
+  { group: 'docs', pages: [...Object.values(getAllFiles('temp')).reverse()] },
+  ...docs.navigation,
+];
 
 const uniqueGroups = {};
 docs.navigation = docs.navigation.filter((item: { group: string }) => {
@@ -95,5 +108,5 @@ fs.writeFileSync('docs/mint.json', JSON.stringify(docs, null, 2));
 
 // actual docs are generated at temp direcory move them to docs cirectory
 // we need to move all the files inside temp/** to docs/**
-fs.cpSync('temp', 'docs', { recursive: true });
+fs.cpSync('temp', 'docs/docs', { recursive: true });
 fs.rmSync('temp', { recursive: true });

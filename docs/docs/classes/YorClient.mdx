@@ -1,0 +1,535 @@
+---
+title: Yor.ts | classes/YorClient
+icon: "code"
+sidebarTitle: YorClient
+---
+[yor.ts](../README) / [Exports](../modules) / YorClient
+
+# Class: YorClient
+
+## Table of contents
+
+### Constructors
+
+- [constructor](YorClient#constructor)
+
+### Properties
+
+- [api](YorClient#api)
+- [commands](YorClient#commands)
+- [components](YorClient#components)
+- [middlewares](YorClient#middlewares)
+- [modals](YorClient#modals)
+- [options](YorClient#options)
+- [rest](YorClient#rest)
+
+### Methods
+
+- [createMiddleware](YorClient#createmiddleware)
+- [deployCommands](YorClient#deploycommands)
+- [handleInteraction](YorClient#handleinteraction)
+- [handleInteractionRequest](YorClient#handleinteractionrequest)
+- [registerCommand](YorClient#registercommand)
+- [registerCommands](YorClient#registercommands)
+- [registerComponent](YorClient#registercomponent)
+- [registerComponents](YorClient#registercomponents)
+- [registerModal](YorClient#registermodal)
+- [registerModals](YorClient#registermodals)
+- [unregisterAllCommands](YorClient#unregisterallcommands)
+- [unregisterCommand](YorClient#unregistercommand)
+- [unregisterCommands](YorClient#unregistercommands)
+- [unregisterComponent](YorClient#unregistercomponent)
+- [unregisterComponents](YorClient#unregistercomponents)
+- [unregisterModal](YorClient#unregistermodal)
+- [unregisterModals](YorClient#unregistermodals)
+
+## Constructors
+
+### constructor
+
+• **new YorClient**(`options`): [`YorClient`](YorClient)
+
+Creates a new instance of the class.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | [`YorClientOptions`](../interfaces/YorClientOptions) | The configuration options for the client. |
+
+#### Returns
+
+[`YorClient`](YorClient)
+
+#### Defined in
+
+[src/structures/YorClient.ts:71](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L71)
+
+## Properties
+
+### api
+
+• **api**: [`YorClientAPI`](YorClientAPI)
+
+#### Defined in
+
+[src/structures/YorClient.ts:59](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L59)
+
+___
+
+### commands
+
+• `Readonly` **commands**: `Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:51](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L51)
+
+___
+
+### components
+
+• `Readonly` **components**: `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:52](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L52)
+
+___
+
+### middlewares
+
+• **middlewares**: `Record`\<[`MiddlewareFunctionNames`](../modules#middlewarefunctionnames), ((`context`: [`CommandContext`](CommandContext)) => `void` \| `Promise`\<`void`\> \| (`context`: [`ComponentContext`](ComponentContext)) => `void` \| `Promise`\<`void`\> \| (`context`: [`ModalContext`](ModalContext)) => `void` \| `Promise`\<`void`\> \| (`context`: [`AutocompleteCommandContext`](AutocompleteCommandContext)) => `void` \| `Promise`\<`void`\>)[]\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:61](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L61)
+
+___
+
+### modals
+
+• `Readonly` **modals**: `Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:56](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L56)
+
+___
+
+### options
+
+• `Readonly` **options**: [`YorClientOptions`](../interfaces/YorClientOptions)
+
+#### Defined in
+
+[src/structures/YorClient.ts:50](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L50)
+
+___
+
+### rest
+
+• **rest**: `REST`
+
+#### Defined in
+
+[src/structures/YorClient.ts:58](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L58)
+
+## Methods
+
+### createMiddleware
+
+▸ **createMiddleware**\<`T`\>(`name`, `middleware`): `void`
+
+Creates middleware for a given name and adds it to the middlewares array.
+
+#### Type parameters
+
+| Name | Type |
+| :------ | :------ |
+| `T` | extends [`MiddlewareFunctionNames`](../modules#middlewarefunctionnames) |
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `T` | The name of the middleware. |
+| `middleware` | [`MiddlewareFunction`](../modules#middlewarefunction)\<`T`\> | The middleware function. |
+
+#### Returns
+
+`void`
+
+#### Defined in
+
+[src/structures/YorClient.ts:323](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L323)
+
+___
+
+### deployCommands
+
+▸ **deployCommands**(): `Promise`\<`RESTPutAPIApplicationCommandsResult`\>
+
+Deploys the commands to the API application and returns the result.
+
+#### Returns
+
+`Promise`\<`RESTPutAPIApplicationCommandsResult`\>
+
+The result of the deployment.
+
+#### Defined in
+
+[src/structures/YorClient.ts:168](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L168)
+
+___
+
+### handleInteraction
+
+▸ **handleInteraction**(`request`): `Promise`\<`APIInteractionResponse`\>
+
+Handles an interaction request from the API.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `request` | `Request` | The request object containing the interaction data. |
+
+#### Returns
+
+`Promise`\<`APIInteractionResponse`\>
+
+- An object containing a promise for the response.
+
+#### Defined in
+
+[src/structures/YorClient.ts:336](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L336)
+
+___
+
+### handleInteractionRequest
+
+▸ **handleInteractionRequest**(`data`): `Promise`\<\{ `type`: `InteractionResponseType` = InteractionResponseType.PONG }\>
+
+Handles the interaction request.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `APIInteraction` | The interaction data. |
+
+#### Returns
+
+`Promise`\<\{ `type`: `InteractionResponseType` = InteractionResponseType.PONG }\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:374](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L374)
+
+___
+
+### registerCommand
+
+▸ **registerCommand**(`command`): `Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+Registers a slash command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`YorSlashCommand`](YorSlashCommand) | The slash command to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+- The updated commands collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:93](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L93)
+
+___
+
+### registerCommands
+
+▸ **registerCommands**(`commands`): `Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+Registers the provided slash commands.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `commands` | [`YorSlashCommand`](YorSlashCommand)[] | The slash commands to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+- The updated commands map.
+
+#### Defined in
+
+[src/structures/YorClient.ts:111](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L111)
+
+___
+
+### registerComponent
+
+▸ **registerComponent**(`component`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+Registers a component in the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `component` | [`YorInteractionComponent`](YorInteractionComponent) | The component to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+- The updated collection of components.
+
+#### Defined in
+
+[src/structures/YorClient.ts:187](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L187)
+
+___
+
+### registerComponents
+
+▸ **registerComponents**(`components`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+Registers the given components in the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `components` | [`YorInteractionComponent`](YorInteractionComponent)[] | The components to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+- The updated collection of components.
+
+#### Defined in
+
+[src/structures/YorClient.ts:206](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L206)
+
+___
+
+### registerModal
+
+▸ **registerModal**(`modal`): `Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+Registers a modal in the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `modal` | [`YorInteractionModal`](YorInteractionModal) | The modal to be registered. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+- The updated collection of modals.
+
+#### Defined in
+
+[src/structures/YorClient.ts:257](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L257)
+
+___
+
+### registerModals
+
+▸ **registerModals**(`modals`): `Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+Registers the given modals in the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `modals` | [`YorInteractionModal`](YorInteractionModal)[] | The modals to be registered. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+- The updated collection of modals.
+
+#### Defined in
+
+[src/structures/YorClient.ts:274](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L274)
+
+___
+
+### unregisterAllCommands
+
+▸ **unregisterAllCommands**(): `Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+Unregisters all slash commands.
+
+#### Returns
+
+`Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+- The updated commands map.
+
+#### Defined in
+
+[src/structures/YorClient.ts:158](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L158)
+
+___
+
+### unregisterCommand
+
+▸ **unregisterCommand**(`command`): `Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+Unregisters a slash command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`YorSlashCommand`](YorSlashCommand) | The slash command to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+- The updated commands collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:131](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L131)
+
+___
+
+### unregisterCommands
+
+▸ **unregisterCommands**(`commands`): `Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+Unregisters the provided slash commands.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `commands` | [`YorSlashCommand`](YorSlashCommand)[] | The slash commands to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorSlashCommand`](YorSlashCommand)\>
+
+- The updated commands map.
+
+#### Defined in
+
+[src/structures/YorClient.ts:144](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L144)
+
+___
+
+### unregisterComponent
+
+▸ **unregisterComponent**(`component`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+Deletes the specified component from the collection and returns the updated collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `component` | [`YorInteractionComponent`](YorInteractionComponent) | The component to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+- The updated collection of components.
+
+#### Defined in
+
+[src/structures/YorClient.ts:227](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L227)
+
+___
+
+### unregisterComponents
+
+▸ **unregisterComponents**(`components`): `Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+Unregisters components from the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `components` | [`YorInteractionComponent`](YorInteractionComponent)[] | The components to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionComponent`](YorInteractionComponent)\>
+
+- The updated components collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:241](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L241)
+
+___
+
+### unregisterModal
+
+▸ **unregisterModal**(`modal`): `Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+Deletes the specified modal from the collection and returns the updated collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `modal` | [`YorInteractionModal`](YorInteractionModal) | The modal to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+- The updated collection of modals.
+
+#### Defined in
+
+[src/structures/YorClient.ts:293](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L293)
+
+___
+
+### unregisterModals
+
+▸ **unregisterModals**(`modals`): `Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+Unregisters modals from the collection.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `modals` | [`YorInteractionModal`](YorInteractionModal)[] | The modals to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorInteractionModal`](YorInteractionModal)\>
+
+- The updated collection of modals.
+
+#### Defined in
+
+[src/structures/YorClient.ts:307](https://github.com/OreOreki/interactions.ts/blob/69aba85/src/structures/YorClient.ts#L307)
