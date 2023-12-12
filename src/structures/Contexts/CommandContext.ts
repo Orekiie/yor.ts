@@ -8,9 +8,12 @@ import {
   APIChatInputApplicationCommandInteraction,
   APIInteractionGuildMember,
   APIMessage,
+  APIModalInteractionResponseCallbackData,
   ApplicationCommandOptionType,
   MessageFlags,
+  RESTPostAPIWebhookWithTokenJSONBody,
 } from '@discordjs/core/http-only';
+import { RawFile } from '@discordjs/rest';
 
 import { Channel } from '../Channel';
 import { Member } from '../Member';
@@ -88,13 +91,16 @@ export class CommandContext extends BaseContext {
   }
 
   /**
-   * A description of the entire function.
+   * Replies to an interaction.
    *
-   * @param {Parameters<typeof this.API.interactions.reply>[2]} data - description of the data parameter
-   * @return {Promise<void>} description of the return value
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data for creating the reply.
+   * @return {Promise<void>} A promise that resolves when the reply is sent.
    */
   public async reply(
-    data: Parameters<typeof this.API.interactions.reply>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<void> {
     if (this.deferred || this.replied) {
       throw new YorClientError(
@@ -109,11 +115,14 @@ export class CommandContext extends BaseContext {
   /**
    * Edits a reply.
    *
-   * @param {Parameters<typeof this.API.interactions.reply>[2]} data - The data for editing the reply.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data for editing the reply.
    * @return {Promise<APIMessage>} A promise that resolves when the reply is edited.
    */
   public async editReply(
-    data: Parameters<typeof this.API.interactions.reply>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<APIMessage> {
     if (!this.deferred || !this.replied) {
       throw new YorClientError(
@@ -145,11 +154,11 @@ export class CommandContext extends BaseContext {
   /**
    * Reply to a modal.
    *
-   * @param {Parameters<typeof this.API.interactions.createModal>[2]} data - The data for creating the modal.
+   * @param {APIModalInteractionResponseCallbackData} data - The data for creating the modal.
    * @return {Promise<void>} A promise that resolves when the modal is created.
    */
   public async replyModal(
-    data: Parameters<typeof this.API.interactions.createModal>[2],
+    data: APIModalInteractionResponseCallbackData,
   ): Promise<void> {
     if (this.deferred || this.replied) {
       throw new YorClientError(
@@ -163,11 +172,14 @@ export class CommandContext extends BaseContext {
   /**
    * Calls the followUp method of the API class with the provided data.
    *
-   * @param {Parameters<typeof this.API.interactions.followUp>[2]} data - The data to be passed to the followUp method.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to be passed to the followUp method.
    * @return {Promise<APIMessage>} A promise that resolves to an APIMessage object.
    */
   public async followUp(
-    data: Parameters<typeof this.API.interactions.followUp>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<APIMessage> {
     return this.API.interactions.followUp(this.id, this.token, data);
   }

@@ -52,10 +52,17 @@
   ],
   "navigation": [
     {
-      "group": "docs",
+      "group": "Docs",
       "pages": [
         {
-          "group": "interfaces",
+          "group": "Yor.ts",
+          "pages": [
+            "docs/modules",
+            "docs/README"
+          ]
+        },
+        {
+          "group": "Interfaces",
           "pages": [
             "docs/interfaces/Command",
             "docs/interfaces/Component",
@@ -64,7 +71,7 @@
           ]
         },
         {
-          "group": "classes",
+          "group": "Classes",
           "pages": [
             "docs/classes/AutocompleteCommandContext",
             "docs/classes/Channel",
@@ -73,6 +80,7 @@
             "docs/classes/Guild",
             "docs/classes/Member",
             "docs/classes/ModalContext",
+            "docs/classes/Role",
             "docs/classes/User",
             "docs/classes/WebhookClient",
             "docs/classes/YorClient",
@@ -82,16 +90,14 @@
             "docs/classes/YorInteractionModal",
             "docs/classes/YorSlashCommand"
           ]
-        },
-        {
-          "group": "Yor.ts",
-          "pages": ["docs/README", "docs/modules"]
         }
       ]
     },
     {
-      "group": "guide",
-      "pages": ["guide/cloudflare-workers"]
+      "group": "Guide",
+      "pages": [
+        "guide/cloudflare-workers"
+      ]
     }
   ],
   "footerSocials": {

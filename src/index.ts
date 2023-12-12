@@ -13,6 +13,7 @@ export * from './structures/YorInteractionModal';
 export * from './structures/Guild';
 export * from './structures/Member';
 export * from './structures/User';
+export * from './structures/Role';
 
 export * from './interfaces/Command';
 export * from './interfaces/Component';

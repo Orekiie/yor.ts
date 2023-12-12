@@ -1,5 +1,10 @@
-import { WebhooksAPI } from '@discordjs/core/http-only';
-import { REST } from '@discordjs/rest';
+import {
+  APIMessage,
+  RESTPostAPIWebhookWithTokenJSONBody,
+  RESTPostAPIWebhookWithTokenQuery,
+  WebhooksAPI,
+} from '@discordjs/core/http-only';
+import { REST, RawFile } from '@discordjs/rest';
 
 import { YorClientError } from './YorClientError';
 
@@ -13,6 +18,11 @@ export class WebhookClient<T extends string | { id: string; token: string }> {
 
   private API: WebhooksAPI;
 
+  /**
+   * Creates a new WebhookClient instance.
+   *
+   * @param {WebhookClientOptions<T>} options - The options for the WebhookClient.
+   */
   public constructor(options: WebhookClientOptions<T>) {
     this.API = new WebhooksAPI(new REST({ version: '10' }));
 
@@ -39,12 +49,16 @@ export class WebhookClient<T extends string | { id: string; token: string }> {
   /**
    * Sends the provided data using the API's `execute` method.
    *
-   * @param {Parameters<typeof this.API.execute>[2]} data - The data to be sent.
-   * @return {Promise<void>} A promise that resolves to the result of the `execute` method.
+   * @param {RESTPostAPIWebhookWithTokenJSONBody & RESTPostAPIWebhookWithTokenQuery & { files?: RawFile[] | undefined; wait: true; }} data - The data to be sent.
+   * @return {Promise<APIMessage>} A promise that resolves to the result of the `execute` method.
    */
   public async send(
-    data: Parameters<typeof this.API.execute>[2],
-  ): Promise<void> {
+    data: RESTPostAPIWebhookWithTokenJSONBody &
+      RESTPostAPIWebhookWithTokenQuery & {
+        files?: RawFile[] | undefined;
+        wait: true;
+      },
+  ): Promise<APIMessage> {
     return this.API.execute(this.id, this.token, data);
   }
 }

@@ -35,6 +35,8 @@ sidebarTitle: WebhookClient
 
 • **new WebhookClient**\<`T`\>(`options`): [`WebhookClient`](WebhookClient)\<`T`\>
 
+Creates a new WebhookClient instance.
+
 #### Type parameters
 
 | Name | Type |
@@ -43,9 +45,9 @@ sidebarTitle: WebhookClient
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `options` | `T` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options` | `T` | The options for the WebhookClient. |
 
 #### Returns
 
@@ -53,7 +55,7 @@ sidebarTitle: WebhookClient
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:16](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/WebhookClient.ts#L16)
+[src/structures/WebhookClient.ts:26](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/WebhookClient.ts#L26)
 
 ## Properties
 
@@ -63,7 +65,7 @@ sidebarTitle: WebhookClient
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:14](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/WebhookClient.ts#L14)
+[src/structures/WebhookClient.ts:19](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/WebhookClient.ts#L19)
 
 ___
 
@@ -73,7 +75,7 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:11](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/WebhookClient.ts#L11)
+[src/structures/WebhookClient.ts:16](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/WebhookClient.ts#L16)
 
 ___
 
@@ -83,13 +85,13 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:12](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/WebhookClient.ts#L12)
+[src/structures/WebhookClient.ts:17](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/WebhookClient.ts#L17)
 
 ## Methods
 
 ### send
 
-▸ **send**(`data`): `Promise`\<`void`\>
+▸ **send**(`data`): `Promise`\<`APIMessage`\>
 
 Sends the provided data using the API's `execute` method.
 
@@ -97,14 +99,14 @@ Sends the provided data using the API's `execute` method.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `RESTPostAPIWebhookWithTokenJSONBody` & `RESTPostAPIWebhookWithTokenQuery` & \{ `files?`: `RawFile`[] ; `wait?`: ``false``  } | The data to be sent. |
+| `data` | `RESTPostAPIWebhookWithTokenJSONBody` & `RESTPostAPIWebhookWithTokenQuery` & \{ `files?`: `RawFile`[] ; `wait`: ``true``  } | The data to be sent. |
 
 #### Returns
 
-`Promise`\<`void`\>
+`Promise`\<`APIMessage`\>
 
 A promise that resolves to the result of the `execute` method.
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:45](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/WebhookClient.ts#L45)
+[src/structures/WebhookClient.ts:55](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/WebhookClient.ts#L55)

@@ -23,7 +23,7 @@ This guide provides a basic outline to set up a Discord bot and integrate it wit
 
   <Step title="Inviting Bot to Server">
     1. Still in the Developer Portal, go to the "OAuth2" tab.
-    2. Under "OAuth2 URL Generator," select "bot" in scopes.
+    2. Under "OAuth2 URL Generator," select "bot" and "application commands" in scopes.
     3. Copy the generated URL and paste it into your browser.
     4. Authorize the bot to a server you have access to
   </Step>
@@ -73,7 +73,7 @@ This guide provides a basic outline to set up a Discord bot and integrate it wit
             .setDescription("Replies with Pong!");
 
         public execute = (context: CommandContext) => {
-            context.reply("Pong!");
+            context.send({ content: "Pong!" });
         }
     }
 
@@ -102,7 +102,45 @@ This guide provides a basic outline to set up a Discord bot and integrate it wit
     ```
   </Step>
 
+  <Step title="Esbuild and polyfill">
+    1. Install esbuild and esbuild-plugin-node-polyfill: Run `npm install --save-dev esbuild esbuild-plugin-node-polyfill` or `yarn add --dev esbuild esbuild-plugin-node-polyfill` or `pnpm add --save-dev esbuild esbuild-plugin-node-polyfill` to install these packages as dev dependencies.
+
+    2. Update the package.json file: Add the following scripts to the scripts section of your package.json file:
+    ```json
+    "build": "node build.js",
+    ```
+
+    3. Create build.js.
+
+    4. Add the following to the build.js config file:
+    ```js
+    const { polyfillNode } = require('esbuild-plugin-polyfill-node');
+
+    require('esbuild')
+       .build({
+         minify: true,
+         bundle: true,
+         format: 'esm',
+         entryPoints: ['src/index.ts'],
+         outdir: 'dist',
+         platform: 'browser',
+         target: 'esnext',
+         sourcemap: true,
+         logLevel: 'info',
+         plugins: [
+             polyfillNode({
+                polyfills: {
+                  url: true,
+                  util: true,
+               },
+            }),
+        ],
+    }).catch(() => process.exit(1));
+    ```
+  </Step>
+
   <Step title="Running the project">
+    1. Run `npm run build` or `yarn build` or `pnpm build` to build the project
     1. Run `wrangler deploy` to deploy your project
   </Step>
 

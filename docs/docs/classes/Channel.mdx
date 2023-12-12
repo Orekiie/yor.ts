@@ -25,12 +25,17 @@ sidebarTitle: Channel
 ### Methods
 
 - [bulkDeleteMessages](Channel#bulkdeletemessages)
+- [createInvite](Channel#createinvite)
 - [createWebhook](Channel#createwebhook)
 - [createdAt](Channel#createdat)
 - [createdTimestamp](Channel#createdtimestamp)
+- [crosspostMessage](Channel#crosspostmessage)
 - [delete](Channel#delete)
 - [edit](Channel#edit)
+- [editMessage](Channel#editmessage)
+- [fetchMessage](Channel#fetchmessage)
 - [fetchMessages](Channel#fetchmessages)
+- [getInvites](Channel#getinvites)
 - [getWebhooks](Channel#getwebhooks)
 - [isDMBased](Channel#isdmbased)
 - [isTextBased](Channel#istextbased)
@@ -66,7 +71,7 @@ If channel data is not provided.
 
 #### Defined in
 
-[src/structures/Channel.ts:34](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L34)
+[src/structures/Channel.ts:42](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L42)
 
 ## Properties
 
@@ -76,7 +81,7 @@ If channel data is not provided.
 
 #### Defined in
 
-[src/structures/Channel.ts:25](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L25)
+[src/structures/Channel.ts:33](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L33)
 
 ___
 
@@ -86,7 +91,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:21](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L21)
+[src/structures/Channel.ts:29](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L29)
 
 ___
 
@@ -96,7 +101,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:18](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L18)
+[src/structures/Channel.ts:26](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L26)
 
 ___
 
@@ -106,7 +111,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:19](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L19)
+[src/structures/Channel.ts:27](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L27)
 
 ___
 
@@ -116,7 +121,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:23](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L23)
+[src/structures/Channel.ts:31](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L31)
 
 ___
 
@@ -126,13 +131,13 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:20](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L20)
+[src/structures/Channel.ts:28](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L28)
 
 ## Methods
 
 ### bulkDeleteMessages
 
-▸ **bulkDeleteMessages**(`data`): `Promise`\<`void`\>
+▸ **bulkDeleteMessages**(`messages`): `Promise`\<`void`\>
 
 Bulk deletes messages
 
@@ -140,7 +145,7 @@ Bulk deletes messages
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `string`[] | The data used to bulk delete messages |
+| `messages` | `string`[] | The data used to bulk delete messages |
 
 #### Returns
 
@@ -150,7 +155,31 @@ Promise that resolves when the messages are deleted
 
 #### Defined in
 
-[src/structures/Channel.ts:100](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L100)
+[src/structures/Channel.ts:161](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L161)
+
+___
+
+### createInvite
+
+▸ **createInvite**(`data`): `Promise`\<`APIInvite`\>
+
+Creates an invite using the given data and returns the created invite.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `RESTPostAPIChannelInviteJSONBody` | The data used to create the invite. |
+
+#### Returns
+
+`Promise`\<`APIInvite`\>
+
+The created invite.
+
+#### Defined in
+
+[src/structures/Channel.ts:121](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L121)
 
 ___
 
@@ -174,7 +203,7 @@ A promise that resolves with the created webhook.
 
 #### Defined in
 
-[src/structures/Channel.ts:211](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L211)
+[src/structures/Channel.ts:266](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L266)
 
 ___
 
@@ -192,7 +221,7 @@ The creation date of the object.
 
 #### Defined in
 
-[src/structures/Channel.ts:149](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L149)
+[src/structures/Channel.ts:204](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L204)
 
 ___
 
@@ -210,7 +239,31 @@ The created timestamp.
 
 #### Defined in
 
-[src/structures/Channel.ts:135](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L135)
+[src/structures/Channel.ts:190](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L190)
+
+___
+
+### crosspostMessage
+
+▸ **crosspostMessage**(`messageId`): `Promise`\<`APIMessage`\>
+
+Crossposts a message.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `messageId` | `string` | The ID of the message to crosspost. |
+
+#### Returns
+
+`Promise`\<`APIMessage`\>
+
+A promise that resolves to the crossposted message.
+
+#### Defined in
+
+[src/structures/Channel.ts:111](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L111)
 
 ___
 
@@ -228,7 +281,7 @@ Promise that resolves to the deleted channel
 
 #### Defined in
 
-[src/structures/Channel.ts:78](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L78)
+[src/structures/Channel.ts:141](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L141)
 
 ___
 
@@ -252,7 +305,56 @@ Promise that resolves to the edited channel
 
 #### Defined in
 
-[src/structures/Channel.ts:88](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L88)
+[src/structures/Channel.ts:151](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L151)
+
+___
+
+### editMessage
+
+▸ **editMessage**(`messageId`, `data`): `Promise`\<`APIMessage`\>
+
+Edits a message.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `messageId` | `string` | The ID of the message to be edited. |
+| `data` | `RESTPatchAPIChannelMessageJSONBody` & \{ `files?`: `RawFile`[]  } | The data to be updated in the message. |
+
+#### Returns
+
+`Promise`\<`APIMessage`\>
+
+- A promise that resolves to the edited message.
+
+#### Defined in
+
+[src/structures/Channel.ts:76](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L76)
+
+___
+
+### fetchMessage
+
+▸ **fetchMessage**(`messageId`): `Promise`\<`APIMessage`\>
+
+Fetches a specific message by its ID.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `messageId` | `string` | The ID of the message to fetch. |
+
+#### Returns
+
+`Promise`\<`APIMessage`\>
+
+A Promise that resolves to the fetched message.
+
+#### Defined in
+
+[src/structures/Channel.ts:89](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L89)
 
 ___
 
@@ -266,7 +368,7 @@ Fetches messages using the provided data.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `undefined` \| `RESTGetAPIChannelMessagesQuery` | The data used to fetch messages. |
+| `data` | `RESTGetAPIChannelMessagesQuery` | The data used to fetch messages. |
 
 #### Returns
 
@@ -276,7 +378,25 @@ A promise that resolves to an array of API messages.
 
 #### Defined in
 
-[src/structures/Channel.ts:67](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L67)
+[src/structures/Channel.ts:99](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L99)
+
+___
+
+### getInvites
+
+▸ **getInvites**(): `Promise`\<`APIInvite`[]\>
+
+Retrieves the invites.
+
+#### Returns
+
+`Promise`\<`APIInvite`[]\>
+
+The list of invites.
+
+#### Defined in
+
+[src/structures/Channel.ts:132](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L132)
 
 ___
 
@@ -294,7 +414,7 @@ A promise that resolves with an array of webhooks.
 
 #### Defined in
 
-[src/structures/Channel.ts:236](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L236)
+[src/structures/Channel.ts:291](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L291)
 
 ___
 
@@ -312,7 +432,7 @@ Determines if the channel is DM-based.
 
 #### Defined in
 
-[src/structures/Channel.ts:191](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L191)
+[src/structures/Channel.ts:246](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L246)
 
 ___
 
@@ -330,7 +450,7 @@ true if the function is text-based, false otherwise.
 
 #### Defined in
 
-[src/structures/Channel.ts:182](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L182)
+[src/structures/Channel.ts:237](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L237)
 
 ___
 
@@ -348,7 +468,7 @@ true if the channel type is a thread, false otherwise
 
 #### Defined in
 
-[src/structures/Channel.ts:158](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L158)
+[src/structures/Channel.ts:213](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L213)
 
 ___
 
@@ -366,13 +486,13 @@ Returns true if the channel is voice-based, false otherwise.
 
 #### Defined in
 
-[src/structures/Channel.ts:171](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L171)
+[src/structures/Channel.ts:226](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L226)
 
 ___
 
 ### pinMessage
 
-▸ **pinMessage**(`data`): `Promise`\<`void`\>
+▸ **pinMessage**(`messageId`): `Promise`\<`void`\>
 
 Pin a message
 
@@ -380,7 +500,7 @@ Pin a message
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `string` | The data used to pin a message |
+| `messageId` | `string` | The data used to pin a message |
 
 #### Returns
 
@@ -390,7 +510,7 @@ Promise that resolves when the message is pinned
 
 #### Defined in
 
-[src/structures/Channel.ts:112](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L112)
+[src/structures/Channel.ts:171](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L171)
 
 ___
 
@@ -414,7 +534,7 @@ A promise that resolves to the created message.
 
 #### Defined in
 
-[src/structures/Channel.ts:55](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L55)
+[src/structures/Channel.ts:63](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L63)
 
 ___
 
@@ -432,13 +552,13 @@ The string representation of the channel.
 
 #### Defined in
 
-[src/structures/Channel.ts:200](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L200)
+[src/structures/Channel.ts:255](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L255)
 
 ___
 
 ### unpinMessage
 
-▸ **unpinMessage**(`data`): `Promise`\<`void`\>
+▸ **unpinMessage**(`messageId`): `Promise`\<`void`\>
 
 Unpin a message
 
@@ -446,7 +566,7 @@ Unpin a message
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `string` | The data used to unpin a message |
+| `messageId` | `string` | The data used to unpin a message |
 
 #### Returns
 
@@ -456,4 +576,4 @@ Promise that resolves when the message is unpinned
 
 #### Defined in
 
-[src/structures/Channel.ts:124](https://github.com/OreOreki/yor.ts/blob/a201e7d/src/structures/Channel.ts#L124)
+[src/structures/Channel.ts:181](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L181)

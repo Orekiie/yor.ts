@@ -1,6 +1,6 @@
 {
   "name": "yor.ts",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "A highly performant and typed library to make discord http based bots",
   "keywords": [
     "discord",
@@ -51,6 +51,7 @@
     "format": "prettier --write ./src",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
+    "prepack": "pnpm run build",
     "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts",
     "typecheck": "tsc --noEmit",
     "version": "auto-changelog -p"

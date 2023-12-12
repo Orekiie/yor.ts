@@ -5,12 +5,20 @@ import { channelMention } from '@discordjs/builders';
 import {
   APIBaseInteraction,
   APIChannel,
+  APIInvite,
   APIMessage,
   APIWebhook,
   ChannelFlags,
   ChannelType,
   ChannelsAPI,
+  RESTGetAPIChannelMessagesQuery,
+  RESTPatchAPIChannelJSONBody,
+  RESTPatchAPIChannelMessageJSONBody,
+  RESTPostAPIChannelInviteJSONBody,
+  RESTPostAPIChannelMessageJSONBody,
+  RESTPostAPIChannelWebhookJSONBody,
 } from '@discordjs/core/http-only';
+import { RawFile } from '@discordjs/rest';
 
 import { YorClientError } from './YorClientError';
 
@@ -49,25 +57,80 @@ export class Channel {
   /**
    * Sends a message with the given data.
    *
-   * @param {Parameters<typeof this.API.createMessage>[1]} data - The data for the message.
+   * @param {RESTPostAPIChannelMessageJSONBody & { files?: RawFile[] }} data - The data for the message.
    * @return {Promise<APIMessage>} A promise that resolves to the created message.
    */
   public async send(
-    data: Parameters<typeof this.API.createMessage>[1],
+    data: RESTPostAPIChannelMessageJSONBody & { files?: RawFile[] },
   ): Promise<APIMessage> {
     return this.API.createMessage(this.id, data);
   }
 
   /**
+   * Edits a message.
+   *
+   * @param {string} messageId - The ID of the message to be edited.
+   * @param {RESTPatchAPIChannelMessageJSONBody & { files?: RawFile[] }} data - The data to be updated in the message.
+   * @return {Promise<APIMessage>} - A promise that resolves to the edited message.
+   */
+  public async editMessage(
+    messageId: string,
+    data: RESTPatchAPIChannelMessageJSONBody & { files?: RawFile[] },
+  ): Promise<APIMessage> {
+    return this.API.editMessage(this.id, messageId, data);
+  }
+
+  /**
+   * Fetches a specific message by its ID.
+   *
+   * @param {string} messageId - The ID of the message to fetch.
+   * @return {Promise<APIMessage>} A Promise that resolves to the fetched message.
+   */
+  public async fetchMessage(messageId: string): Promise<APIMessage> {
+    return this.API.getMessage(this.id, messageId);
+  }
+
+  /**
    * Fetches messages using the provided data.
    *
-   * @param {Parameters<typeof this.API.getMessages>[1]} data - The data used to fetch messages.
+   * @param {RESTGetAPIChannelMessagesQuery } data - The data used to fetch messages.
    * @return {Promise<APIMessage[]>} A promise that resolves to an array of API messages.
    */
   public async fetchMessages(
-    data: Parameters<typeof this.API.getMessages>[1],
+    data: RESTGetAPIChannelMessagesQuery,
   ): Promise<APIMessage[]> {
     return this.API.getMessages(this.id, data);
+  }
+
+  /**
+   * Crossposts a message.
+   *
+   * @param {string} messageId - The ID of the message to crosspost.
+   * @return {Promise<APIMessage>} A promise that resolves to the crossposted message.
+   */
+  public async crosspostMessage(messageId: string): Promise<APIMessage> {
+    return this.API.crosspostMessage(this.id, messageId);
+  }
+
+  /**
+   * Creates an invite using the given data and returns the created invite.
+   *
+   * @param {RESTPostAPIChannelInviteJSONBody} data - The data used to create the invite.
+   * @return {Promise<APIInvite>} The created invite.
+   */
+  public async createInvite(
+    data: RESTPostAPIChannelInviteJSONBody,
+  ): Promise<APIInvite> {
+    return this.API.createInvite(this.id, data);
+  }
+
+  /**
+   * Retrieves the invites.
+   *
+   * @return {Promise<APIInvite[]>} The list of invites.
+   */
+  public async getInvites(): Promise<APIInvite[]> {
+    return this.API.getInvites(this.id);
   }
 
   /**
@@ -82,49 +145,41 @@ export class Channel {
   /**
    * Edits the channel
    *
-   * @param {Parameters<typeof this.API.edit>[1]} data - The data used to edit the channel
+   * @param {RESTPatchAPIChannelJSONBody} data - The data used to edit the channel
    * @return {Promise<APIChannel>} Promise that resolves to the edited channel
    */
-  public async edit(
-    data: Parameters<typeof this.API.edit>[1],
-  ): Promise<APIChannel> {
+  public async edit(data: RESTPatchAPIChannelJSONBody): Promise<APIChannel> {
     return this.API.edit(this.id, data);
   }
 
   /**
    * Bulk deletes messages
    *
-   * @param {Parameters<typeof this.API.bulkDelete>[1]} data - The data used to bulk delete messages
+   * @param {string[]} messages - The data used to bulk delete messages
    * @return {Promise<void>} Promise that resolves when the messages are deleted
    */
-  public async bulkDeleteMessages(
-    data: Parameters<typeof this.API.bulkDeleteMessages>[1],
-  ): Promise<void> {
-    return this.API.bulkDeleteMessages(this.id, data);
+  public async bulkDeleteMessages(messages: string[]): Promise<void> {
+    return this.API.bulkDeleteMessages(this.id, messages);
   }
 
   /**
    * Pin a message
    *
-   * @param {Parameters<typeof this.API.pin>[1]} data - The data used to pin a message
+   * @param {string} messageId - The data used to pin a message
    * @return {Promise<void>} Promise that resolves when the message is pinned
    */
-  public async pinMessage(
-    data: Parameters<typeof this.API.pinMessage>[1],
-  ): Promise<void> {
-    return this.API.pinMessage(this.id, data);
+  public async pinMessage(messageId: string): Promise<void> {
+    return this.API.pinMessage(this.id, messageId);
   }
 
   /**
    * Unpin a message
    *
-   * @param {Parameters<typeof this.API.unpin>[1]} data - The data used to unpin a message
+   * @param {string} messageId - The data used to unpin a message
    * @return {Promise<void>} Promise that resolves when the message is unpinned
    */
-  public async unpinMessage(
-    data: Parameters<typeof this.API.unpinMessage>[1],
-  ): Promise<void> {
-    return this.API.unpinMessage(this.id, data);
+  public async unpinMessage(messageId: string): Promise<void> {
+    return this.API.unpinMessage(this.id, messageId);
   }
 
   /**
@@ -204,14 +259,14 @@ export class Channel {
   /**
    * Creates a webhook in the current channel or parent channel (if a thread) with the given data
    *
-   * @param {object} data - The data for creating the webhook.
+   * @param {RESTPostAPIChannelWebhookJSONBody} data - The data for creating the webhook.
    * @param {string} data.reason - The reason for creating the webhook.
    * @return {Promise<APIWebhook>} A promise that resolves with the created webhook.
    */
   public async createWebhook({
     reason,
     ...data
-  }: Parameters<typeof this.API.createWebhook>[1] & {
+  }: RESTPostAPIChannelWebhookJSONBody & {
     reason: string;
   }): Promise<APIWebhook> {
     if (!this.isTextBased()) {

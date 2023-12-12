@@ -2,7 +2,10 @@ import {
   APIMessage,
   APIMessageComponentInteraction,
   ComponentType,
+  MessageFlags,
+  RESTPostAPIWebhookWithTokenJSONBody,
 } from '@discordjs/core/http-only';
+import { RawFile } from '@discordjs/rest';
 
 import { Channel } from '../Channel';
 import { Member } from '../Member';
@@ -55,11 +58,14 @@ export class ComponentContext extends BaseContext {
   /**
    * Updates the message using the provided data.
    *
-   * @param {Parameters<typeof this.API.interactions.updateMessage>[2]} data - The updated message data.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, 'username' | 'avatar_url'> & { flags?: MessageFlags | undefined } & { files: RawFile[] }} data - The updated message data.
    * @return {Promise<void>} A promise that resolves when the update is complete.
    */
   public async update(
-    data: Parameters<typeof this.API.interactions.updateMessage>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<void> {
     return this.API.interactions.updateMessage(this.id, this.token, data);
   }
@@ -67,11 +73,14 @@ export class ComponentContext extends BaseContext {
   /**
    * Calls the `followUp` method of the API with the provided data.
    *
-   * @param {Parameters<typeof this.API.interactions.followUp>[2]} data - The data to be passed to the `followUp` method.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to be passed to the `followUp` method.
    * @return {Promise<APIMessage>} A promise that resolves to the response from the `followUp` method.
    */
   public async followUp(
-    data: Parameters<typeof this.API.interactions.followUp>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<APIMessage> {
     return this.API.interactions.followUp(this.id, this.token, data);
   }
@@ -79,11 +88,14 @@ export class ComponentContext extends BaseContext {
   /**
    * Reply to a message.
    *
-   * @param {Parameters<typeof this.API.interactions.reply>[2]} data - The data to reply with.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to reply with.
    * @return {Promise<void>} A promise that resolves when the reply is sent.
    */
   public async reply(
-    data: Parameters<typeof this.API.interactions.reply>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<void> {
     return this.API.interactions.reply(this.id, this.token, data);
   }
@@ -91,11 +103,14 @@ export class ComponentContext extends BaseContext {
   /**
    * Calls the `editReply` method of the API with the provided data.
    *
-   * @param {Parameters<typeof this.API.interactions.editReply>[2]} data - The data to be passed to the `editReply` method.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to be passed to the `editReply` method.
    * @return {Promise<APIMessage>} A promise that resolves to the response from the `editReply` method.
    */
   public async editReply(
-    data: Parameters<typeof this.API.interactions.editReply>[2],
+    data: Omit<
+      RESTPostAPIWebhookWithTokenJSONBody,
+      'username' | 'avatar_url'
+    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
   ): Promise<APIMessage> {
     return this.API.interactions.editReply(this.id, this.token, data);
   }

@@ -10,6 +10,10 @@ import path from 'node:path';
 
 const mintlify = require('../docs/mint.json');
 
+const capitalize = (str: string) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
+
 const getPath = (file: fs.Dirent, prefix = ''): string | string[] => {
   if (file.isDirectory()) {
     const files = fs.readdirSync(`${prefix}${file.name}`, {
@@ -72,7 +76,7 @@ function getAllFiles(dir: string, filesList = {}) {
         path.basename(dir) === 'temp' ? 'Yor.ts' : path.basename(dir);
       const fileNameWithoutExtension = path.parse(file).name;
       const group = filesList[folderName as keyof typeof filesList] || {
-        group: folderName,
+        group: capitalize(folderName),
         pages: [],
       };
 
@@ -90,7 +94,7 @@ function getAllFiles(dir: string, filesList = {}) {
 }
 
 docs.navigation = [
-  { group: 'docs', pages: [...Object.values(getAllFiles('temp')).reverse()] },
+  { group: 'Docs', pages: [...Object.values(getAllFiles('temp')).reverse()] },
   ...docs.navigation,
 ];
 

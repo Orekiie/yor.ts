@@ -1,6 +1,6 @@
 /* eslint-disable no-bitwise */
 import { APIChannel, APIUser, UsersAPI } from '@discordjs/core/http-only';
-import { CDN } from '@discordjs/rest';
+import { BaseImageURLOptions, CDN, ImageURLOptions } from '@discordjs/rest';
 
 import { YorClientError } from './YorClientError';
 
@@ -34,12 +34,10 @@ export class User {
   /**
    * Generates the avatar URL for the user.
    *
-   * @param {Parameters<typeof this.CDN.avatar>[2]} options - The options for generating the avatar URL.
+   * @param {Readonly<ImageURLOptions>} options - The options for generating the avatar URL.
    * @return {string} The generated avatar URL.
    */
-  public getAvatarURL(
-    options: Parameters<typeof this.CDN.avatar>[2],
-  ): string | undefined {
+  public getAvatarURL(options?: Readonly<ImageURLOptions>): string | undefined {
     return this.raw.avatar
       ? this.CDN.avatar(this.raw.id, this.raw.avatar, options)
       : undefined;
@@ -48,12 +46,10 @@ export class User {
   /**
    * Retrieves the URL for the banner image.
    *
-   * @param {type} options - description of the options parameter
+   * @param {Readonly<ImageURLOptions>} options - description of the options parameter
    * @return {string} the URL for the banner image
    */
-  public getBannerURL(
-    options: Parameters<typeof this.CDN.banner>[2],
-  ): string | undefined {
+  public getBannerURL(options?: Readonly<ImageURLOptions>): string | undefined {
     return this.raw.banner
       ? this.CDN.banner(this.raw.id, this.raw.banner, options)
       : undefined;
@@ -62,11 +58,11 @@ export class User {
   /**
    * Retrieves the URL of the avatar decoration based on the provided options.
    *
-   * @param {Parameters<typeof this.CDN.avatarDecoration>[2]} options - The options for the avatar decoration.
+   * @param {Readonly<BaseImageURLOptions>} options - The options for the avatar decoration.
    * @return {string | undefined} The URL of the avatar decoration, or undefined if it is not available.
    */
   public getAvatarDecorationURL(
-    options: Parameters<typeof this.CDN.avatarDecoration>[2],
+    options?: Readonly<BaseImageURLOptions>,
   ): string | undefined {
     return this.raw.avatar_decoration
       ? this.CDN.avatarDecoration(
