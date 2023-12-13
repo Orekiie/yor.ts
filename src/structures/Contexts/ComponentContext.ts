@@ -10,13 +10,15 @@ import { RawFile } from '@discordjs/rest';
 import { Channel } from '../Channel';
 import { Member } from '../Member';
 import { User } from '../User';
+import { YorClient } from '../YorClient';
 import { YorClientAPI } from '../YorClientAPI';
 
 import { BaseContext } from './BaseContext';
 
 export class ComponentContext extends BaseContext {
   public readonly raw: APIMessageComponentInteraction;
-  public readonly id: string;
+  public readonly interactionId: string;
+  public readonly applicationId: string;
   public readonly token: string;
   public channel: Channel;
   public user: User | undefined;
@@ -27,22 +29,25 @@ export class ComponentContext extends BaseContext {
   /**
    * Creates a new instance of the constructor.
    *
-   * @param {YorClientAPI} API - The API instance.
+   * @param {YorClient} client - The client object.
    * @param {APIMessageComponentInteraction} data - The data for the constructor.
    */
-  constructor(API: YorClientAPI, data: APIMessageComponentInteraction) {
-    super();
+  constructor(client: YorClient, data: APIMessageComponentInteraction) {
+    super(client);
 
-    this.API = API;
+    this.API = client.api;
 
     this.raw = data;
-    this.id = data.id;
+    this.interactionId = this.raw.id;
+    this.applicationId = this.raw.application_id;
     this.token = data.token;
-    this.channel = new Channel(API.channels, this.raw.channel);
-    this.user = this.raw.user ? new User(API.users, this.raw.user) : undefined;
+    this.channel = new Channel(this.client, this.raw.channel);
+    this.user = this.raw.user
+      ? new User(this.client, this.raw.user)
+      : undefined;
     this.member =
       this.raw.member && this.raw.guild_id
-        ? new Member(API, this.raw.guild_id, this.raw.member)
+        ? new Member(this.client, this.raw.guild_id, this.raw.member)
         : undefined;
   }
 
@@ -52,67 +57,78 @@ export class ComponentContext extends BaseContext {
    * @return {Promise<void>} A promise that resolves when the message update is deferred.
    */
   public async defer(): Promise<void> {
-    return this.API.interactions.deferMessageUpdate(this.id, this.token);
+    return this.API.interactions.deferMessageUpdate(
+      this.interactionId,
+      this.token,
+    );
   }
 
   /**
    * Updates the message using the provided data.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, 'username' | 'avatar_url'> & { flags?: MessageFlags | undefined } & { files: RawFile[] }} data - The updated message data.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, 'username' | 'avatar_url'> & { flags?: MessageFlags | undefined } & { files?: RawFile[] }} data - The updated message data.
    * @return {Promise<void>} A promise that resolves when the update is complete.
    */
   public async update(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<void> {
-    return this.API.interactions.updateMessage(this.id, this.token, data);
+    return this.API.interactions.updateMessage(
+      this.interactionId,
+      this.token,
+      data,
+    );
   }
 
   /**
    * Calls the `followUp` method of the API with the provided data.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to be passed to the `followUp` method.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files?: RawFile[] }} data - The data to be passed to the `followUp` method.
    * @return {Promise<APIMessage>} A promise that resolves to the response from the `followUp` method.
    */
   public async followUp(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<APIMessage> {
-    return this.API.interactions.followUp(this.id, this.token, data);
+    return this.API.interactions.followUp(this.applicationId, this.token, data);
   }
 
   /**
    * Reply to a message.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to reply with.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files?: RawFile[] }} data - The data to reply with.
    * @return {Promise<void>} A promise that resolves when the reply is sent.
    */
   public async reply(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<void> {
-    return this.API.interactions.reply(this.id, this.token, data);
+    return this.API.interactions.reply(this.interactionId, this.token, data);
   }
 
   /**
    * Calls the `editReply` method of the API with the provided data.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to be passed to the `editReply` method.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files?: RawFile[] }} data - The data to be passed to the `editReply` method.
    * @return {Promise<APIMessage>} A promise that resolves to the response from the `editReply` method.
    */
   public async editReply(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<APIMessage> {
-    return this.API.interactions.editReply(this.id, this.token, data);
+    return this.API.interactions.editReply(
+      this.applicationId,
+      this.token,
+      data,
+    );
   }
 
   /**

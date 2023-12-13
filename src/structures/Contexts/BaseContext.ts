@@ -1,4 +1,17 @@
-export class BaseContext {
+/* eslint-disable @typescript-eslint/no-useless-constructor */
+import { Base } from '../Base';
+import { YorClient } from '../YorClient';
+
+export class BaseContext extends Base {
+  /**
+   * Constructor for the class.
+   *
+   * @param {YorClient} client - The client object.
+   */
+  constructor(client: YorClient) {
+    super(client);
+  }
+
   /**
    * Decorates the object with a new property.
    *

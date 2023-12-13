@@ -7,6 +7,12 @@ sidebarTitle: Role
 
 # Class: Role
 
+## Hierarchy
+
+- `Base`
+
+  ↳ **`Role`**
+
 ## Table of contents
 
 ### Constructors
@@ -16,28 +22,35 @@ sidebarTitle: Role
 ### Properties
 
 - [API](Role#api)
+- [client](Role#client)
 - [raw](Role#raw)
 
 ## Constructors
 
 ### constructor
 
-• **new Role**(`API`, `data`): [`Role`](Role)
+• **new Role**(`client`, `data`): [`Role`](Role)
+
+Constructor function for the APIRole class.
 
 #### Parameters
 
-| Name | Type |
-| :------ | :------ |
-| `API` | `GuildsAPI` |
-| `data` | `APIRole` |
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `client` | [`YorClient`](YorClient) | The YorClient instance. |
+| `data` | `APIRole` | The APIRole data. |
 
 #### Returns
 
 [`Role`](Role)
 
+#### Overrides
+
+Base.constructor
+
 #### Defined in
 
-[src/structures/Role.ts:8](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Role.ts#L8)
+[src/structures/Role.ts:17](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Role.ts#L17)
 
 ## Properties
 
@@ -47,7 +60,21 @@ sidebarTitle: Role
 
 #### Defined in
 
-[src/structures/Role.ts:4](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Role.ts#L4)
+[src/structures/Role.ts:7](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Role.ts#L7)
+
+___
+
+### client
+
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+Base.client
+
+#### Defined in
+
+src/structures/Base.ts:4
 
 ___
 
@@ -57,4 +84,4 @@ ___
 
 #### Defined in
 
-[src/structures/Role.ts:6](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Role.ts#L6)
+[src/structures/Role.ts:9](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Role.ts#L9)

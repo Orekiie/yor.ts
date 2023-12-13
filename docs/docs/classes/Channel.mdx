@@ -7,6 +7,12 @@ sidebarTitle: Channel
 
 # Class: Channel
 
+## Hierarchy
+
+- `Base`
+
+  ↳ **`Channel`**
+
 ## Table of contents
 
 ### Constructors
@@ -16,6 +22,7 @@ sidebarTitle: Channel
 ### Properties
 
 - [API](Channel#api)
+- [client](Channel#client)
 - [flags](Channel#flags)
 - [id](Channel#id)
 - [name](Channel#name)
@@ -50,7 +57,7 @@ sidebarTitle: Channel
 
 ### constructor
 
-• **new Channel**(`API`, `data`): [`Channel`](Channel)
+• **new Channel**(`client`, `data`): [`Channel`](Channel)
 
 Constructs a new instance of the class.
 
@@ -58,7 +65,7 @@ Constructs a new instance of the class.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `API` | `ChannelsAPI` | The ChannelsAPI instance. |
+| `client` | [`YorClient`](YorClient) | The client object. |
 | `data` | `undefined` \| \{ `flags?`: `ChannelFlags` ; `id`: `string` ; `name?`: ``null`` \| `string` ; `type`: `GuildText` \| `DM` \| `GuildVoice` \| `GroupDM` \| `GuildCategory` \| `GuildAnnouncement` \| `AnnouncementThread` \| `PublicThread` \| `PrivateThread` \| `GuildStageVoice` \| `GuildForum` \| `GuildMedia`  } | The channel data. |
 
 #### Returns
@@ -69,9 +76,13 @@ Constructs a new instance of the class.
 
 If channel data is not provided.
 
+#### Overrides
+
+Base.constructor
+
 #### Defined in
 
-[src/structures/Channel.ts:42](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L42)
+[src/structures/Channel.ts:44](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L44)
 
 ## Properties
 
@@ -81,7 +92,21 @@ If channel data is not provided.
 
 #### Defined in
 
-[src/structures/Channel.ts:33](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L33)
+[src/structures/Channel.ts:35](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L35)
+
+___
+
+### client
+
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+Base.client
+
+#### Defined in
+
+src/structures/Base.ts:4
 
 ___
 
@@ -91,7 +116,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:29](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L29)
+[src/structures/Channel.ts:31](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L31)
 
 ___
 
@@ -101,7 +126,7 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:26](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L26)
+[src/structures/Channel.ts:28](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L28)
 
 ___
 
@@ -111,17 +136,17 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:27](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L27)
+[src/structures/Channel.ts:29](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L29)
 
 ___
 
 ### raw
 
-• **raw**: `Partial`\<`APIChannel`\>
+• **raw**: [`Partial`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#partialtype )\<`APIChannel`\>
 
 #### Defined in
 
-[src/structures/Channel.ts:31](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L31)
+[src/structures/Channel.ts:33](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L33)
 
 ___
 
@@ -131,13 +156,13 @@ ___
 
 #### Defined in
 
-[src/structures/Channel.ts:28](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L28)
+[src/structures/Channel.ts:30](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L30)
 
 ## Methods
 
 ### bulkDeleteMessages
 
-▸ **bulkDeleteMessages**(`messages`): `Promise`\<`void`\>
+▸ **bulkDeleteMessages**(`messages`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Bulk deletes messages
 
@@ -149,19 +174,19 @@ Bulk deletes messages
 
 #### Returns
 
-`Promise`\<`void`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Promise that resolves when the messages are deleted
 
 #### Defined in
 
-[src/structures/Channel.ts:161](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L161)
+[src/structures/Channel.ts:168](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L168)
 
 ___
 
 ### createInvite
 
-▸ **createInvite**(`data`): `Promise`\<`APIInvite`\>
+▸ **createInvite**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIInvite`\>
 
 Creates an invite using the given data and returns the created invite.
 
@@ -173,19 +198,19 @@ Creates an invite using the given data and returns the created invite.
 
 #### Returns
 
-`Promise`\<`APIInvite`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIInvite`\>
 
 The created invite.
 
 #### Defined in
 
-[src/structures/Channel.ts:121](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L121)
+[src/structures/Channel.ts:128](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L128)
 
 ___
 
 ### createWebhook
 
-▸ **createWebhook**(`data`): `Promise`\<`APIWebhook`\>
+▸ **createWebhook**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`\>
 
 Creates a webhook in the current channel or parent channel (if a thread) with the given data
 
@@ -197,31 +222,31 @@ Creates a webhook in the current channel or parent channel (if a thread) with th
 
 #### Returns
 
-`Promise`\<`APIWebhook`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`\>
 
 A promise that resolves with the created webhook.
 
 #### Defined in
 
-[src/structures/Channel.ts:266](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L266)
+[src/structures/Channel.ts:273](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L273)
 
 ___
 
 ### createdAt
 
-▸ **createdAt**(): `Date`
+▸ **createdAt**(): [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
 
 Returns the creation date of the object.
 
 #### Returns
 
-`Date`
+[`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
 
 The creation date of the object.
 
 #### Defined in
 
-[src/structures/Channel.ts:204](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L204)
+[src/structures/Channel.ts:211](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L211)
 
 ___
 
@@ -239,13 +264,13 @@ The created timestamp.
 
 #### Defined in
 
-[src/structures/Channel.ts:190](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L190)
+[src/structures/Channel.ts:197](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L197)
 
 ___
 
 ### crosspostMessage
 
-▸ **crosspostMessage**(`messageId`): `Promise`\<`APIMessage`\>
+▸ **crosspostMessage**(`messageId`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 Crossposts a message.
 
@@ -257,37 +282,37 @@ Crossposts a message.
 
 #### Returns
 
-`Promise`\<`APIMessage`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 A promise that resolves to the crossposted message.
 
 #### Defined in
 
-[src/structures/Channel.ts:111](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L111)
+[src/structures/Channel.ts:118](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L118)
 
 ___
 
 ### delete
 
-▸ **delete**(): `Promise`\<`APIChannel`\>
+▸ **delete**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIChannel`\>
 
 Deletes the channel
 
 #### Returns
 
-`Promise`\<`APIChannel`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIChannel`\>
 
 Promise that resolves to the deleted channel
 
 #### Defined in
 
-[src/structures/Channel.ts:141](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L141)
+[src/structures/Channel.ts:148](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L148)
 
 ___
 
 ### edit
 
-▸ **edit**(`data`): `Promise`\<`APIChannel`\>
+▸ **edit**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIChannel`\>
 
 Edits the channel
 
@@ -299,19 +324,19 @@ Edits the channel
 
 #### Returns
 
-`Promise`\<`APIChannel`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIChannel`\>
 
 Promise that resolves to the edited channel
 
 #### Defined in
 
-[src/structures/Channel.ts:151](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L151)
+[src/structures/Channel.ts:158](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L158)
 
 ___
 
 ### editMessage
 
-▸ **editMessage**(`messageId`, `data`): `Promise`\<`APIMessage`\>
+▸ **editMessage**(`messageId`, `data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 Edits a message.
 
@@ -324,19 +349,19 @@ Edits a message.
 
 #### Returns
 
-`Promise`\<`APIMessage`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 - A promise that resolves to the edited message.
 
 #### Defined in
 
-[src/structures/Channel.ts:76](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L76)
+[src/structures/Channel.ts:83](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L83)
 
 ___
 
 ### fetchMessage
 
-▸ **fetchMessage**(`messageId`): `Promise`\<`APIMessage`\>
+▸ **fetchMessage**(`messageId`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 Fetches a specific message by its ID.
 
@@ -348,19 +373,19 @@ Fetches a specific message by its ID.
 
 #### Returns
 
-`Promise`\<`APIMessage`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 A Promise that resolves to the fetched message.
 
 #### Defined in
 
-[src/structures/Channel.ts:89](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L89)
+[src/structures/Channel.ts:96](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L96)
 
 ___
 
 ### fetchMessages
 
-▸ **fetchMessages**(`data`): `Promise`\<`APIMessage`[]\>
+▸ **fetchMessages**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`[]\>
 
 Fetches messages using the provided data.
 
@@ -372,49 +397,49 @@ Fetches messages using the provided data.
 
 #### Returns
 
-`Promise`\<`APIMessage`[]\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`[]\>
 
 A promise that resolves to an array of API messages.
 
 #### Defined in
 
-[src/structures/Channel.ts:99](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L99)
+[src/structures/Channel.ts:106](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L106)
 
 ___
 
 ### getInvites
 
-▸ **getInvites**(): `Promise`\<`APIInvite`[]\>
+▸ **getInvites**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIInvite`[]\>
 
 Retrieves the invites.
 
 #### Returns
 
-`Promise`\<`APIInvite`[]\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIInvite`[]\>
 
 The list of invites.
 
 #### Defined in
 
-[src/structures/Channel.ts:132](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L132)
+[src/structures/Channel.ts:139](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L139)
 
 ___
 
 ### getWebhooks
 
-▸ **getWebhooks**(): `Promise`\<`APIWebhook`[]\>
+▸ **getWebhooks**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`[]\>
 
 Gets all webhooks in the current channel or parent channel (if a thread)
 
 #### Returns
 
-`Promise`\<`APIWebhook`[]\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`[]\>
 
 A promise that resolves with an array of webhooks.
 
 #### Defined in
 
-[src/structures/Channel.ts:291](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L291)
+[src/structures/Channel.ts:298](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L298)
 
 ___
 
@@ -432,7 +457,7 @@ Determines if the channel is DM-based.
 
 #### Defined in
 
-[src/structures/Channel.ts:246](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L246)
+[src/structures/Channel.ts:253](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L253)
 
 ___
 
@@ -450,7 +475,7 @@ true if the function is text-based, false otherwise.
 
 #### Defined in
 
-[src/structures/Channel.ts:237](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L237)
+[src/structures/Channel.ts:244](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L244)
 
 ___
 
@@ -468,7 +493,7 @@ true if the channel type is a thread, false otherwise
 
 #### Defined in
 
-[src/structures/Channel.ts:213](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L213)
+[src/structures/Channel.ts:220](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L220)
 
 ___
 
@@ -486,13 +511,13 @@ Returns true if the channel is voice-based, false otherwise.
 
 #### Defined in
 
-[src/structures/Channel.ts:226](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L226)
+[src/structures/Channel.ts:233](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L233)
 
 ___
 
 ### pinMessage
 
-▸ **pinMessage**(`messageId`): `Promise`\<`void`\>
+▸ **pinMessage**(`messageId`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Pin a message
 
@@ -504,19 +529,19 @@ Pin a message
 
 #### Returns
 
-`Promise`\<`void`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Promise that resolves when the message is pinned
 
 #### Defined in
 
-[src/structures/Channel.ts:171](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L171)
+[src/structures/Channel.ts:178](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L178)
 
 ___
 
 ### send
 
-▸ **send**(`data`): `Promise`\<`APIMessage`\>
+▸ **send**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 Sends a message with the given data.
 
@@ -528,13 +553,13 @@ Sends a message with the given data.
 
 #### Returns
 
-`Promise`\<`APIMessage`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 A promise that resolves to the created message.
 
 #### Defined in
 
-[src/structures/Channel.ts:63](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L63)
+[src/structures/Channel.ts:70](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L70)
 
 ___
 
@@ -552,13 +577,13 @@ The string representation of the channel.
 
 #### Defined in
 
-[src/structures/Channel.ts:255](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L255)
+[src/structures/Channel.ts:262](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L262)
 
 ___
 
 ### unpinMessage
 
-▸ **unpinMessage**(`messageId`): `Promise`\<`void`\>
+▸ **unpinMessage**(`messageId`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Unpin a message
 
@@ -570,10 +595,10 @@ Unpin a message
 
 #### Returns
 
-`Promise`\<`void`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Promise that resolves when the message is unpinned
 
 #### Defined in
 
-[src/structures/Channel.ts:181](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Channel.ts#L181)
+[src/structures/Channel.ts:188](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Channel.ts#L188)

@@ -2,9 +2,11 @@
 import { APIChannel, APIUser, UsersAPI } from '@discordjs/core/http-only';
 import { BaseImageURLOptions, CDN, ImageURLOptions } from '@discordjs/rest';
 
+import { Base } from './Base';
+import { YorClient } from './YorClient';
 import { YorClientError } from './YorClientError';
 
-export class User {
+export class User extends Base {
   private API: UsersAPI;
   private CDN: CDN = new CDN();
 
@@ -16,8 +18,10 @@ export class User {
    * @param {UsersAPI} API - The UsersAPI instance.
    * @param {APIUser} data - The data for the APIUser.
    */
-  constructor(API: UsersAPI, data: APIUser) {
-    this.API = API;
+  constructor(client: YorClient, data: APIUser) {
+    super(client);
+
+    this.API = client.api.users;
 
     this.raw = data;
   }

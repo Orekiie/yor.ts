@@ -22,8 +22,10 @@ sidebarTitle: ComponentContext
 ### Properties
 
 - [API](ComponentContext#api)
+- [applicationId](ComponentContext#applicationid)
 - [channel](ComponentContext#channel)
-- [id](ComponentContext#id)
+- [client](ComponentContext#client)
+- [interactionId](ComponentContext#interactionid)
 - [member](ComponentContext#member)
 - [raw](ComponentContext#raw)
 - [token](ComponentContext#token)
@@ -48,7 +50,7 @@ sidebarTitle: ComponentContext
 
 ### constructor
 
-• **new ComponentContext**(`API`, `data`): [`ComponentContext`](ComponentContext)
+• **new ComponentContext**(`client`, `data`): [`ComponentContext`](ComponentContext)
 
 Creates a new instance of the constructor.
 
@@ -56,7 +58,7 @@ Creates a new instance of the constructor.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `API` | [`YorClientAPI`](YorClientAPI) | The API instance. |
+| `client` | [`YorClient`](YorClient) | The client object. |
 | `data` | `APIMessageComponentInteraction` | The data for the constructor. |
 
 #### Returns
@@ -69,7 +71,7 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:33](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L33)
+[src/structures/Contexts/ComponentContext.ts:35](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L35)
 
 ## Properties
 
@@ -79,7 +81,17 @@ BaseContext.constructor
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:25](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L25)
+[src/structures/Contexts/ComponentContext.ts:27](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L27)
+
+___
+
+### applicationId
+
+• `Readonly` **applicationId**: `string`
+
+#### Defined in
+
+[src/structures/Contexts/ComponentContext.ts:21](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L21)
 
 ___
 
@@ -89,17 +101,31 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:21](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L21)
+[src/structures/Contexts/ComponentContext.ts:23](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L23)
 
 ___
 
-### id
+### client
 
-• `Readonly` **id**: `string`
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+BaseContext.client
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:19](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L19)
+src/structures/Base.ts:4
+
+___
+
+### interactionId
+
+• `Readonly` **interactionId**: `string`
+
+#### Defined in
+
+[src/structures/Contexts/ComponentContext.ts:20](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L20)
 
 ___
 
@@ -109,7 +135,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:23](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L23)
+[src/structures/Contexts/ComponentContext.ts:25](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L25)
 
 ___
 
@@ -119,7 +145,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:18](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L18)
+[src/structures/Contexts/ComponentContext.ts:19](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L19)
 
 ___
 
@@ -129,7 +155,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:20](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L20)
+[src/structures/Contexts/ComponentContext.ts:22](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L22)
 
 ___
 
@@ -139,7 +165,7 @@ ___
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:22](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L22)
+[src/structures/Contexts/ComponentContext.ts:24](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L24)
 
 ## Methods
 
@@ -168,31 +194,31 @@ BaseContext.decorate
 
 #### Defined in
 
-[src/structures/Contexts/BaseContext.ts:9](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/BaseContext.ts#L9)
+[src/structures/Contexts/BaseContext.ts:22](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/BaseContext.ts#L22)
 
 ___
 
 ### defer
 
-▸ **defer**(): `Promise`\<`void`\>
+▸ **defer**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Defer a message update.
 
 #### Returns
 
-`Promise`\<`void`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 A promise that resolves when the message update is deferred.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:54](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L54)
+[src/structures/Contexts/ComponentContext.ts:59](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L59)
 
 ___
 
 ### editReply
 
-▸ **editReply**(`data`): `Promise`\<`APIMessage`\>
+▸ **editReply**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 Calls the `editReply` method of the API with the provided data.
 
@@ -200,23 +226,23 @@ Calls the `editReply` method of the API with the provided data.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `Omit`\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files`: `RawFile`[]  } | The data to be passed to the `editReply` method. |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The data to be passed to the `editReply` method. |
 
 #### Returns
 
-`Promise`\<`APIMessage`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 A promise that resolves to the response from the `editReply` method.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:109](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L109)
+[src/structures/Contexts/ComponentContext.ts:121](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L121)
 
 ___
 
 ### followUp
 
-▸ **followUp**(`data`): `Promise`\<`APIMessage`\>
+▸ **followUp**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 Calls the `followUp` method of the API with the provided data.
 
@@ -224,17 +250,17 @@ Calls the `followUp` method of the API with the provided data.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `Omit`\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files`: `RawFile`[]  } | The data to be passed to the `followUp` method. |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The data to be passed to the `followUp` method. |
 
 #### Returns
 
-`Promise`\<`APIMessage`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
 
 A promise that resolves to the response from the `followUp` method.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:79](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L79)
+[src/structures/Contexts/ComponentContext.ts:91](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L91)
 
 ___
 
@@ -252,7 +278,7 @@ Determines if the element is a button.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:123](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L123)
+[src/structures/Contexts/ComponentContext.ts:139](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L139)
 
 ___
 
@@ -270,7 +296,7 @@ Checks if the component is a channel select menu.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:141](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L141)
+[src/structures/Contexts/ComponentContext.ts:157](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L157)
 
 ___
 
@@ -288,7 +314,7 @@ True if the select menu is mentionable, false otherwise.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:150](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L150)
+[src/structures/Contexts/ComponentContext.ts:166](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L166)
 
 ___
 
@@ -306,7 +332,7 @@ True if the function is a role select menu, false otherwise.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:159](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L159)
+[src/structures/Contexts/ComponentContext.ts:175](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L175)
 
 ___
 
@@ -324,7 +350,7 @@ true if the select menu is of type string, false otherwise
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:132](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L132)
+[src/structures/Contexts/ComponentContext.ts:148](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L148)
 
 ___
 
@@ -342,13 +368,13 @@ true if the component type is UserSelect, false otherwise
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:168](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L168)
+[src/structures/Contexts/ComponentContext.ts:184](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L184)
 
 ___
 
 ### reply
 
-▸ **reply**(`data`): `Promise`\<`void`\>
+▸ **reply**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Reply to a message.
 
@@ -356,23 +382,23 @@ Reply to a message.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `Omit`\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files`: `RawFile`[]  } | The data to reply with. |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The data to reply with. |
 
 #### Returns
 
-`Promise`\<`void`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 A promise that resolves when the reply is sent.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:94](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L94)
+[src/structures/Contexts/ComponentContext.ts:106](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L106)
 
 ___
 
 ### update
 
-▸ **update**(`data`): `Promise`\<`void`\>
+▸ **update**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 Updates the message using the provided data.
 
@@ -380,14 +406,14 @@ Updates the message using the provided data.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `data` | `Omit`\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files`: `RawFile`[]  } | The updated message data. |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The updated message data. |
 
 #### Returns
 
-`Promise`\<`void`\>
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
 
 A promise that resolves when the update is complete.
 
 #### Defined in
 
-[src/structures/Contexts/ComponentContext.ts:64](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Contexts/ComponentContext.ts#L64)
+[src/structures/Contexts/ComponentContext.ts:72](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Contexts/ComponentContext.ts#L72)

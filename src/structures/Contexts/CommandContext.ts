@@ -1,4 +1,6 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable @typescript-eslint/non-nullable-type-assertion-style */
+
 import {
   APIApplicationCommandInteractionDataOption,
   APIApplicationCommandInteractionDataSubcommandGroupOption,
@@ -13,12 +15,13 @@ import {
   MessageFlags,
   RESTPostAPIWebhookWithTokenJSONBody,
 } from '@discordjs/core/http-only';
-import { RawFile } from '@discordjs/rest';
+import { DiscordAPIError, RawFile } from '@discordjs/rest';
 
 import { Channel } from '../Channel';
 import { Member } from '../Member';
 import { Role } from '../Role';
 import { User } from '../User';
+import { YorClient } from '../YorClient';
 import { YorClientAPI } from '../YorClientAPI';
 import { YorClientError } from '../YorClientError';
 
@@ -27,7 +30,8 @@ import { BaseContext } from './BaseContext';
 export class CommandContext extends BaseContext {
   public readonly raw: APIChatInputApplicationCommandInteraction;
   public readonly token: string;
-  public readonly id: string;
+  public readonly applicationId: string;
+  public readonly interactionId: string;
   public channel: Channel;
   public user: User | undefined;
   public member: Member | undefined;
@@ -35,32 +39,34 @@ export class CommandContext extends BaseContext {
   public subcommandGroup?: APIApplicationCommandInteractionDataSubcommandGroupOption;
   public subcommand?: APIApplicationCommandInteractionDataSubcommandOption;
 
-  public deferred = false;
-  public replied = false;
-
   private API: YorClientAPI;
 
   /**
    * Constructs a new instance of the APIApplicationCommandInteractionData class.
    *
-   * @param {YorClientAPI} API - The API used to initialize the instance.
+   * @param {YorClient} client - The client object.
    * @param {APIChatInputApplicationCommandInteraction} data - The data used to initialize the instance.
    */
   constructor(
-    API: YorClientAPI,
+    client: YorClient,
     data: APIChatInputApplicationCommandInteraction,
   ) {
-    super();
-    this.API = API;
+    super(client);
+    this.API = client.api;
 
     this.raw = data;
     this.token = this.raw.token;
-    this.id = this.raw.id;
-    this.channel = new Channel(API.channels, this.raw.channel);
-    this.user = this.raw.user ? new User(API.users, this.raw.user) : undefined;
+    this.interactionId = this.raw.id;
+    this.applicationId = this.raw.application_id;
+    this.channel = new Channel(this.client, this.raw.channel);
+    this.user = this.raw.user
+      ? new User(this.client, this.raw.user)
+      : this.raw.member
+        ? new User(this.client, this.raw.member.user)
+        : undefined;
     this.member =
       this.raw.member && this.raw.guild_id
-        ? new Member(API, this.raw.guild_id, this.raw.member)
+        ? new Member(this.client, this.raw.guild_id, this.raw.member)
         : undefined;
 
     this.subcommandGroup = this.raw.data.options?.find(
@@ -78,59 +84,67 @@ export class CommandContext extends BaseContext {
    * @return {Promise<void>} A promise that resolves when the deferral is complete.
    */
   public async defer(ephemeral = false): Promise<void> {
-    if (this.deferred || this.replied) {
-      throw new YorClientError(
-        'Cannot defer message already replied or deferred!',
-      );
-    }
+    try {
+      await this.API.interactions.defer(this.interactionId, this.token, {
+        flags: ephemeral ? MessageFlags.Ephemeral : undefined,
+      });
+    } catch (error) {
+      if (error instanceof DiscordAPIError) {
+        throw new YorClientError(error.message);
+      }
 
-    await this.API.interactions.defer(this.id, this.token, {
-      flags: ephemeral ? MessageFlags.Ephemeral : undefined,
-    });
-    this.deferred = true;
+      throw error;
+    }
   }
 
   /**
    * Replies to an interaction.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data for creating the reply.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files?: RawFile[] }} data - The data for creating the reply.
    * @return {Promise<void>} A promise that resolves when the reply is sent.
    */
   public async reply(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<void> {
-    if (this.deferred || this.replied) {
-      throw new YorClientError(
-        'Cannot reply to message already replied or deferred!',
-      );
-    }
+    try {
+      await this.API.interactions.reply(this.interactionId, this.token, data);
+    } catch (error) {
+      if (error instanceof DiscordAPIError) {
+        throw new YorClientError(error.message);
+      }
 
-    await this.API.interactions.reply(this.id, this.token, data);
-    this.replied = true;
+      throw error;
+    }
   }
 
   /**
    * Edits a reply.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data for editing the reply.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files?: RawFile[] }} data - The data for editing the reply.
    * @return {Promise<APIMessage>} A promise that resolves when the reply is edited.
    */
   public async editReply(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<APIMessage> {
-    if (!this.deferred || !this.replied) {
-      throw new YorClientError(
-        'Cannot edit reply to message not replied or deferred!',
+    try {
+      return this.API.interactions.editReply(
+        this.applicationId,
+        this.token,
+        data,
       );
-    }
+    } catch (error) {
+      if (error instanceof DiscordAPIError) {
+        throw new YorClientError(error.message);
+      }
 
-    return this.API.interactions.editReply(this.id, this.token, data);
+      throw error;
+    }
   }
 
   /**
@@ -139,7 +153,7 @@ export class CommandContext extends BaseContext {
    * @return {Promise<void>} A promise that resolves when the reply is deleted.
    */
   public async deleteReply(): Promise<void> {
-    await this.API.interactions.deleteReply(this.id, this.token);
+    await this.API.interactions.deleteReply(this.applicationId, this.token);
   }
 
   /**
@@ -148,7 +162,10 @@ export class CommandContext extends BaseContext {
    * @return {Promise<APIMessage>} A promise that resolves when the original reply is fetched.
    */
   public async fetchReply(): Promise<APIMessage> {
-    return this.API.interactions.getOriginalReply(this.id, this.token);
+    return this.API.interactions.getOriginalReply(
+      this.applicationId,
+      this.token,
+    );
   }
 
   /**
@@ -160,28 +177,34 @@ export class CommandContext extends BaseContext {
   public async replyModal(
     data: APIModalInteractionResponseCallbackData,
   ): Promise<void> {
-    if (this.deferred || this.replied) {
-      throw new YorClientError(
-        'Cannot show modal to message already replied or deferred!',
+    try {
+      await this.API.interactions.createModal(
+        this.interactionId,
+        this.token,
+        data,
       );
-    }
+    } catch (error) {
+      if (error instanceof DiscordAPIError) {
+        throw new YorClientError(error.message);
+      }
 
-    await this.API.interactions.createModal(this.id, this.token, data);
+      throw error;
+    }
   }
 
   /**
    * Calls the followUp method of the API class with the provided data.
    *
-   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files: RawFile[] }} data - The data to be passed to the followUp method.
+   * @param {Omit<RESTPostAPIWebhookWithTokenJSONBody, "username" | "avatar_url"> & { flags?: MessageFlags | undefined; } & { files?: RawFile[] }} data - The data to be passed to the followUp method.
    * @return {Promise<APIMessage>} A promise that resolves to an APIMessage object.
    */
   public async followUp(
     data: Omit<
       RESTPostAPIWebhookWithTokenJSONBody,
       'username' | 'avatar_url'
-    > & { flags?: MessageFlags | undefined } & { files: RawFile[] },
+    > & { flags?: MessageFlags | undefined } & { files?: RawFile[] },
   ): Promise<APIMessage> {
-    return this.API.interactions.followUp(this.id, this.token, data);
+    return this.API.interactions.followUp(this.applicationId, this.token, data);
   }
 
   /**
@@ -208,7 +231,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? string : string | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? string : string | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -264,7 +291,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? number : number | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? number : number | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -318,7 +349,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? number : number | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? number : number | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -372,7 +407,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? boolean : boolean | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? boolean : boolean | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -426,7 +465,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? User : User | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? User : User | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -469,7 +512,7 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is required.`);
     }
 
-    return new User(this.API.users, resolved) as T extends true
+    return new User(this.client, resolved) as T extends true
       ? User
       : User | null;
   }
@@ -489,7 +532,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? Role : Role | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? Role : Role | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -532,7 +579,7 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is not resolved.`);
     }
 
-    return new Role(this.API.guilds, resolved) as T extends true
+    return new Role(this.client, resolved) as T extends true
       ? Role
       : Role | null;
   }
@@ -552,7 +599,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? Channel : Channel | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? Channel : Channel | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -595,10 +646,9 @@ export class CommandContext extends BaseContext {
       throw new YorClientError(`Option ${name} is not resolved.`);
     }
 
-    return new Channel(
-      this.API.channels,
-      resolved as APIChannel,
-    ) as T extends true ? Channel : Channel | null;
+    return new Channel(this.client, resolved as APIChannel) as T extends true
+      ? Channel
+      : Channel | null;
   }
 
   /**
@@ -616,7 +666,11 @@ export class CommandContext extends BaseContext {
   ): T extends true ? Member : Member | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true ? Member : Member | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;
@@ -660,7 +714,7 @@ export class CommandContext extends BaseContext {
     }
 
     return new Member(
-      this.API,
+      this.client,
       this.raw.guild_id as string,
       resolved as APIInteractionGuildMember,
     ) as T extends true ? Member : Member | null;
@@ -682,7 +736,13 @@ export class CommandContext extends BaseContext {
   ): T extends true ? APIAttachment : APIAttachment | null {
     const options = this.raw.data.options;
     if (!options) {
-      throw new YorClientError('This command has no options.');
+      if (required) {
+        throw new YorClientError('This command has no options.');
+      }
+
+      return undefined as unknown as T extends true
+        ? APIAttachment
+        : APIAttachment | null;
     }
 
     let option: APIApplicationCommandInteractionDataOption | undefined;

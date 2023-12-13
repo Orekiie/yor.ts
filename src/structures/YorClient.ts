@@ -367,9 +367,7 @@ export class YorClient {
 
   /**
    * Handles the interaction request.
-   *
    * @param {APIInteraction} data - The interaction data.
-   * @param {(value: Response | FormData | PromiseLike<Response | FormData>) => void} resolve - The resolve function.
    */
   private async handleInteractionRequest(data: APIInteraction) {
     if (data.type === InteractionType.Ping) {
@@ -386,7 +384,7 @@ export class YorClient {
         }
 
         const context = new CommandContext(
-          this.api,
+          this,
           data as APIChatInputApplicationCommandInteraction,
         );
 
@@ -413,7 +411,7 @@ export class YorClient {
         );
       }
 
-      const context = new AutocompleteCommandContext(this.api, data);
+      const context = new AutocompleteCommandContext(this, data);
       for await (const middleware of this.middlewares.autocomplete) {
         // @ts-expect-error - ts(2345)
         await middleware(context);
@@ -433,7 +431,7 @@ export class YorClient {
         );
       }
 
-      const context = new ComponentContext(this.api, data);
+      const context = new ComponentContext(this, data);
       for await (const middleware of this.middlewares.component) {
         // @ts-expect-error - ts(2345)
         await middleware(context);
@@ -454,7 +452,7 @@ export class YorClient {
         );
       }
 
-      const context = new ModalContext(data);
+      const context = new ModalContext(this, data);
       for await (const middleware of this.middlewares.modal) {
         // @ts-expect-error - ts(2345)
         await middleware(context);

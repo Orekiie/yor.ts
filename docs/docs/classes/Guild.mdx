@@ -7,6 +7,12 @@ sidebarTitle: Guild
 
 # Class: Guild
 
+## Hierarchy
+
+- `Base`
+
+  ↳ **`Guild`**
+
 ## Table of contents
 
 ### Constructors
@@ -15,14 +21,36 @@ sidebarTitle: Guild
 
 ### Properties
 
-- [API](Guild#api)
+- [client](Guild#client)
+- [features](Guild#features)
+- [id](Guild#id)
+- [joinedTimestamp](Guild#joinedtimestamp)
+- [premiumTier](Guild#premiumtier)
 - [raw](Guild#raw)
+
+### Methods
+
+- [createTemplate](Guild#createtemplate)
+- [edit](Guild#edit)
+- [emojis](Guild#emojis)
+- [fetchAuditLogs](Guild#fetchauditlogs)
+- [fetchOnboarding](Guild#fetchonboarding)
+- [fetchPreview](Guild#fetchpreview)
+- [fetchStickers](Guild#fetchstickers)
+- [fetchTemplates](Guild#fetchtemplates)
+- [fetchVanity](Guild#fetchvanity)
+- [fetchWebhooks](Guild#fetchwebhooks)
+- [fetchWelcomeScreen](Guild#fetchwelcomescreen)
+- [fetchWidget](Guild#fetchwidget)
+- [getIntegrations](Guild#getintegrations)
+- [joinedAt](Guild#joinedat)
+- [maximumBitrate](Guild#maximumbitrate)
 
 ## Constructors
 
 ### constructor
 
-• **new Guild**(`API`, `data`): [`Guild`](Guild)
+• **new Guild**(`client`, `data`): [`Guild`](Guild)
 
 Initializes a new instance of the Constructor class.
 
@@ -30,26 +58,74 @@ Initializes a new instance of the Constructor class.
 
 | Name | Type | Description |
 | :------ | :------ | :------ |
-| `API` | `GuildsAPI` | The GuildsAPI instance. |
+| `client` | [`YorClient`](YorClient) | The client object. |
 | `data` | `APIGuild` | The APIGuild data. |
 
 #### Returns
 
 [`Guild`](Guild)
 
+#### Overrides
+
+Base.constructor
+
 #### Defined in
 
-[src/structures/Guild.ts:14](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Guild.ts#L14)
+[src/structures/Guild.ts:39](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L39)
 
 ## Properties
 
-### API
+### client
 
-• `Private` **API**: `GuildsAPI`
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+Base.client
 
 #### Defined in
 
-[src/structures/Guild.ts:4](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Guild.ts#L4)
+src/structures/Base.ts:4
+
+___
+
+### features
+
+• **features**: `GuildFeature`[]
+
+#### Defined in
+
+[src/structures/Guild.ts:27](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L27)
+
+___
+
+### id
+
+• **id**: `string`
+
+#### Defined in
+
+[src/structures/Guild.ts:26](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L26)
+
+___
+
+### joinedTimestamp
+
+• `Optional` **joinedTimestamp**: `number`
+
+#### Defined in
+
+[src/structures/Guild.ts:29](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L29)
+
+___
+
+### premiumTier
+
+• **premiumTier**: `GuildPremiumTier`
+
+#### Defined in
+
+[src/structures/Guild.ts:28](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L28)
 
 ___
 
@@ -59,4 +135,289 @@ ___
 
 #### Defined in
 
-[src/structures/Guild.ts:6](https://github.com/OreOreki/interactions.ts/blob/8ac09b8/src/structures/Guild.ts#L6)
+[src/structures/Guild.ts:31](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L31)
+
+## Methods
+
+### createTemplate
+
+▸ **createTemplate**(`name`, `description?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APITemplate`\>
+
+Creates a template for the guild.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name for the template |
+| `description?` | `string` | The description for the template |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APITemplate`\>
+
+#### Defined in
+
+[src/structures/Guild.ts:121](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L121)
+
+___
+
+### edit
+
+▸ **edit**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<[`Guild`](Guild)\>
+
+Edits the guild with the given data.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `RESTPatchAPIGuildJSONBody` | The data to edit the guild with. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<[`Guild`](Guild)\>
+
+A promise that resolves with the edited guild.
+
+#### Defined in
+
+[src/structures/Guild.ts:217](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L217)
+
+___
+
+### emojis
+
+▸ **emojis**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIEmoji`[]\>
+
+Fetches the emojis.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIEmoji`[]\>
+
+The result of the API call.
+
+#### Defined in
+
+[src/structures/Guild.ts:171](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L171)
+
+___
+
+### fetchAuditLogs
+
+▸ **fetchAuditLogs**(`options?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<[`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`APIAuditLog`, ``"users"``\> & \{ `users`: [`User`](User)[]  }\>
+
+Fetches the audit logs for the API.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options?` | `RESTGetAPIAuditLogQuery` | Optional query parameters for the audit log request. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<[`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`APIAuditLog`, ``"users"``\> & \{ `users`: [`User`](User)[]  }\>
+
+A promise that resolves to the audit logs along with the users associated with the logs.
+
+#### Defined in
+
+[src/structures/Guild.ts:191](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L191)
+
+___
+
+### fetchOnboarding
+
+▸ **fetchOnboarding**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildOnboarding`\>
+
+Fetches the onboarding data for the guild.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildOnboarding`\>
+
+- The onboarding data for the guild.
+
+#### Defined in
+
+[src/structures/Guild.ts:207](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L207)
+
+___
+
+### fetchPreview
+
+▸ **fetchPreview**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildPreview`\>
+
+Obtains a guild preview for this guild from Discord.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildPreview`\>
+
+#### Defined in
+
+[src/structures/Guild.ts:135](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L135)
+
+___
+
+### fetchStickers
+
+▸ **fetchStickers**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APISticker`[]\>
+
+Fetches the stickers.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APISticker`[]\>
+
+The result of the API call.
+
+#### Defined in
+
+[src/structures/Guild.ts:162](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L162)
+
+___
+
+### fetchTemplates
+
+▸ **fetchTemplates**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTGetAPIGuildTemplatesResult`\>
+
+Fetches the templates for the guild.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTGetAPIGuildTemplatesResult`\>
+
+The result of the fetch operation.
+
+#### Defined in
+
+[src/structures/Guild.ts:102](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L102)
+
+___
+
+### fetchVanity
+
+▸ **fetchVanity**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTGetAPIGuildVanityUrlResult`\>
+
+Retrieves the vanity URL of the guild.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTGetAPIGuildVanityUrlResult`\>
+
+The result of the API call
+
+#### Defined in
+
+[src/structures/Guild.ts:144](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L144)
+
+___
+
+### fetchWebhooks
+
+▸ **fetchWebhooks**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`[]\>
+
+Fetches the webhooks.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`[]\>
+
+The webhooks.
+
+#### Defined in
+
+[src/structures/Guild.ts:153](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L153)
+
+___
+
+### fetchWelcomeScreen
+
+▸ **fetchWelcomeScreen**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildWelcomeScreen`\>
+
+Fetches the welcome screen for the guild.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildWelcomeScreen`\>
+
+A promise that resolves to the welcome screen for the guild.
+
+#### Defined in
+
+[src/structures/Guild.ts:111](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L111)
+
+___
+
+### fetchWidget
+
+▸ **fetchWidget**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildWidget`\>
+
+Fetches the widget for the guild.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildWidget`\>
+
+The guild widget.
+
+#### Defined in
+
+[src/structures/Guild.ts:181](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L181)
+
+___
+
+### getIntegrations
+
+▸ **getIntegrations**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTGetAPIGuildIntegrationsResult`\>
+
+Retrieves the integrations for the guild.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTGetAPIGuildIntegrationsResult`\>
+
+A promise that resolves with the result of the API call.
+
+#### Defined in
+
+[src/structures/Guild.ts:93](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L93)
+
+___
+
+### joinedAt
+
+▸ **joinedAt**(): `undefined` \| [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+Returns the date when the user joined.
+
+#### Returns
+
+`undefined` \| [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+The date when the user joined, or undefined if no joined timestamp is available.
+
+#### Defined in
+
+[src/structures/Guild.ts:62](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L62)
+
+___
+
+### maximumBitrate
+
+▸ **maximumBitrate**(): `number`
+
+Calculates and returns the maximum bitrate for audio streaming based on the guild's premium tier and features.
+
+#### Returns
+
+`number`
+
+The maximum bitrate in bits per second.
+
+#### Defined in
+
+[src/structures/Guild.ts:71](https://github.com/OreOreki/interactions.ts/blob/17758ff/src/structures/Guild.ts#L71)

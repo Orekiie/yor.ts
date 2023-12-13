@@ -4,11 +4,12 @@ import {
   RESTPutAPIGuildBanJSONBody,
 } from '@discordjs/core/http-only';
 
+import { Base } from './Base';
 import { Guild } from './Guild';
 import { User } from './User';
-import { YorClientAPI } from './YorClientAPI';
+import { YorClient } from './YorClient';
 
-export class Member {
+export class Member extends Base {
   private API: GuildsAPI;
 
   public raw: APIInteractionGuildMember & { guildID: string };
@@ -17,19 +18,21 @@ export class Member {
   /**
    * Constructs a new instance of the constructor.
    *
-   * @param {YorClientAPI} API - The API instance.
+   * @param {YorClient} client - The client object.
    * @param {string} guildID - The ID of the guild.
    * @param {APIInteractionGuildMember} member - The member object.
    */
   constructor(
-    API: YorClientAPI,
+    client: YorClient,
     guildID: string,
     member: APIInteractionGuildMember,
   ) {
-    this.API = API.guilds;
+    super(client);
+
+    this.API = client.api.guilds;
 
     this.raw = { ...member, guildID };
-    this.user = new User(API.users, member.user);
+    this.user = new User(this.client, member.user);
   }
 
   /**
@@ -55,6 +58,6 @@ export class Member {
    * @return {Promise<Guild>} A Promise that resolves with the fetched Guild object.
    */
   public async fetchGuild(): Promise<Guild> {
-    return new Guild(this.API, await this.API.get(this.raw.guildID));
+    return new Guild(this.client, await this.API.get(this.raw.guildID));
   }
 }

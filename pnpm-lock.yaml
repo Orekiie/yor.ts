@@ -28,6 +28,9 @@ dependencies:
     version: 3.4.0
 
 devDependencies:
+  '@clack/prompts':
+    specifier: ^0.7.0
+    version: 0.7.0
   '@types/chai':
     specifier: ^4.3.11
     version: 4.3.11
@@ -58,6 +61,9 @@ devDependencies:
   nyc:
     specifier: ^15.1.0
     version: 15.1.0
+  picocolors:
+    specifier: ^1.0.0
+    version: 1.0.0
   prettier:
     specifier: ^3.1.1
     version: 3.1.1
@@ -73,9 +79,15 @@ devDependencies:
   typedoc:
     specifier: ^0.25.4
     version: 0.25.4(typescript@5.3.3)
+  typedoc-plugin-djs-links:
+    specifier: ^2.2.0
+    version: 2.2.0(typedoc@0.25.4)
   typedoc-plugin-markdown:
     specifier: ^3.17.1
     version: 3.17.1(typedoc@0.25.4)
+  typedoc-plugin-mdn-links:
+    specifier: ^3.1.7
+    version: 3.1.7(typedoc@0.25.4)
   typescript:
     specifier: ^5.3.3
     version: 5.3.3
@@ -306,6 +318,23 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
     dev: true
+
+  /@clack/core@0.3.3:
+    resolution: {integrity: sha512-5ZGyb75BUBjlll6eOa1m/IZBxwk91dooBWhPSL67sWcLS0zt9SnswRL0l26TVdBhb0wnWORRxUn//uH6n4z7+A==}
+    dependencies:
+      picocolors: 1.0.0
+      sisteransi: 1.0.5
+    dev: true
+
+  /@clack/prompts@0.7.0:
+    resolution: {integrity: sha512-0MhX9/B4iL6Re04jPrttDm+BsP8y6mS7byuv0BvXgdXhbV5PdlsHt55dvNsuBCPZ7xq1oTAOOuotR9NFbQyMSA==}
+    dependencies:
+      '@clack/core': 0.3.3
+      picocolors: 1.0.0
+      sisteransi: 1.0.5
+    dev: true
+    bundledDependencies:
+      - is-unicode-supported
 
   /@discordjs/builders@1.7.0:
     resolution: {integrity: sha512-GDtbKMkg433cOZur8Dv6c25EHxduNIBsxeHrsRoIM8+AwmEZ8r0tEpckx/sHwTLwQPOF3e2JWloZh9ofCaMfAw==}
@@ -4416,6 +4445,10 @@ packages:
       supports-color: 7.2.0
     dev: true
 
+  /sisteransi@1.0.5:
+    resolution: {integrity: sha512-bLGGlR1QxBcynn2d5YmDX4MGjlZvy2MRBDRNHLJ8VI6l6+9FUiyTFNJ0IveOSP0bcXgVDPRcfGqA0pjaqUpfVg==}
+    dev: true
+
   /slash@3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
     engines: {node: '>=8'}
@@ -4859,12 +4892,29 @@ packages:
       is-typedarray: 1.0.0
     dev: true
 
+  /typedoc-plugin-djs-links@2.2.0(typedoc@0.25.4):
+    resolution: {integrity: sha512-tJLUmTuoBB1wHy23+mWb/Yzca+qWjoHwaLMnL8WAHz1utx1Rc1pMokcdT7CSFOLvtcbOQTnTTCsIVI/0ZB9uGw==}
+    engines: {node: '>=v16.6.0', npm: '>=7.0.0'}
+    peerDependencies:
+      typedoc: '>= 0.23.14 || 0.24.x || 0.25.x'
+    dependencies:
+      typedoc: 0.25.4(typescript@5.3.3)
+    dev: true
+
   /typedoc-plugin-markdown@3.17.1(typedoc@0.25.4):
     resolution: {integrity: sha512-QzdU3fj0Kzw2XSdoL15ExLASt2WPqD7FbLeaqwT70+XjKyTshBnUlQA5nNREO1C2P8Uen0CDjsBLMsCQ+zd0lw==}
     peerDependencies:
       typedoc: '>=0.24.0'
     dependencies:
       handlebars: 4.7.8
+      typedoc: 0.25.4(typescript@5.3.3)
+    dev: true
+
+  /typedoc-plugin-mdn-links@3.1.7(typedoc@0.25.4):
+    resolution: {integrity: sha512-1tun7NLVzfZ1RD225bLaRKlDq5H3ssXSFJbbu05Typ+YMzky5yjbTdiPd3vMJ7I+jBLD5dXthbWvvh667r5kHw==}
+    peerDependencies:
+      typedoc: '>= 0.23.14 || 0.24.x || 0.25.x'
+    dependencies:
       typedoc: 0.25.4(typescript@5.3.3)
     dev: true
 

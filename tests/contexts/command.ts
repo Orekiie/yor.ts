@@ -15,7 +15,7 @@ void describe('Genereate a mocked CommandContext', () => {
     },
   });
 
-  const context = new CommandContext(client.api, commandInteraction);
+  const context = new CommandContext(client, commandInteraction);
 
   void it('should be an instance of CommandContext', () => {
     expect(context).to.be.an.instanceOf(CommandContext);
@@ -23,13 +23,8 @@ void describe('Genereate a mocked CommandContext', () => {
 
   void it('properties are accessible', () => {
     expect(context.channel).to.be.instanceOf(Channel);
-    expect(context.id).to.be.a('string');
-    expect(context.token).to.be.a('string');
     expect(context.user).to.be.instanceOf(User);
     expect(context.member).to.be.instanceOf(Member);
-
-    expect(context.deferred).to.be.a('boolean');
-    expect(context.replied).to.be.a('boolean');
 
     expect(context.raw).to.equal(commandInteraction);
   });

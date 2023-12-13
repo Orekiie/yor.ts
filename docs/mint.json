@@ -4,12 +4,15 @@
   "logo": "/logo.png",
   "favicon": "/favicon.png",
   "colors": {
-    "primary": "#8B0000",
-    "light": "#FF6347",
-    "dark": "#4B0082",
+    "primary": "#5E1A2E",
+    "light": "#E54666",
+    "dark": "#E54666",
+    "background": {
+      "dark": "#121212"
+    },
     "anchors": {
-      "from": "#8B0000",
-      "to": "#FF6347"
+      "from": "#740431",
+      "to": "#A03426"
     }
   },
   "topbarLinks": [
@@ -20,11 +23,6 @@
   ],
   "anchors": [
     {
-      "name": "Home",
-      "icon": "book-open-cover",
-      "url": "/"
-    },
-    {
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/HXVMArbsX7"
@@ -33,11 +31,6 @@
       "name": "GitHub",
       "icon": "github",
       "url": "https://github.com/OreOreki/yor.ts"
-    },
-    {
-      "name": "Docs",
-      "icon": "book",
-      "url": "https://yor.mintlify.app/docs"
     },
     {
       "name": "Guide",
@@ -56,10 +49,7 @@
       "pages": [
         {
           "group": "Yor.ts",
-          "pages": [
-            "docs/modules",
-            "docs/README"
-          ]
+          "pages": ["docs/modules", "docs/README"]
         },
         {
           "group": "Interfaces",
@@ -67,6 +57,7 @@
             "docs/interfaces/Command",
             "docs/interfaces/Component",
             "docs/interfaces/Modal",
+            "docs/interfaces/ModalComponentData",
             "docs/interfaces/YorClientOptions"
           ]
         },
@@ -95,9 +86,7 @@
     },
     {
       "group": "Guide",
-      "pages": [
-        "guide/cloudflare-workers"
-      ]
+      "pages": ["guide/cloudflare-workers"]
     }
   ],
   "footerSocials": {

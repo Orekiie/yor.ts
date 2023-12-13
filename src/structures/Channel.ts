@@ -20,9 +20,11 @@ import {
 } from '@discordjs/core/http-only';
 import { RawFile } from '@discordjs/rest';
 
+import { Base } from './Base';
+import { YorClient } from './YorClient';
 import { YorClientError } from './YorClientError';
 
-export class Channel {
+export class Channel extends Base {
   public id: string;
   public name: string | undefined;
   public type: number;
@@ -35,12 +37,17 @@ export class Channel {
   /**
    * Constructs a new instance of the class.
    *
-   * @param {ChannelsAPI} API - The ChannelsAPI instance.
+   * @param {YorClient} client - The client object.
    * @param {APIBaseInteraction<any, any>['channel']} data - The channel data.
    * @throws {YorClientError} If channel data is not provided.
    */
-  constructor(API: ChannelsAPI, data: APIBaseInteraction<any, any>['channel']) {
-    this.API = API;
+  constructor(
+    client: YorClient,
+    data: APIBaseInteraction<any, any>['channel'],
+  ) {
+    super(client);
+
+    this.API = client.api.channels;
 
     if (!data) {
       throw new YorClientError('Channel data is required');

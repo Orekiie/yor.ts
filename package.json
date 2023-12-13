@@ -1,6 +1,6 @@
 {
   "name": "yor.ts",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A highly performant and typed library to make discord http based bots",
   "keywords": [
     "discord",
@@ -9,7 +9,7 @@
     "cloudflare-workers",
     "wrapper"
   ],
-  "homepage": "https://github.com/OreOreki/yor.ts#readme",
+  "homepage": "https://yor.mintlify.app",
   "bugs": {
     "url": "https://github.com/OreOreki/yor.ts/issues"
   },
@@ -39,6 +39,9 @@
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "yor": "./dist/cli/index.mjs"
+  },
   "files": [
     "dist",
     "package.json"
@@ -47,11 +50,11 @@
     "build": "tsup ./src",
     "coverage": "nyc report --reporter=json -m",
     "docs:complete": "tsx scripts/mintlify.ts",
-    "docs:generate": "typedoc --plugin typedoc-plugin-markdown --out temp src",
+    "docs:generate": "typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-mdn-links --plugin typedoc-plugin-djs-links --out temp src",
     "format": "prettier --write ./src",
     "lint": "eslint ./src --ext .ts",
     "lint:fix": "eslint ./src --ext .ts --fix",
-    "prepack": "pnpm run build",
+    "prepublishOnly": "pnpm run build",
     "tests": "nyc mocha tests/**/*.ts -r tsx --extension ts",
     "typecheck": "tsc --noEmit",
     "version": "auto-changelog -p"
@@ -66,6 +69,7 @@
     "discord-interactions": "^3.4.0"
   },
   "devDependencies": {
+    "@clack/prompts": "^0.7.0",
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/node": "^20.10.4",
@@ -76,12 +80,15 @@
     "eslint": "^8.55.0",
     "mocha": "^10.2.0",
     "nyc": "^15.1.0",
+    "picocolors": "^1.0.0",
     "prettier": "^3.1.1",
     "sinon": "^17.0.1",
     "tsup": "^8.0.1",
     "tsx": "^4.6.2",
     "typedoc": "^0.25.4",
+    "typedoc-plugin-djs-links": "^2.2.0",
     "typedoc-plugin-markdown": "^3.17.1",
+    "typedoc-plugin-mdn-links": "^3.1.7",
     "typescript": "^5.3.3"
   }
 }
