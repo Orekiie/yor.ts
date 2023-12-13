@@ -48,10 +48,6 @@
       "group": "Docs",
       "pages": [
         {
-          "group": "Yor.ts",
-          "pages": ["docs/modules", "docs/README"]
-        },
-        {
           "group": "Interfaces",
           "pages": [
             "docs/interfaces/Command",
@@ -84,13 +80,18 @@
         },
         {
           "group": "Yor.ts",
-          "pages": ["docs/README", "docs/modules"]
+          "pages": [
+            "docs/README",
+            "docs/modules"
+          ]
         }
       ]
     },
     {
       "group": "Guide",
-      "pages": ["guide/cloudflare-workers"]
+      "pages": [
+        "guide/cloudflare-workers"
+      ]
     }
   ],
   "footerSocials": {
