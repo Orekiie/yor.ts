@@ -27,6 +27,11 @@ sidebarTitle: WebhookClient
 
 ### Methods
 
+- [delete](WebhookClient#delete)
+- [deleteMessage](WebhookClient#deletemessage)
+- [edit](WebhookClient#edit)
+- [editMessage](WebhookClient#editmessage)
+- [fetchMessage](WebhookClient#fetchmessage)
 - [send](WebhookClient#send)
 
 ## Constructors
@@ -55,7 +60,7 @@ Creates a new WebhookClient instance.
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:26](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/WebhookClient.ts#L26)
+[src/structures/WebhookClient.ts:29](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L29)
 
 ## Properties
 
@@ -65,7 +70,7 @@ Creates a new WebhookClient instance.
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:19](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/WebhookClient.ts#L19)
+[src/structures/WebhookClient.ts:22](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L22)
 
 ___
 
@@ -75,7 +80,7 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:16](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/WebhookClient.ts#L16)
+[src/structures/WebhookClient.ts:19](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L19)
 
 ___
 
@@ -85,9 +90,133 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:17](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/WebhookClient.ts#L17)
+[src/structures/WebhookClient.ts:20](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L20)
 
 ## Methods
+
+### delete
+
+▸ **delete**(`reason`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+Deletes the resource with the given reason.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `reason` | `string` | The reason for deleting the resource. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+A promise that resolves with the result of the deletion operation.
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:71](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L71)
+
+___
+
+### deleteMessage
+
+▸ **deleteMessage**(`messageId`, `options?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+Deletes a webhook message.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `messageId` | `string` | The ID of the message to delete. |
+| `options?` | `Object` | The query parameters to send with the request. |
+| `options.thread_id` | `string` | - |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+A promise that resolves once the message is deleted.
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:115](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L115)
+
+___
+
+### edit
+
+▸ **edit**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`\>
+
+Edits the webhook with the provided data.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `RESTPatchAPIWebhookJSONBody` & \{ `reason`: `string`  } | The data to edit the webhook with, including the reason. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIWebhook`\>
+
+A promise that resolves to the edited webhook.
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:58](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L58)
+
+___
+
+### editMessage
+
+▸ **editMessage**(`messageId`, `data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+Edits a previously sent webhook message.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `messageId` | `string` | The ID of the message to edit. |
+| `data` | `RESTPostAPIWebhookWithTokenJSONBody` & `RESTPostAPIWebhookWithTokenQuery` & \{ `files?`: `RawFile`[]  } | The new data for the message. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+A promise that resolves to the edited message.
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:98](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L98)
+
+___
+
+### fetchMessage
+
+▸ **fetchMessage**(`messageId`, `query?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+Fetches a message that was created by the webhook.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `messageId` | `string` | The ID of the message to fetch. |
+| `query?` | `RESTGetAPIWebhookWithTokenMessageQuery` | The query parameters to send with the request. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+A promise that resolves to the fetched message.
+
+#### Defined in
+
+[src/structures/WebhookClient.ts:129](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L129)
+
+___
 
 ### send
 
@@ -109,4 +238,4 @@ A promise that resolves to the result of the `execute` method.
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:55](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/WebhookClient.ts#L55)
+[src/structures/WebhookClient.ts:81](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/WebhookClient.ts#L81)

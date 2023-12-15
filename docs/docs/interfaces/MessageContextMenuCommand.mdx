@@ -1,0 +1,63 @@
+---
+title: Yor.ts | interfaces/MessageContextMenuCommand
+icon: "code"
+sidebarTitle: MessageContextMenuCommand
+---
+[yor.ts](../README) / [Exports](../modules) / MessageContextMenuCommand
+
+# Interface: MessageContextMenuCommand
+
+## Hierarchy
+
+- [`ContextMenuCommand`](ContextMenuCommand)
+
+  ↳ **`MessageContextMenuCommand`**
+
+## Implemented by
+
+- [`YorMessageContextMenuCommand`](../classes/YorMessageContextMenuCommand)
+
+## Table of contents
+
+### Properties
+
+- [builder](MessageContextMenuCommand#builder)
+- [execute](MessageContextMenuCommand#execute)
+
+## Properties
+
+### builder
+
+• **builder**: `ContextMenuCommandBuilder`
+
+#### Inherited from
+
+[ContextMenuCommand](ContextMenuCommand).[builder](ContextMenuCommand#builder)
+
+#### Defined in
+
+[src/interfaces/Command.ts:22](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/interfaces/Command.ts#L22)
+
+___
+
+### execute
+
+• **execute**: (`context`: [`MessageContextMenuCommandInteraction`](../classes/MessageContextMenuCommandInteraction)) => `void` \| [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+#### Type declaration
+
+▸ (`context`): `void` \| [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+##### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `context` | [`MessageContextMenuCommandInteraction`](../classes/MessageContextMenuCommandInteraction) |
+
+##### Returns
+
+`void` \| [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+#### Defined in
+
+[src/interfaces/Command.ts:26](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/interfaces/Command.ts#L26)

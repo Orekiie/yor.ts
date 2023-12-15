@@ -16,6 +16,10 @@ import { ComponentContext } from './Contexts/ComponentContext';
 import { ModalContext } from './Contexts/ModalContext';
 import { YorClientAPI } from './YorClientAPI';
 import { YorClientError } from './YorClientError';
+import {
+  YorMessageContextMenuCommand,
+  YorUserContextMenuCommand,
+} from './YorContextMenuCommand';
 import { YorInteractionComponent } from './YorInteractionComponent';
 import { YorInteractionModal } from './YorInteractionModal';
 import { YorSlashCommand } from './YorSlashCommand';
@@ -54,6 +58,14 @@ export class YorClient {
     YorInteractionComponent
   >();
   public readonly modals = new Collection<string, YorInteractionModal>();
+  public readonly messageCommands = new Collection<
+    string,
+    YorMessageContextMenuCommand
+  >();
+  public readonly userCommands = new Collection<
+    string,
+    YorUserContextMenuCommand
+  >();
 
   public rest: REST;
   public api: YorClientAPI;
@@ -161,20 +173,81 @@ export class YorClient {
   }
 
   /**
+   * Registers a message command.
+   *
+   * @param {YorMessageContextMenuCommand} command - The message command to register.
+   * @return {Collection<string, YorMessageContextMenuCommand>} - The updated message commands collection.
+   */
+  public registerMessageCommand(
+    command: YorMessageContextMenuCommand,
+  ): Collection<string, YorMessageContextMenuCommand> {
+    this.messageCommands.set(command.builder.name, command);
+    return this.messageCommands;
+  }
+
+  /**
+   * Unregisters a message command.
+   *
+   * @param {YorMessageContextMenuCommand} command - The message command to unregister.
+   * @return {Collection<string, YorMessageContextMenuCommand>} - The updated message commands collection.
+   */
+  public unregisterMessageCommand(
+    command: YorMessageContextMenuCommand,
+  ): Collection<string, YorMessageContextMenuCommand> {
+    this.messageCommands.delete(command.builder.name);
+    return this.messageCommands;
+  }
+
+  /**
+   * Registers a user command.
+   *
+   * @param {YorUserContextMenuCommand} command - The user command to register.
+   * @return {Collection<string, YorUserContextMenuCommand>} - The updated user commands collection.
+   */
+  public registerUserCommand(
+    command: YorUserContextMenuCommand,
+  ): Collection<string, YorUserContextMenuCommand> {
+    this.userCommands.set(command.builder.name, command);
+    return this.userCommands;
+  }
+
+  /**
+   * Unregisters a user command.
+   *
+   * @param {YorUserContextMenuCommand} command - The user command to unregister.
+   * @return {Collection<string, YorUserContextMenuCommand>} - The updated user commands collection.
+   */
+  public unregisterUserCommand(
+    command: YorUserContextMenuCommand,
+  ): Collection<string, YorUserContextMenuCommand> {
+    this.userCommands.delete(command.builder.name);
+    return this.userCommands;
+  }
+
+  /**
    * Deploys the commands to the API application and returns the result.
    *
    * @return {Promise<RESTPutAPIApplicationCommandsResult>} The result of the deployment.
    */
-  public async deployCommands(): Promise<RESTPutAPIApplicationCommandsResult> {
-    const commands = [...this.commands.values()].map((command) =>
-      command.builder.toJSON(),
-    );
+  public async deployCommands(
+    guild?: string,
+  ): Promise<RESTPutAPIApplicationCommandsResult> {
+    const commands = [
+      ...this.commands.values(),
+      ...this.messageCommands.values(),
+      ...this.userCommands.values(),
+    ].map((command) => command.builder.toJSON());
 
-    const response =
-      await this.api.applicationCommands.bulkOverwriteGlobalCommands(
-        this.options.application.id,
-        commands,
-      );
+    const response = guild
+      ? await this.api.applicationCommands.bulkOverwriteGuildCommands(
+          this.options.application.id,
+          guild,
+          commands,
+        )
+      : await this.api.applicationCommands.bulkOverwriteGlobalCommands(
+          this.options.application.id,
+          commands,
+        );
     return response;
   }
 

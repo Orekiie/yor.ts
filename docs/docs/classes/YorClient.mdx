@@ -18,10 +18,12 @@ sidebarTitle: YorClient
 - [api](YorClient#api)
 - [commands](YorClient#commands)
 - [components](YorClient#components)
+- [messageCommands](YorClient#messagecommands)
 - [middlewares](YorClient#middlewares)
 - [modals](YorClient#modals)
 - [options](YorClient#options)
 - [rest](YorClient#rest)
+- [userCommands](YorClient#usercommands)
 
 ### Methods
 
@@ -33,15 +35,19 @@ sidebarTitle: YorClient
 - [registerCommands](YorClient#registercommands)
 - [registerComponent](YorClient#registercomponent)
 - [registerComponents](YorClient#registercomponents)
+- [registerMessageCommand](YorClient#registermessagecommand)
 - [registerModal](YorClient#registermodal)
 - [registerModals](YorClient#registermodals)
+- [registerUserCommand](YorClient#registerusercommand)
 - [unregisterAllCommands](YorClient#unregisterallcommands)
 - [unregisterCommand](YorClient#unregistercommand)
 - [unregisterCommands](YorClient#unregistercommands)
 - [unregisterComponent](YorClient#unregistercomponent)
 - [unregisterComponents](YorClient#unregistercomponents)
+- [unregisterMessageCommand](YorClient#unregistermessagecommand)
 - [unregisterModal](YorClient#unregistermodal)
 - [unregisterModals](YorClient#unregistermodals)
+- [unregisterUserCommand](YorClient#unregisterusercommand)
 
 ## Constructors
 
@@ -63,7 +69,7 @@ Creates a new instance of the class.
 
 #### Defined in
 
-[src/structures/YorClient.ts:71](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L71)
+[src/structures/YorClient.ts:83](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L83)
 
 ## Properties
 
@@ -73,7 +79,7 @@ Creates a new instance of the class.
 
 #### Defined in
 
-[src/structures/YorClient.ts:59](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L59)
+[src/structures/YorClient.ts:71](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L71)
 
 ___
 
@@ -83,7 +89,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:51](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L51)
+[src/structures/YorClient.ts:55](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L55)
 
 ___
 
@@ -93,7 +99,17 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:52](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L52)
+[src/structures/YorClient.ts:56](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L56)
+
+___
+
+### messageCommands
+
+• `Readonly` **messageCommands**: `Collection`\<`string`, [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand)\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:61](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L61)
 
 ___
 
@@ -103,7 +119,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:61](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L61)
+[src/structures/YorClient.ts:73](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L73)
 
 ___
 
@@ -113,7 +129,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:56](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L56)
+[src/structures/YorClient.ts:60](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L60)
 
 ___
 
@@ -123,7 +139,7 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:50](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L50)
+[src/structures/YorClient.ts:54](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L54)
 
 ___
 
@@ -133,7 +149,17 @@ ___
 
 #### Defined in
 
-[src/structures/YorClient.ts:58](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L58)
+[src/structures/YorClient.ts:70](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L70)
+
+___
+
+### userCommands
+
+• `Readonly` **userCommands**: `Collection`\<`string`, [`YorUserContextMenuCommand`](YorUserContextMenuCommand)\>
+
+#### Defined in
+
+[src/structures/YorClient.ts:65](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L65)
 
 ## Methods
 
@@ -162,15 +188,21 @@ Creates middleware for a given name and adds it to the middlewares array.
 
 #### Defined in
 
-[src/structures/YorClient.ts:323](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L323)
+[src/structures/YorClient.ts:396](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L396)
 
 ___
 
 ### deployCommands
 
-▸ **deployCommands**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTPutAPIApplicationCommandsResult`\>
+▸ **deployCommands**(`guild?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`RESTPutAPIApplicationCommandsResult`\>
 
 Deploys the commands to the API application and returns the result.
+
+#### Parameters
+
+| Name | Type |
+| :------ | :------ |
+| `guild?` | `string` |
 
 #### Returns
 
@@ -180,7 +212,7 @@ The result of the deployment.
 
 #### Defined in
 
-[src/structures/YorClient.ts:168](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L168)
+[src/structures/YorClient.ts:232](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L232)
 
 ___
 
@@ -204,7 +236,7 @@ Handles an interaction request from the API.
 
 #### Defined in
 
-[src/structures/YorClient.ts:336](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L336)
+[src/structures/YorClient.ts:409](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L409)
 
 ___
 
@@ -226,7 +258,7 @@ Handles the interaction request.
 
 #### Defined in
 
-[src/structures/YorClient.ts:372](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L372)
+[src/structures/YorClient.ts:445](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L445)
 
 ___
 
@@ -250,7 +282,7 @@ Registers a slash command.
 
 #### Defined in
 
-[src/structures/YorClient.ts:93](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L93)
+[src/structures/YorClient.ts:105](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L105)
 
 ___
 
@@ -274,7 +306,7 @@ Registers the provided slash commands.
 
 #### Defined in
 
-[src/structures/YorClient.ts:111](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L111)
+[src/structures/YorClient.ts:123](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L123)
 
 ___
 
@@ -298,7 +330,7 @@ Registers a component in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:187](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L187)
+[src/structures/YorClient.ts:260](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L260)
 
 ___
 
@@ -322,7 +354,31 @@ Registers the given components in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:206](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L206)
+[src/structures/YorClient.ts:279](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L279)
+
+___
+
+### registerMessageCommand
+
+▸ **registerMessageCommand**(`command`): `Collection`\<`string`, [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand)\>
+
+Registers a message command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand) | The message command to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand)\>
+
+- The updated message commands collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:181](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L181)
 
 ___
 
@@ -346,7 +402,7 @@ Registers a modal in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:257](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L257)
+[src/structures/YorClient.ts:330](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L330)
 
 ___
 
@@ -370,7 +426,31 @@ Registers the given modals in the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:274](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L274)
+[src/structures/YorClient.ts:347](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L347)
+
+___
+
+### registerUserCommand
+
+▸ **registerUserCommand**(`command`): `Collection`\<`string`, [`YorUserContextMenuCommand`](YorUserContextMenuCommand)\>
+
+Registers a user command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`YorUserContextMenuCommand`](YorUserContextMenuCommand) | The user command to register. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorUserContextMenuCommand`](YorUserContextMenuCommand)\>
+
+- The updated user commands collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:207](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L207)
 
 ___
 
@@ -388,7 +468,7 @@ Unregisters all slash commands.
 
 #### Defined in
 
-[src/structures/YorClient.ts:158](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L158)
+[src/structures/YorClient.ts:170](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L170)
 
 ___
 
@@ -412,7 +492,7 @@ Unregisters a slash command.
 
 #### Defined in
 
-[src/structures/YorClient.ts:131](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L131)
+[src/structures/YorClient.ts:143](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L143)
 
 ___
 
@@ -436,7 +516,7 @@ Unregisters the provided slash commands.
 
 #### Defined in
 
-[src/structures/YorClient.ts:144](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L144)
+[src/structures/YorClient.ts:156](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L156)
 
 ___
 
@@ -460,7 +540,7 @@ Deletes the specified component from the collection and returns the updated coll
 
 #### Defined in
 
-[src/structures/YorClient.ts:227](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L227)
+[src/structures/YorClient.ts:300](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L300)
 
 ___
 
@@ -484,7 +564,31 @@ Unregisters components from the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:241](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L241)
+[src/structures/YorClient.ts:314](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L314)
+
+___
+
+### unregisterMessageCommand
+
+▸ **unregisterMessageCommand**(`command`): `Collection`\<`string`, [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand)\>
+
+Unregisters a message command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand) | The message command to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorMessageContextMenuCommand`](YorMessageContextMenuCommand)\>
+
+- The updated message commands collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:194](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L194)
 
 ___
 
@@ -508,7 +612,7 @@ Deletes the specified modal from the collection and returns the updated collecti
 
 #### Defined in
 
-[src/structures/YorClient.ts:293](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L293)
+[src/structures/YorClient.ts:366](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L366)
 
 ___
 
@@ -532,4 +636,28 @@ Unregisters modals from the collection.
 
 #### Defined in
 
-[src/structures/YorClient.ts:307](https://github.com/OreOreki/yor.ts/blob/d2830c6/src/structures/YorClient.ts#L307)
+[src/structures/YorClient.ts:380](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L380)
+
+___
+
+### unregisterUserCommand
+
+▸ **unregisterUserCommand**(`command`): `Collection`\<`string`, [`YorUserContextMenuCommand`](YorUserContextMenuCommand)\>
+
+Unregisters a user command.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `command` | [`YorUserContextMenuCommand`](YorUserContextMenuCommand) | The user command to unregister. |
+
+#### Returns
+
+`Collection`\<`string`, [`YorUserContextMenuCommand`](YorUserContextMenuCommand)\>
+
+- The updated user commands collection.
+
+#### Defined in
+
+[src/structures/YorClient.ts:220](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/YorClient.ts#L220)

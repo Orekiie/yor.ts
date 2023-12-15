@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/node
 
 import * as prompts from '@clack/prompts';
 import colors from 'picocolors';
@@ -21,7 +21,13 @@ async function main() {
       break;
   }
 
-  prompts.outro(`${colors.bgRed(colors.black(' Goodbye! - Yor CLI '))}`);
+  prompts.outro(
+    `${colors.bgRed(
+      colors.black(' Goodbye! - Yor CLI '),
+    )}\n\Documentation: ${colors.underline(
+      colors.cyan('https://yor.mintlify.app/'),
+    )}`,
+  );
 }
 
 main().catch(console.error);

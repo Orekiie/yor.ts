@@ -1,0 +1,268 @@
+---
+title: Yor.ts | classes/Emoji
+icon: "code"
+sidebarTitle: Emoji
+---
+[yor.ts](../README) / [Exports](../modules) / Emoji
+
+# Class: Emoji
+
+## Hierarchy
+
+- [`Base`](Base)
+
+  ↳ **`Emoji`**
+
+## Table of contents
+
+### Constructors
+
+- [constructor](Emoji#constructor)
+
+### Properties
+
+- [animated](Emoji#animated)
+- [available](Emoji#available)
+- [client](Emoji#client)
+- [creator](Emoji#creator)
+- [id](Emoji#id)
+- [managed](Emoji#managed)
+- [name](Emoji#name)
+- [raw](Emoji#raw)
+- [requireColons](Emoji#requirecolons)
+- [roles](Emoji#roles)
+
+### Methods
+
+- [createdAt](Emoji#createdat)
+- [createdTimestamp](Emoji#createdtimestamp)
+- [identifier](Emoji#identifier)
+- [imageURL](Emoji#imageurl)
+- [toString](Emoji#tostring)
+
+## Constructors
+
+### constructor
+
+• **new Emoji**(`client`, `data`): [`Emoji`](Emoji)
+
+Represents an emoji on the Discord platform.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `client` | [`YorClient`](YorClient) | The client object. |
+| `data` | `APIEmoji` | The APIEmoji data. |
+
+#### Returns
+
+[`Emoji`](Emoji)
+
+#### Overrides
+
+[Base](Base).[constructor](Base#constructor)
+
+#### Defined in
+
+src/structures/Emoji.ts:31
+
+## Properties
+
+### animated
+
+• `Optional` **animated**: `boolean`
+
+#### Defined in
+
+src/structures/Emoji.ts:20
+
+___
+
+### available
+
+• `Optional` **available**: `boolean`
+
+#### Defined in
+
+src/structures/Emoji.ts:21
+
+___
+
+### client
+
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+[Base](Base).[client](Base#client)
+
+#### Defined in
+
+[src/structures/Base.ts:4](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/Base.ts#L4)
+
+___
+
+### creator
+
+• `Optional` **creator**: [`User`](User)
+
+#### Defined in
+
+src/structures/Emoji.ts:17
+
+___
+
+### id
+
+• **id**: `string`
+
+#### Defined in
+
+src/structures/Emoji.ts:14
+
+___
+
+### managed
+
+• `Optional` **managed**: `boolean`
+
+#### Defined in
+
+src/structures/Emoji.ts:19
+
+___
+
+### name
+
+• **name**: `string`
+
+#### Defined in
+
+src/structures/Emoji.ts:15
+
+___
+
+### raw
+
+• **raw**: `APIEmoji`
+
+#### Defined in
+
+src/structures/Emoji.ts:13
+
+___
+
+### requireColons
+
+• `Optional` **requireColons**: `boolean`
+
+#### Defined in
+
+src/structures/Emoji.ts:18
+
+___
+
+### roles
+
+• `Optional` **roles**: `string`[]
+
+#### Defined in
+
+src/structures/Emoji.ts:16
+
+## Methods
+
+### createdAt
+
+▸ **createdAt**(): [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+Returns the creation date of the object.
+
+#### Returns
+
+[`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+The creation date of the object.
+
+#### Defined in
+
+src/structures/Emoji.ts:95
+
+___
+
+### createdTimestamp
+
+▸ **createdTimestamp**(): `number`
+
+Returns the created timestamp as a Date object.
+
+#### Returns
+
+`number`
+
+The created timestamp.
+
+#### Defined in
+
+src/structures/Emoji.ts:81
+
+___
+
+### identifier
+
+▸ **identifier**(): `string`
+
+The identifier of this emoji, used for message reactions
+
+#### Returns
+
+`string`
+
+The identifier string for the object.
+
+#### Defined in
+
+src/structures/Emoji.ts:52
+
+___
+
+### imageURL
+
+▸ **imageURL**(`options?`): `string`
+
+Generates the URL of the image with the given options.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options?` | `BaseImageURLOptions` | Optional options for generating the image URL. |
+
+#### Returns
+
+`string`
+
+The generated image URL.
+
+#### Defined in
+
+src/structures/Emoji.ts:63
+
+___
+
+### toString
+
+▸ **toString**(): `string`
+
+Returns a string representation of the emoji
+
+#### Returns
+
+`string`
+
+The string representation of the emoji
+
+#### Defined in
+
+src/structures/Emoji.ts:72

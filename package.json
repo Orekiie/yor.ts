@@ -1,6 +1,6 @@
 {
   "name": "yor.ts",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "A highly performant and typed library to make discord http based bots",
   "keywords": [
     "discord",
@@ -34,6 +34,16 @@
       "require": "./dist/util/index.js",
       "import": "./dist/util/index.mjs",
       "types": "./dist/util/index.d.ts"
+    },
+    "./core": {
+      "require": "./dist/core/index.js",
+      "import": "./dist/core/index.mjs",
+      "types": "./dist/core/index.d.ts"
+    },
+    "./rest": {
+      "require": "./dist/rest/index.js",
+      "import": "./dist/rest/index.mjs",
+      "types": "./dist/rest/index.d.ts"
     }
   },
   "main": "./dist/index.js",

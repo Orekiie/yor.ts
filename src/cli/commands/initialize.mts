@@ -5,6 +5,13 @@ import path from 'node:path';
 import * as prompts from '@clack/prompts';
 import colors from 'picocolors';
 
+const templates = {
+  workers: {
+    javascript: 'https://github.com/cloudflare/worker-template',
+    typescript: 'https://github.com/cloudflare/worker-typescript-template',
+  },
+};
+
 export async function initialize() {
   const project = await prompts.group(
     {
@@ -37,15 +44,6 @@ export async function initialize() {
             if (!value) return 'Please enter a name.';
           },
         }),
-      tools: () =>
-        prompts.multiselect({
-          message: 'Select additional tools.',
-          initialValues: ['prettier', 'eslint'],
-          options: [
-            { value: 'prettier', label: 'Prettier', hint: 'recommended' },
-            { value: 'eslint', label: 'ESLint', hint: 'recommended' },
-          ],
-        }),
       language: () =>
         prompts.select({
           message: 'Choose a language',
@@ -55,10 +53,11 @@ export async function initialize() {
             { label: 'TypeScript', value: 'typescript' },
           ],
         }),
-      srcDirectory: () =>
-        prompts.confirm({
-          message: 'Include src directory?',
-          initialValue: true,
+      provider: () =>
+        prompts.select({
+          message: 'Choose a provider',
+          initialValue: 'workers',
+          options: [{ label: 'Cloudflare Workers', value: 'workers' }],
         }),
       install: () =>
         prompts.confirm({
@@ -85,15 +84,19 @@ export async function initialize() {
   const packageManager = project.packageManager;
   loader.message(colors.yellow(`Using ${packageManager}...`));
 
-  project.tools.push('yor.ts');
+  // based on language and provider git clone template
+  const template =
+    templates[project.provider as 'workers'][
+      project.language as 'javascript' | 'typescript'
+    ];
+  execSync(`git clone ${template} ${cwd}`, {
+    stdio: 'ignore',
+  });
 
   const packageJsonPath = path.join(cwd, 'package.json');
   if (fs.existsSync(packageJsonPath)) {
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-    packageJson.devDependencies = packageJson.devDependencies || {};
-    project.tools.forEach((tool: string) => {
-      packageJson.devDependencies[tool] = '*';
-    });
+    packageJson.dependencies['yor.ts'] = '*';
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
   } else {
     execSync(`${packageManager} init ${packageManager === 'npm' ? '-y' : ''}`, {
@@ -102,15 +105,8 @@ export async function initialize() {
     });
 
     const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-    packageJson.devDependencies = packageJson.devDependencies || {};
-    project.tools.forEach((tool: string) => {
-      packageJson.devDependencies[tool] = '*';
-    });
+    packageJson.dependencies['yor.ts'] = '*';
     fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-  }
-
-  if (project.srcDirectory) {
-    fs.mkdirSync(path.join(cwd, 'src'), { recursive: true });
   }
 
   if (project.install) {

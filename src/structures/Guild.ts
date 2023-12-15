@@ -1,6 +1,5 @@
 import {
   APIAuditLog,
-  APIEmoji,
   APIGuild,
   APIGuildOnboarding,
   APIGuildPreview,
@@ -19,6 +18,9 @@ import {
 } from '@discordjs/core/http-only';
 
 import { Base } from './Base';
+import { Emoji } from './Emoji';
+import { Role } from './Role';
+import { Sticker } from './Sticker';
 import { User } from './User';
 import { YorClient } from './YorClient';
 
@@ -27,6 +29,9 @@ export class Guild extends Base {
   public features: GuildFeature[];
   public premiumTier: GuildPremiumTier;
   public joinedTimestamp?: number;
+  public roles: Role[];
+  public emojis: Emoji[];
+  public stickers: Sticker[];
 
   public raw: APIGuild;
 
@@ -52,6 +57,11 @@ export class Guild extends Base {
 
     this.features = this.raw.features;
     this.premiumTier = this.raw.premium_tier;
+    this.roles = this.raw.roles.map((role) => new Role(this.client, role));
+    this.emojis = this.raw.emojis.map((emoji) => new Emoji(this.client, emoji));
+    this.stickers = this.raw.stickers.map(
+      (sticker) => new Sticker(this.client, sticker),
+    );
   }
 
   /**
@@ -161,15 +171,6 @@ export class Guild extends Base {
    */
   public async fetchStickers(): Promise<APISticker[]> {
     return this.client.api.guilds.getStickers(this.id);
-  }
-
-  /**
-   * Fetches the emojis.
-   *
-   * @return {Promise<APIEmoji[]>} The result of the API call.
-   */
-  public async emojis(): Promise<APIEmoji[]> {
-    return this.client.api.guilds.getEmojis(this.id);
   }
 
   /**

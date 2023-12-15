@@ -1,0 +1,383 @@
+---
+title: Yor.ts | classes/MessageContextMenuCommandInteraction
+icon: "code"
+sidebarTitle: MessageContextMenuCommandInteraction
+---
+[yor.ts](../README) / [Exports](../modules) / MessageContextMenuCommandInteraction
+
+# Class: MessageContextMenuCommandInteraction
+
+## Hierarchy
+
+- [`ContextMenuCommandInteraction`](ContextMenuCommandInteraction)
+
+  ↳ **`MessageContextMenuCommandInteraction`**
+
+## Table of contents
+
+### Constructors
+
+- [constructor](MessageContextMenuCommandInteraction#constructor)
+
+### Properties
+
+- [applicationId](MessageContextMenuCommandInteraction#applicationid)
+- [client](MessageContextMenuCommandInteraction#client)
+- [interactionId](MessageContextMenuCommandInteraction#interactionid)
+- [raw](MessageContextMenuCommandInteraction#raw)
+- [targetId](MessageContextMenuCommandInteraction#targetid)
+- [token](MessageContextMenuCommandInteraction#token)
+
+### Methods
+
+- [decorate](MessageContextMenuCommandInteraction#decorate)
+- [defer](MessageContextMenuCommandInteraction#defer)
+- [deleteReply](MessageContextMenuCommandInteraction#deletereply)
+- [editReply](MessageContextMenuCommandInteraction#editreply)
+- [fetchReply](MessageContextMenuCommandInteraction#fetchreply)
+- [followUp](MessageContextMenuCommandInteraction#followup)
+- [getTargetMessage](MessageContextMenuCommandInteraction#gettargetmessage)
+- [reply](MessageContextMenuCommandInteraction#reply)
+- [replyModal](MessageContextMenuCommandInteraction#replymodal)
+
+## Constructors
+
+### constructor
+
+• **new MessageContextMenuCommandInteraction**(`client`, `data`): [`MessageContextMenuCommandInteraction`](MessageContextMenuCommandInteraction)
+
+Represents a message context menu command
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `client` | [`YorClient`](YorClient) | The client object. |
+| `data` | `APIMessageApplicationCommandInteraction` | The data object. |
+
+#### Returns
+
+[`MessageContextMenuCommandInteraction`](MessageContextMenuCommandInteraction)
+
+#### Overrides
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[constructor](ContextMenuCommandInteraction#constructor)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/MessageContextMenuCommandInteraction.ts:18
+
+## Properties
+
+### applicationId
+
+• **applicationId**: `string`
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[applicationId](ContextMenuCommandInteraction#applicationid)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:23
+
+___
+
+### client
+
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[client](ContextMenuCommandInteraction#client)
+
+#### Defined in
+
+[src/structures/Base.ts:4](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/Base.ts#L4)
+
+___
+
+### interactionId
+
+• **interactionId**: `string`
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[interactionId](ContextMenuCommandInteraction#interactionid)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:22
+
+___
+
+### raw
+
+• **raw**: `APIUserApplicationCommandInteraction` \| `APIMessageApplicationCommandInteraction`
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[raw](ContextMenuCommandInteraction#raw)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:16
+
+___
+
+### targetId
+
+• **targetId**: `string`
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[targetId](ContextMenuCommandInteraction#targetid)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:21
+
+___
+
+### token
+
+• **token**: `string`
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[token](ContextMenuCommandInteraction#token)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:20
+
+## Methods
+
+### decorate
+
+▸ **decorate**(`name`, `data`): `unknown`
+
+Decorates the object with a new property.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `name` | `string` | The name of the property. |
+| `data` | `unknown` | The data to assign to the property. |
+
+#### Returns
+
+`unknown`
+
+The decorated object.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[decorate](ContextMenuCommandInteraction#decorate)
+
+#### Defined in
+
+[src/structures/Contexts/BaseContext.ts:22](https://github.com/OreOreki/interactions.ts/blob/e3ad9a5/src/structures/Contexts/BaseContext.ts#L22)
+
+___
+
+### defer
+
+▸ **defer**(`ephemeral?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+Defers the execution of the function.
+
+#### Parameters
+
+| Name | Type | Default value | Description |
+| :------ | :------ | :------ | :------ |
+| `ephemeral` | `boolean` | `false` | Whether the message is ephemeral or not. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+A promise that resolves when the deferral is complete.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[defer](ContextMenuCommandInteraction#defer)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:53
+
+___
+
+### deleteReply
+
+▸ **deleteReply**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+Deletes a reply.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+A promise that resolves when the reply is deleted.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[deleteReply](ContextMenuCommandInteraction#deletereply)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:126
+
+___
+
+### editReply
+
+▸ **editReply**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+Edits a reply.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The data for editing the reply. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+A promise that resolves when the reply is edited.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[editReply](ContextMenuCommandInteraction#editreply)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:100
+
+___
+
+### fetchReply
+
+▸ **fetchReply**(): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+Fetches the reply asynchronously.
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+A promise that resolves when the original reply is fetched.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[fetchReply](ContextMenuCommandInteraction#fetchreply)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:138
+
+___
+
+### followUp
+
+▸ **followUp**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+Calls the followUp method of the API class with the provided data.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The data to be passed to the followUp method. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIMessage`\>
+
+A promise that resolves to an APIMessage object.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[followUp](ContextMenuCommandInteraction#followup)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:175
+
+___
+
+### getTargetMessage
+
+▸ **getTargetMessage**(): ``null`` \| `APIMessage`
+
+Retrieves the target message from the resolved messages.
+
+#### Returns
+
+``null`` \| `APIMessage`
+
+The target message, or null if not found.
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/MessageContextMenuCommandInteraction.ts:30
+
+___
+
+### reply
+
+▸ **reply**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+Replies to an interaction.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | [`Omit`]( https://www.typescriptlang.org/docs/handbook/utility-types.html#omittype-keys )\<`RESTPostAPIWebhookWithTokenJSONBody`, ``"username"`` \| ``"avatar_url"``\> & \{ `flags?`: `MessageFlags`  } & \{ `files?`: `RawFile`[]  } | The data for creating the reply. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+A promise that resolves when the reply is sent.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[reply](ContextMenuCommandInteraction#reply)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:73
+
+___
+
+### replyModal
+
+▸ **replyModal**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+Reply to a modal.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `APIModalInteractionResponseCallbackData` | The data for creating the modal. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\>
+
+A promise that resolves when the modal is created.
+
+#### Inherited from
+
+[ContextMenuCommandInteraction](ContextMenuCommandInteraction).[replyModal](ContextMenuCommandInteraction#replymodal)
+
+#### Defined in
+
+src/structures/Contexts/ContextMenu/ContextMenuCommandInteraction.ts:151
