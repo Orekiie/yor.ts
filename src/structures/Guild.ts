@@ -228,8 +228,15 @@ export class Guild extends Base {
    * @param {RESTPostAPIGuildChannelJSONBody & { reason?: string }} data - The data for creating the channel.
    * @return {Promise<Channel>} A promise that resolves when the channel is created.
    */
-  public async createChannel({ reason, ...data }: RESTPostAPIGuildChannelJSONBody & { reason?: string }): Promise<Channel> {
-    const newChannel = await this.client.api.guilds.createChannel(this.id, data, { reason });
+  public async createChannel({
+    reason,
+    ...data
+  }: RESTPostAPIGuildChannelJSONBody & { reason?: string }): Promise<Channel> {
+    const newChannel = await this.client.api.guilds.createChannel(
+      this.id,
+      data,
+      { reason },
+    );
     return new Channel(this.client, newChannel);
   }
 }

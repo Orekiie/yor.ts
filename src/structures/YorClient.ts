@@ -47,18 +47,20 @@ export type MiddlewareFunctionNames =
 
 export type MiddlewareFunction<T extends MiddlewareFunctionNames> =
   T extends 'command'
-  ? (context: CommandContext) => Promise<void> | void
-  : T extends 'component'
-  ? (context: ComponentContext) => Promise<void> | void
-  : T extends 'modal'
-  ? (context: ModalContext) => Promise<void> | void
-  : T extends 'autocomplete'
-  ? (context: AutocompleteCommandContext) => Promise<void> | void
-  : T extends 'message'
-  ? (context: MessageContextMenuCommandInteraction) => Promise<void> | void
-  : T extends 'user'
-  ? (context: CommandContext) => Promise<void> | void
-  : never;
+    ? (context: CommandContext) => Promise<void> | void
+    : T extends 'component'
+      ? (context: ComponentContext) => Promise<void> | void
+      : T extends 'modal'
+        ? (context: ModalContext) => Promise<void> | void
+        : T extends 'autocomplete'
+          ? (context: AutocompleteCommandContext) => Promise<void> | void
+          : T extends 'message'
+            ? (
+                context: MessageContextMenuCommandInteraction,
+              ) => Promise<void> | void
+            : T extends 'user'
+              ? (context: CommandContext) => Promise<void> | void
+              : never;
 
 export class YorClient {
   public readonly options: YorClientOptions;
@@ -252,14 +254,14 @@ export class YorClient {
 
     const response = guild
       ? await this.api.applicationCommands.bulkOverwriteGuildCommands(
-        this.options.application.id,
-        guild,
-        commands,
-      )
+          this.options.application.id,
+          guild,
+          commands,
+        )
       : await this.api.applicationCommands.bulkOverwriteGlobalCommands(
-        this.options.application.id,
-        commands,
-      );
+          this.options.application.id,
+          commands,
+        );
     return response;
   }
 
@@ -498,7 +500,7 @@ export class YorClient {
         const context = new MessageContextMenuCommandInteraction(
           this,
           data as APIMessageApplicationCommandInteraction,
-        )
+        );
 
         for await (const middleware of this.middlewares.message) {
           // @ts-expect-error - ts(2345)
@@ -521,7 +523,7 @@ export class YorClient {
         const context = new UserContextMenuCommandInteraction(
           this,
           data as APIUserApplicationCommandInteraction,
-        )
+        );
 
         for await (const middleware of this.middlewares.user) {
           // @ts-expect-error - ts(2345)
