@@ -22,6 +22,7 @@ export * from './structures/User';
 export * from './structures/Role';
 export * from './structures/Emoji';
 export * from './structures/Sticker';
+export * from './structures/Webhook';
 
 export * from './interfaces/Command';
 export * from './interfaces/Component';

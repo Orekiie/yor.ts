@@ -3,6 +3,8 @@ import {
   APIChatInputApplicationCommandInteraction,
   APIInteraction,
   APIInteractionResponse,
+  APIMessageApplicationCommandInteraction,
+  APIUserApplicationCommandInteraction,
   ApplicationCommandType,
   InteractionType,
   RESTPutAPIApplicationCommandsResult,
@@ -13,6 +15,8 @@ import { InteractionResponseType, verifyKey } from 'discord-interactions';
 import { AutocompleteCommandContext } from './Contexts/AutocompleteCommandContext';
 import { CommandContext } from './Contexts/CommandContext';
 import { ComponentContext } from './Contexts/ComponentContext';
+import { MessageContextMenuCommandInteraction } from './Contexts/ContextMenu/MessageContextMenuCommandInteraction';
+import { UserContextMenuCommandInteraction } from './Contexts/ContextMenu/UserContextMenuCommandInteraction';
 import { ModalContext } from './Contexts/ModalContext';
 import { YorClientAPI } from './YorClientAPI';
 import { YorClientError } from './YorClientError';
@@ -37,18 +41,24 @@ export type MiddlewareFunctionNames =
   | 'command'
   | 'component'
   | 'modal'
-  | 'autocomplete';
+  | 'autocomplete'
+  | 'message'
+  | 'user';
 
 export type MiddlewareFunction<T extends MiddlewareFunctionNames> =
   T extends 'command'
-    ? (context: CommandContext) => Promise<void> | void
-    : T extends 'component'
-      ? (context: ComponentContext) => Promise<void> | void
-      : T extends 'modal'
-        ? (context: ModalContext) => Promise<void> | void
-        : T extends 'autocomplete'
-          ? (context: AutocompleteCommandContext) => Promise<void> | void
-          : never;
+  ? (context: CommandContext) => Promise<void> | void
+  : T extends 'component'
+  ? (context: ComponentContext) => Promise<void> | void
+  : T extends 'modal'
+  ? (context: ModalContext) => Promise<void> | void
+  : T extends 'autocomplete'
+  ? (context: AutocompleteCommandContext) => Promise<void> | void
+  : T extends 'message'
+  ? (context: MessageContextMenuCommandInteraction) => Promise<void> | void
+  : T extends 'user'
+  ? (context: CommandContext) => Promise<void> | void
+  : never;
 
 export class YorClient {
   public readonly options: YorClientOptions;
@@ -93,6 +103,8 @@ export class YorClient {
       component: [],
       autocomplete: [],
       modal: [],
+      message: [],
+      user: [],
     };
   }
 
@@ -240,14 +252,14 @@ export class YorClient {
 
     const response = guild
       ? await this.api.applicationCommands.bulkOverwriteGuildCommands(
-          this.options.application.id,
-          guild,
-          commands,
-        )
+        this.options.application.id,
+        guild,
+        commands,
+      )
       : await this.api.applicationCommands.bulkOverwriteGlobalCommands(
-          this.options.application.id,
-          commands,
-        );
+        this.options.application.id,
+        commands,
+      );
     return response;
   }
 
@@ -471,6 +483,52 @@ export class YorClient {
         return {
           type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         };
+      }
+
+      if (data.data.type === ApplicationCommandType.Message) {
+        const command = this.messageCommands
+          .filter((command) => command.builder)
+          .get(data.data.name);
+        if (!command) {
+          throw new YorClientError(
+            `Command with name ${data.data.name} not found.`,
+          );
+        }
+
+        const context = new MessageContextMenuCommandInteraction(
+          this,
+          data as APIMessageApplicationCommandInteraction,
+        )
+
+        for await (const middleware of this.middlewares.message) {
+          // @ts-expect-error - ts(2345)
+          await middleware(context);
+        }
+
+        await command.execute(context);
+      }
+
+      if (data.data.type === ApplicationCommandType.User) {
+        const command = this.userCommands
+          .filter((command) => command.builder)
+          .get(data.data.name);
+        if (!command) {
+          throw new YorClientError(
+            `Command with name ${data.data.name} not found.`,
+          );
+        }
+
+        const context = new UserContextMenuCommandInteraction(
+          this,
+          data as APIUserApplicationCommandInteraction,
+        )
+
+        for await (const middleware of this.middlewares.user) {
+          // @ts-expect-error - ts(2345)
+          await middleware(context);
+        }
+
+        await command.execute(context);
       }
     }
 

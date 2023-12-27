@@ -1,6 +1,6 @@
 {
   "name": "yor.ts",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "A highly performant and typed library to make discord http based bots",
   "keywords": [
     "discord",
