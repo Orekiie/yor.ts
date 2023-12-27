@@ -26,6 +26,7 @@ sidebarTitle: modules
 - [Sticker](classes/Sticker)
 - [User](classes/User)
 - [UserContextMenuCommandInteraction](classes/UserContextMenuCommandInteraction)
+- [Webhook](classes/Webhook)
 - [WebhookClient](classes/WebhookClient)
 - [YorClient](classes/YorClient)
 - [YorClientAPI](classes/YorClientAPI)
@@ -43,7 +44,6 @@ sidebarTitle: modules
 - [ContextMenuCommand](interfaces/ContextMenuCommand)
 - [MessageContextMenuCommand](interfaces/MessageContextMenuCommand)
 - [Modal](interfaces/Modal)
-- [ModalComponentData](interfaces/ModalComponentData)
 - [UserContextMenuCommand](interfaces/UserContextMenuCommand)
 - [YorClientOptions](interfaces/YorClientOptions)
 
@@ -57,7 +57,7 @@ sidebarTitle: modules
 
 ### MiddlewareFunction
 
-Ƭ **MiddlewareFunction**\<`T`\>: `T` extends ``"command"`` ? (`context`: [`CommandContext`](classes/CommandContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"component"`` ? (`context`: [`ComponentContext`](classes/ComponentContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"modal"`` ? (`context`: [`ModalContext`](classes/ModalContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"autocomplete"`` ? (`context`: [`AutocompleteCommandContext`](classes/AutocompleteCommandContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `never`
+Ƭ **MiddlewareFunction**\<`T`\>: `T` extends ``"command"`` ? (`context`: [`CommandContext`](classes/CommandContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"component"`` ? (`context`: [`ComponentContext`](classes/ComponentContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"modal"`` ? (`context`: [`ModalContext`](classes/ModalContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"autocomplete"`` ? (`context`: [`AutocompleteCommandContext`](classes/AutocompleteCommandContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"message"`` ? (`context`: [`MessageContextMenuCommandInteraction`](classes/MessageContextMenuCommandInteraction)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `T` extends ``"user"`` ? (`context`: [`CommandContext`](classes/CommandContext)) => [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`void`\> \| `void` : `never`
 
 #### Type parameters
 
@@ -67,17 +67,17 @@ sidebarTitle: modules
 
 #### Defined in
 
-[src/structures/YorClient.ts:42](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/YorClient.ts#L42)
+[src/structures/YorClient.ts:48](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/YorClient.ts#L48)
 
 ___
 
 ### MiddlewareFunctionNames
 
-Ƭ **MiddlewareFunctionNames**: ``"command"`` \| ``"component"`` \| ``"modal"`` \| ``"autocomplete"``
+Ƭ **MiddlewareFunctionNames**: ``"command"`` \| ``"component"`` \| ``"modal"`` \| ``"autocomplete"`` \| ``"message"`` \| ``"user"``
 
 #### Defined in
 
-[src/structures/YorClient.ts:36](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/YorClient.ts#L36)
+[src/structures/YorClient.ts:40](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/YorClient.ts#L40)
 
 ___
 
@@ -93,4 +93,4 @@ ___
 
 #### Defined in
 
-[src/structures/WebhookClient.ts:14](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/WebhookClient.ts#L14)
+[src/structures/WebhookClient.ts:14](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/WebhookClient.ts#L14)

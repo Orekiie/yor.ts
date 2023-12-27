@@ -23,13 +23,19 @@ sidebarTitle: Member
 
 - [API](Member#api)
 - [client](Member#client)
+- [joinedTimestamp](Member#joinedtimestamp)
+- [nickname](Member#nickname)
 - [raw](Member#raw)
 - [user](Member#user)
 
 ### Methods
 
 - [ban](Member#ban)
+- [displayName](Member#displayname)
+- [edit](Member#edit)
 - [fetchGuild](Member#fetchguild)
+- [joinedAt](Member#joinedat)
+- [kick](Member#kick)
 
 ## Constructors
 
@@ -57,7 +63,7 @@ Constructs a new instance of the constructor.
 
 #### Defined in
 
-[src/structures/Member.ts:25](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Member.ts#L25)
+[src/structures/Member.ts:29](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L29)
 
 ## Properties
 
@@ -67,7 +73,7 @@ Constructs a new instance of the constructor.
 
 #### Defined in
 
-[src/structures/Member.ts:13](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Member.ts#L13)
+[src/structures/Member.ts:15](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L15)
 
 ___
 
@@ -81,7 +87,27 @@ ___
 
 #### Defined in
 
-[src/structures/Base.ts:4](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Base.ts#L4)
+[src/structures/Base.ts:4](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Base.ts#L4)
+
+___
+
+### joinedTimestamp
+
+• `Optional` **joinedTimestamp**: `number`
+
+#### Defined in
+
+[src/structures/Member.ts:20](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L20)
+
+___
+
+### nickname
+
+• `Optional` **nickname**: `string`
+
+#### Defined in
+
+[src/structures/Member.ts:19](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L19)
 
 ___
 
@@ -91,7 +117,7 @@ ___
 
 #### Defined in
 
-[src/structures/Member.ts:15](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Member.ts#L15)
+[src/structures/Member.ts:17](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L17)
 
 ___
 
@@ -101,7 +127,7 @@ ___
 
 #### Defined in
 
-[src/structures/Member.ts:16](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Member.ts#L16)
+[src/structures/Member.ts:18](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L18)
 
 ## Methods
 
@@ -125,7 +151,49 @@ A promise that resolves when the user is successfully banned.
 
 #### Defined in
 
-[src/structures/Member.ts:44](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Member.ts#L44)
+[src/structures/Member.ts:51](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L51)
+
+___
+
+### displayName
+
+▸ **displayName**(): `string`
+
+Returns the display name for the member.
+
+#### Returns
+
+`string`
+
+The display name of the member.
+
+#### Defined in
+
+[src/structures/Member.ts:99](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L99)
+
+___
+
+### edit
+
+▸ **edit**(`data`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildMember`\>
+
+Edits a guild member.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `data` | `RESTPatchAPIGuildMemberJSONBody` & \{ `reason?`: `string`  } | The data to edit the guild member with. It should include the reason as a string if provided. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`APIGuildMember`\>
+
+A promise that resolves with the edited guild member object.
+
+#### Defined in
+
+[src/structures/Member.ts:109](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L109)
 
 ___
 
@@ -143,4 +211,46 @@ A Promise that resolves with the fetched Guild object.
 
 #### Defined in
 
-[src/structures/Member.ts:60](https://github.com/OreOreki/yor.ts/blob/e005218/src/structures/Member.ts#L60)
+[src/structures/Member.ts:81](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L81)
+
+___
+
+### joinedAt
+
+▸ **joinedAt**(): `undefined` \| [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+Returns the joined date of the user as a Date object.
+
+#### Returns
+
+`undefined` \| [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+- The joined date of the user, or undefined if the joined timestamp is not set.
+
+#### Defined in
+
+[src/structures/Member.ts:90](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L90)
+
+___
+
+### kick
+
+▸ **kick**(`reason?`): [`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`unknown`\>
+
+Kick a member from the guild.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `reason?` | `string` | The reason for the kick, optional. |
+
+#### Returns
+
+[`Promise`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise )\<`unknown`\>
+
+A promise that resolves with the result of the kick.
+
+#### Defined in
+
+[src/structures/Member.ts:68](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Member.ts#L68)

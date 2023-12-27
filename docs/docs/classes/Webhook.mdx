@@ -1,0 +1,284 @@
+---
+title: Yor.ts | classes/Webhook
+icon: "code"
+sidebarTitle: Webhook
+---
+[yor.ts](../README) / [Exports](../modules) / Webhook
+
+# Class: Webhook
+
+## Hierarchy
+
+- [`Base`](Base)
+
+  ↳ **`Webhook`**
+
+## Table of contents
+
+### Constructors
+
+- [constructor](Webhook#constructor)
+
+### Properties
+
+- [avatar](Webhook#avatar)
+- [client](Webhook#client)
+- [creator](Webhook#creator)
+- [id](Webhook#id)
+- [raw](Webhook#raw)
+- [token](Webhook#token)
+- [type](Webhook#type)
+
+### Methods
+
+- [avatarURL](Webhook#avatarurl)
+- [createClient](Webhook#createclient)
+- [createdAt](Webhook#createdat)
+- [createdTimestamp](Webhook#createdtimestamp)
+- [isApplicationCreated](Webhook#isapplicationcreated)
+- [isChannelFollower](Webhook#ischannelfollower)
+- [isIncoming](Webhook#isincoming)
+- [isUserCreated](Webhook#isusercreated)
+
+## Constructors
+
+### constructor
+
+• **new Webhook**(`client`, `data`): [`Webhook`](Webhook)
+
+Initializes a new instance of the class.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `client` | [`YorClient`](YorClient) | The client instance. |
+| `data` | `APIWebhook` | The webhook data. |
+
+#### Returns
+
+[`Webhook`](Webhook)
+
+#### Overrides
+
+[Base](Base).[constructor](Base#constructor)
+
+#### Defined in
+
+[src/structures/Webhook.ts:27](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L27)
+
+## Properties
+
+### avatar
+
+• `Optional` **avatar**: `string`
+
+#### Defined in
+
+[src/structures/Webhook.ts:18](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L18)
+
+___
+
+### client
+
+• **client**: [`YorClient`](YorClient)
+
+#### Inherited from
+
+[Base](Base).[client](Base#client)
+
+#### Defined in
+
+[src/structures/Base.ts:4](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Base.ts#L4)
+
+___
+
+### creator
+
+• `Optional` **creator**: [`User`](User)
+
+#### Defined in
+
+[src/structures/Webhook.ts:19](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L19)
+
+___
+
+### id
+
+• **id**: `string`
+
+#### Defined in
+
+[src/structures/Webhook.ts:15](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L15)
+
+___
+
+### raw
+
+• `Readonly` **raw**: `APIWebhook`
+
+#### Defined in
+
+[src/structures/Webhook.ts:13](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L13)
+
+___
+
+### token
+
+• `Optional` **token**: `string`
+
+#### Defined in
+
+[src/structures/Webhook.ts:17](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L17)
+
+___
+
+### type
+
+• **type**: `WebhookType`
+
+#### Defined in
+
+[src/structures/Webhook.ts:16](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L16)
+
+## Methods
+
+### avatarURL
+
+▸ **avatarURL**(`options?`): `undefined` \| `string`
+
+Returns the URL of the avatar image for this user.
+
+#### Parameters
+
+| Name | Type | Description |
+| :------ | :------ | :------ |
+| `options?` | `ImageURLOptions` | Optional parameters for the image URL. |
+
+#### Returns
+
+`undefined` \| `string`
+
+The URL of the avatar image, or undefined if there is no avatar.
+
+#### Defined in
+
+[src/structures/Webhook.ts:80](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L80)
+
+___
+
+### createClient
+
+▸ **createClient**(): ``false`` \| [`WebhookClient`](WebhookClient)\<\{ `id`: `string` ; `token`: `string`  }\>
+
+Creates a client if the call is incoming and returns a new WebhookClient instance.
+
+#### Returns
+
+``false`` \| [`WebhookClient`](WebhookClient)\<\{ `id`: `string` ; `token`: `string`  }\>
+
+A new WebhookClient instance.
+
+#### Defined in
+
+[src/structures/Webhook.ts:44](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L44)
+
+___
+
+### createdAt
+
+▸ **createdAt**(): [`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+Returns the creation date of the object.
+
+#### Returns
+
+[`Date`]( https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Date )
+
+The creation date of the object.
+
+#### Defined in
+
+[src/structures/Webhook.ts:70](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L70)
+
+___
+
+### createdTimestamp
+
+▸ **createdTimestamp**(): `number`
+
+Returns the created timestamp as a Date object.
+
+#### Returns
+
+`number`
+
+The created timestamp.
+
+#### Defined in
+
+[src/structures/Webhook.ts:56](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L56)
+
+___
+
+### isApplicationCreated
+
+▸ **isApplicationCreated**(): `boolean`
+
+Whether this webhook is created by an application.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/structures/Webhook.ts:102](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L102)
+
+___
+
+### isChannelFollower
+
+▸ **isChannelFollower**(): `boolean`
+
+Whether or not this webhook is a channel follower webhook.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/structures/Webhook.ts:110](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L110)
+
+___
+
+### isIncoming
+
+▸ **isIncoming**(): `boolean`
+
+Whether or not this webhook is an incoming webhook.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/structures/Webhook.ts:118](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L118)
+
+___
+
+### isUserCreated
+
+▸ **isUserCreated**(): `boolean`
+
+Whether this webhook is created by a user.
+
+#### Returns
+
+`boolean`
+
+#### Defined in
+
+[src/structures/Webhook.ts:90](https://github.com/OreOreki/yor.ts/blob/ff21935/src/structures/Webhook.ts#L90)
