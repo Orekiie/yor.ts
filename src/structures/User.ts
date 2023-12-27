@@ -117,4 +117,13 @@ export class User extends Base {
   public isSystem(): boolean {
     return Boolean(this.raw.system);
   }
+
+  /**
+   * The global name of this user, or their username if they don't have one
+   *
+   * @returns {string} The global name of this user
+   */
+  public displayName(): string {
+    return this.raw.global_name ?? this.raw.username;
+  }
 }

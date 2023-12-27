@@ -1,6 +1,8 @@
 import {
+  APIGuildMember,
   APIInteractionGuildMember,
   GuildsAPI,
+  RESTPatchAPIGuildMemberJSONBody,
   RESTPutAPIGuildBanJSONBody,
 } from '@discordjs/core/http-only';
 
@@ -14,6 +16,8 @@ export class Member extends Base {
 
   public raw: APIInteractionGuildMember & { guildID: string };
   public user: User;
+  public nickname?: string;
+  public joinedTimestamp?: number;
 
   /**
    * Constructs a new instance of the constructor.
@@ -33,6 +37,9 @@ export class Member extends Base {
 
     this.raw = { ...member, guildID };
     this.user = new User(this.client, member.user);
+
+    this.nickname = this.raw.nick as string | undefined;
+    this.joinedTimestamp = Date.parse(this.raw.joined_at);
   }
 
   /**
@@ -53,11 +60,63 @@ export class Member extends Base {
   }
 
   /**
+   * Kick a member from the guild.
+   *
+   * @param {string} reason - The reason for the kick, optional.
+   * @return {Promise<unknown>} A promise that resolves with the result of the kick.
+   */
+  public async kick(reason?: string): Promise<unknown> {
+    return this.client.api.guilds.removeMember(
+      this.raw.guildID,
+      this.raw.user.id,
+      { reason },
+    );
+  }
+
+  /**
    * Fetches a guild using the guild ID.
    *
    * @return {Promise<Guild>} A Promise that resolves with the fetched Guild object.
    */
   public async fetchGuild(): Promise<Guild> {
     return new Guild(this.client, await this.API.get(this.raw.guildID));
+  }
+
+  /**
+   * Returns the joined date of the user as a Date object.
+   *
+   * @return {Date | undefined} - The joined date of the user, or undefined if the joined timestamp is not set.
+   */
+  public joinedAt(): Date | undefined {
+    return this.joinedTimestamp ? new Date(this.joinedTimestamp) : undefined;
+  }
+
+  /**
+   * Returns the display name for the member.
+   *
+   * @return {string} The display name of the member.
+   */
+  public displayName(): string {
+    return this.nickname ?? this.user.displayName();
+  }
+
+  /**
+   * Edits a guild member.
+   *
+   * @param {RESTPatchAPIGuildMemberJSONBody & { reason?: string }} data - The data to edit the guild member with. It should include the reason as a string if provided.
+   * @return {Promise<APIGuildMember>} A promise that resolves with the edited guild member object.
+   */
+  public edit({
+    reason,
+    ...data
+  }: RESTPatchAPIGuildMemberJSONBody & {
+    reason?: string;
+  }): Promise<APIGuildMember> {
+    return this.client.api.guilds.editMember(
+      this.raw.guildID,
+      this.user.raw.id,
+      data,
+      { reason },
+    );
   }
 }

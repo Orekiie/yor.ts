@@ -15,9 +15,11 @@ import {
   RESTGetAPIGuildTemplatesResult,
   RESTGetAPIGuildVanityUrlResult,
   RESTPatchAPIGuildJSONBody,
+  RESTPostAPIGuildChannelJSONBody,
 } from '@discordjs/core/http-only';
 
 import { Base } from './Base';
+import { Channel } from './Channel';
 import { Emoji } from './Emoji';
 import { Role } from './Role';
 import { Sticker } from './Sticker';
@@ -218,5 +220,16 @@ export class Guild extends Base {
   public async edit(data: RESTPatchAPIGuildJSONBody): Promise<Guild> {
     const newGuild = await this.client.api.guilds.edit(this.id, data);
     return new Guild(this.client, newGuild);
+  }
+
+  /**
+   * Creates a channel with the given data and reason.
+   *
+   * @param {RESTPostAPIGuildChannelJSONBody & { reason?: string }} data - The data for creating the channel.
+   * @return {Promise<Channel>} A promise that resolves when the channel is created.
+   */
+  public async createChannel({ reason, ...data, }: RESTPostAPIGuildChannelJSONBody & { reason?: string }): Promise<Channel> {
+    const newChannel = await this.client.api.guilds.createChannel(this.id, data, { reason });
+    return new Channel(this.client, newChannel);
   }
 }

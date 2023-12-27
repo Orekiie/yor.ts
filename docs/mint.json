@@ -49,10 +49,7 @@
       "pages": [
         {
           "group": "Yor.ts",
-          "pages": [
-            "docs/modules",
-            "docs/README"
-          ]
+          "pages": ["docs/modules", "docs/README"]
         },
         {
           "group": "Interfaces",
@@ -100,14 +97,12 @@
     },
     {
       "group": "Guide",
-      "pages": [
-        "guide/cloudflare-workers"
-      ]
+      "pages": ["guide/cloudflare-workers"]
     }
   ],
   "footerSocials": {
     "discord": "https://discord.gg/HXVMArbsX7",
-    "github": "https://github.com/mintlify"
+    "github": "https://github.com/OreOreki/yor.ts"
   },
   "feedback": {
     "raiseIssue": true,

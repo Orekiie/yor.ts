@@ -21,6 +21,7 @@ import {
 import { RawFile } from '@discordjs/rest';
 
 import { Base } from './Base';
+import { Webhook } from './Webhook';
 import { YorClient } from './YorClient';
 import { YorClientError } from './YorClientError';
 
@@ -268,40 +269,47 @@ export class Channel extends Base {
    *
    * @param {RESTPostAPIChannelWebhookJSONBody} data - The data for creating the webhook.
    * @param {string} data.reason - The reason for creating the webhook.
-   * @return {Promise<APIWebhook>} A promise that resolves with the created webhook.
+   * @return {Promise<Webhook>} A promise that resolves with the created webhook.
    */
   public async createWebhook({
     reason,
     ...data
   }: RESTPostAPIChannelWebhookJSONBody & {
     reason: string;
-  }): Promise<APIWebhook> {
+  }): Promise<Webhook> {
     if (!this.isTextBased()) {
       throw new YorClientError(
         'Cannot create a webhook in a non-text-based channel',
       );
     }
 
+    let webhook: APIWebhook;
+
     if (this.isThread()) {
       // @ts-expect-error - parent_id will only exist in the data when the channel is a thread;
-      return this.API.createWebhook(this.raw.parent_id, data, { reason });
+      webhook = await this.API.createWebhook(this.raw.parent_id, data, {
+        reason,
+      });
+    } else {
+      webhook = await this.API.createWebhook(this.id, data, { reason });
     }
 
-    return this.API.createWebhook(this.id, data, { reason });
+    return new Webhook(this.client, webhook);
   }
 
   /**
    * Gets all webhooks in the current channel or parent channel (if a thread)
    *
-   * @return {Promise<APIWebhook[]>} A promise that resolves with an array of webhooks.
+   * @return {Promise<Webhook[]>} A promise that resolves with an array of webhooks.
    */
-  public async getWebhooks(): Promise<APIWebhook[]> {
+  public async getWebhooks(): Promise<Webhook[]> {
     if (!this.isTextBased()) {
       throw new YorClientError(
         'Cannot delete a webhook in a non-text-based channel',
       );
     }
 
-    return this.API.getWebhooks(this.id);
+    const webhooks = await this.API.getWebhooks(this.id);
+    return webhooks.map((webhook) => new Webhook(this.client, webhook));
   }
 }

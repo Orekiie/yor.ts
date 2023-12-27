@@ -18,12 +18,6 @@ import { YorClientError } from '../YorClientError';
 
 import { BaseContext } from './BaseContext';
 
-export interface ModalComponentData {
-  type: string;
-  value: string | undefined;
-  customId: string;
-}
-
 export class ModalContext extends BaseContext {
   public readonly raw: APIModalSubmitInteraction;
 
