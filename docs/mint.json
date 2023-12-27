@@ -92,6 +92,10 @@
             "docs/classes/YorSlashCommand",
             "docs/classes/YorUserContextMenuCommand"
           ]
+        },
+        {
+          "group": "Yor.ts",
+          "pages": ["docs/README", "docs/modules"]
         }
       ]
     },
